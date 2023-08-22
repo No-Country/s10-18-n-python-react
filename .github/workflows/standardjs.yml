@@ -1,0 +1,33 @@
+name: Standard.js Lint
+
+on:
+  push:
+    branches:
+      - dev
+      - main  
+  pull_request:
+    branches:
+      - dev
+      - main 
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Cambia esto a la versión de Node.js que desees
+      
+      - name: Navigate to frontend directory
+        run: cd frontend
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Standard.js Linter
+        run: npx standard --fix

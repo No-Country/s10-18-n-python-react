@@ -4,11 +4,16 @@ Primero instalar Python versión 3.10 o una superior, se puede instalar desde [h
 Luego de tenerlo instalado, procedemos a movernos al directorio donde se encuentra nuestro proyecto, en la subcarpeta de `s10-18-n-python-react/backend`
 
 ```
-# Se van al directorio del proyecto, luego ejecutan los siguientes comandos
-
+# Se van al directorio del proyecto, luego ejecutan los siguientes comandos:
 python -m venv venv
 source venv/Scripts/activate # Windows
 source venv/bin/activate # Linux
+
+# Luego seria instalar las dependencias y librerías necesarias para arrancar el proyecto, con este comando:
+pip install -r requirements.txt
+
+# Para arrancar el servidor despues de haber instalado todo, simplemente escribir el siguiente comando:
+uvicorn main:app --reload --port 5000 --host 0.0.0.0
 ```
 # ¿Cómo configurar el entorno de desarrollo?
 
@@ -33,3 +38,5 @@ Después de tener el entorno activado, le agregaremos los cambios de `pre-commit
 ```sh
 pre-commit install 
 ```
+
+Pre-commit nos sirve para validar que todos los archivos esten correctamente validados por el linter y el formatter de código.
