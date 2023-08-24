@@ -5,7 +5,18 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'flotar': 'updown 3s linear infinite',
+      },
+      keyframes: {
+        updown: {
+          '0%': { transform: 'translateY(-15px)' },
+          '50%': { transform: 'translateY(15px)' },
+          '100%': { transform: 'translateY(-15px)' },
+        }
+      }
+    },
   },
   plugins: [],
 }
