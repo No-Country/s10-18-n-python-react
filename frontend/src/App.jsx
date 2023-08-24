@@ -1,17 +1,16 @@
-import { useState } from 'react'
+import {Routes, Route} from 'react-router-dom'
 import './App.css'
-import Footer from './components/Footer'
-import Navbar from './components/Navbar'
-import Profile from './components/Profile'
+import Login from './components/Login'
+import LandingPage from './components/LandingPage'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const a = "a"
+
   return (
     <>
-      <Navbar />
-      <Profile />
-      <Footer />
+      <Routes>
+        <Route path={'/'} element={<LandingPage />} />
+        <Route path={'/login'} element={<Login />} />
+      </Routes>
     </>
   )
 }
