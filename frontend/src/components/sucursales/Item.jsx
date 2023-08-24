@@ -7,7 +7,7 @@ const Item = ({ data }) => {
   const { location, mail, phone, street, img } = data;
 
   return (
-    <div className="flex p-5 gap-10 justify-center shadow-2xl w-auto rounded-2xl text-start">
+    <div className="flex p-5 gap-10 justify-center text-start shadow-2xl w-auto rounded-2xl">
       <div className="avatar">
         <div className="rounded-2xl w-28">
           <img src={img}></img>
