@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
- content: [
+  content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
@@ -22,8 +22,17 @@ export default {
         latoSemibold: ["Lato-Semibold", "sans-serif"],
         latoBold: ["Lato-Bold", "sans-serif"]
       },
-    }
+      animation: {
+        'flotar': 'updown 3s linear infinite',
+      },
+      keyframes: {
+        updown: {
+          '0%': { transform: 'translateY(-15px)' },
+          '50%': { transform: 'translateY(15px)' },
+          '100%': { transform: 'translateY(-15px)' },
+        }
+      }
+    },
   },
   plugins: [],
 }
-
