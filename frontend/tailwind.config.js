@@ -22,6 +22,9 @@ export default {
         latoSemibold: ["Lato-Semibold", "sans-serif"],
         latoBold: ["Lato-Bold", "sans-serif"]
       },
+      boxShadow: {
+        custom: "inset 0px -26px 39px -19px rgb(166, 222, 247);",
+      },
       animation: {
         'flotar': 'updown 3s linear infinite',
       },
@@ -32,7 +35,7 @@ export default {
           '100%': { transform: 'translateY(-15px)' },
         }
       }
-    },
+    }
   },
   plugins: [],
 }
