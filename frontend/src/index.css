@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .dot {
+    @apply before:content-[""] before:absolute before:bg-blue-700 before:rounded-full before:p-1 before:w-[16px] before:h-[16px] before:-left-1 before:-top-1
+  }
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
