@@ -10,8 +10,8 @@ const LandingPage = () => {
     <>
       <NavBar />
       <Hero />
-      <Sucursales />
       <Staff />
+      <Sucursales />
       {/* <Profile /> */}
       <Footer />
     </>
