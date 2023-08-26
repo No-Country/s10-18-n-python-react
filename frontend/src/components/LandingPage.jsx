@@ -1,5 +1,5 @@
 import Hero from "./Hero"
-/* import Profile from "./Profile" */
+import Profile from "./Profile"
 import Footer from "./Footer"
 import NavBar from "./Navbar"
 import Sucursales from "./sucursales/Sucursal"
@@ -12,7 +12,7 @@ const LandingPage = () => {
       <Hero />
       <Staff />
       <Sucursales />
-      {/* <Profile /> */}
+      <Profile />
       <Footer />
     </>
   )
