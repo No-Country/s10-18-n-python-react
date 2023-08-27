@@ -61,7 +61,7 @@ const Sucursal = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex flex-col gap-20 mx-10">
       <div className="flex flex-col gap-5">
         <div className="flex gap-4 font-bold text-2xl">
           Sucursales
