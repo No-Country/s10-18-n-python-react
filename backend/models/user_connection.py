@@ -1,5 +1,5 @@
 import psycopg2
-
+#Clase que maneja CRUD de la tabla de usuarios en la base de datos PostgreSQL en ElephantSQL
 class UserConnection():
     conn = None
 
@@ -18,12 +18,35 @@ class UserConnection():
             data =cur.fetchall()
             return data
 
+    def read_one(self, id):
+        with self.conn.cursor() as cur:
+            cur.execute(""" 
+                            SELECT * FROM users WHERE id = %s; 
+                            """, (id,))
+            data = cur.fetchone()
+            return data
+
     def write (self, data):
         with self.conn.cursor() as cur:
             cur.execute("""
                         INSERT INTO "users"(fullname, email, domicilio) VALUES(%(fullname)s, %(email)s, %(domicilio)s)
                         """,data)
             self.conn.commit()
+
+    def delete_one(self, id):
+        with self.conn.cursor() as cur:
+            cur.execute(""" 
+                            DELETE FROM "users" WHERE id = %s; 
+                            """, (id,))
+            self.conn.commit()
     
+    def update_one(self, data):
+        with self.conn.cursor() as cur:
+            cur.execute(""" 
+                        UPDATE "users" SET fullname = %(fullname)s, email = %(email)s, domicilio = %(domicilio)s
+                        WHERE id = %(id)s; 
+                        """, data)
+            self.conn.commit()
+
     def __def__(self):
         self.conn.close()
