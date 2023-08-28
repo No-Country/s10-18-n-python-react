@@ -29,7 +29,8 @@ class UserConnection():
     def write (self, data):
         with self.conn.cursor() as cur:
             cur.execute("""
-                        INSERT INTO "users"(fullname, email, domicilio) VALUES(%(fullname)s, %(email)s, %(domicilio)s)
+                        INSERT INTO "users"(fullname, email, passoword, address, city, country,phone) 
+                        VALUES(%(fullname)s, %(email)s, %(password)s,%(address)s, %(city)s, %(country)s, %(phone)s)
                         """,data)
             self.conn.commit()
 
@@ -43,7 +44,8 @@ class UserConnection():
     def update_one(self, data):
         with self.conn.cursor() as cur:
             cur.execute(""" 
-                        UPDATE "users" SET fullname = %(fullname)s, email = %(email)s, domicilio = %(domicilio)s
+                        UPDATE "users" SET fullname = %(fullname)s, email = %(email)s, password = %(password)s
+                        address = %(address)s, city = %(city)s, country = %(country)s, phone = %(phone)s 
                         WHERE id = %(id)s; 
                         """, data)
             self.conn.commit()
