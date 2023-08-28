@@ -29,8 +29,8 @@ class UserConnection():
     def write (self, data):
         with self.conn.cursor() as cur:
             cur.execute("""
-                        INSERT INTO "users"(fullname, email, passoword, address, city, country,phone) 
-                        VALUES(%(fullname)s, %(email)s, %(password)s,%(address)s, %(city)s, %(country)s, %(phone)s)
+                        INSERT INTO "users"(fullname, email, password, address, city, country,phone) 
+                        VALUES(%(fullname)s, %(email)s, %(password)s, %(address)s, %(city)s, %(country)s, %(phone)s)
                         """,data)
             self.conn.commit()
 
