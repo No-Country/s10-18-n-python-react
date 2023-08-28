@@ -5,7 +5,7 @@ from schema.user_schema import UserSchema
 
 app = FastAPI()
 app.title = "Medic Admin App"
-app.version ="0.0.3"
+app.version ="0.1.0"
 conn = UserConnection()
 
 @app.get('/', status_code=HTTP_200_OK,tags=["Root"])
