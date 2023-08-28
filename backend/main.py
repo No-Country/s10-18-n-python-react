@@ -42,8 +42,9 @@ async def update_one(user: UserSchema, id:str):
     data=user.dict()
     data["id"] = id
     conn.update_one(data)
-    return {'updated'}
+    return Response(status_code=HTTP_204_NO_CONTENT)
 
 @app.delete("/users/{id}", status_code=HTTP_204_NO_CONTENT)
 async def delete_one(id: str):
      conn.delete_one(id)
+     return Response(status_code=HTTP_204_NO_CONTENT)
