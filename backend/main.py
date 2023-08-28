@@ -32,7 +32,6 @@ async def get_users():
 @app.post("/users/", status_code=HTTP_201_CREATED,tags=["Users"])
 async def create_user(user: UserSchema):
     data=user.dict()
-    data.pop("id")
     print(data)
     conn.write(data)
     return Response(status_code=HTTP_201_CREATED)
