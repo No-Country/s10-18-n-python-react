@@ -5,10 +5,10 @@ from schema.user_schema import UserSchema
 
 app = FastAPI()
 app.title = "Medic Admin App"
-app.version ="0.0.2"
+app.version ="0.0.3"
 conn = UserConnection()
 
-@app.get('/', status_code=HTTP_200_OK,tags=["Users"])
+@app.get('/', status_code=HTTP_200_OK,tags=["Root"])
 async def root():
      return {'Root API AppMedicAdmin'}
 
