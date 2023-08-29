@@ -28,13 +28,19 @@ async def get_users():
      for data in conn.read_all():
           dictionary = {}
           dictionary["id"] = data[0]
-          dictionary["fullname"] = data[1]
-          dictionary["email"] = data[2]
-          dictionary["password"] = data[3]
+          dictionary["first_name"] = data[1]
+          dictionary["last_name"] = data[2]
+          dictionary["email"] = data[3]
           dictionary["address"] = data[4]
           dictionary["city"] = data[5]
           dictionary["country"] = data[6]
           dictionary["phone"] = data[7]
+          dictionary["date_of_birth"] = data[8]
+          dictionary["gender"] = data[9]
+          dictionary["specialty"] = data[10]
+          dictionary["health_insurance"] = data[11]
+          dictionary["password"] = data[12]
+          dictionary["user_type"] = data[13]
           items.append(dictionary)
      return items
 
@@ -51,13 +57,19 @@ async def get_one(id: str):
      dictionary = {}
      data = conn.read_one(id)
      dictionary["id"] = data[0]
-     dictionary["fullname"] = data[1]
-     dictionary["email"] = data[2]
-     dictionary["password"] = data[3]
+     dictionary["first_name"] = data[1]
+     dictionary["last_name"] = data[2]
+     dictionary["email"] = data[3]
      dictionary["address"] = data[4]
      dictionary["city"] = data[5]
      dictionary["country"] = data[6]
      dictionary["phone"] = data[7]
+     dictionary["date_of_birth"] = data[8]
+     dictionary["gender"] = data[9]
+     dictionary["specialty"] = data[10]
+     dictionary["health_insurance"] = data[11]
+     dictionary["password"] = data[12]
+     dictionary["user_type"] = data[13]
      return data
 
 @app.put("/users/{id}", status_code=HTTP_204_NO_CONTENT,tags=["Users"])
