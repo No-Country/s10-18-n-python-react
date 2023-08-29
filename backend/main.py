@@ -11,7 +11,7 @@ conn = UserConnection()
 
 app.add_middleware(
           CORSMiddleware,
-          allow_origin=["*"],
+          allow_origins=["*"],
           allow_methods=["GET","POST","PUT","DELETE"],
           allow_headers=["Authorization","Content-Type"],
           allow_credentials=True
