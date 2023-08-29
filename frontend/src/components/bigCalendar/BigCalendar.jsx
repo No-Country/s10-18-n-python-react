@@ -116,10 +116,10 @@ export default function Calendar(props) {
         selectable
         onSelectEvent={(e) => handleOpen(e)}
         onSelectSlot={(e) => alert(`${e.start}`)}
-        eventPropGetter={(props) => {  // no borrar props!!, requerido para customizar el componente
+        eventPropGetter={(/* props */) => {  
           return { style: { backgroundColor:' #A6DEF7', color: 'black', fontSize:'0.9em', height:'100%' } }
         }}
-        dayPropGetter={(props)=>{
+        dayPropGetter={(/* props */)=>{ 
           const backgroundColor ='#F9FAEF'
           return { style: { backgroundColor } }
         }}
