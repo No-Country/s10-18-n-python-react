@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Response
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 from models.user_connection import UserConnection
 from schema.user_schema import UserSchema
@@ -7,6 +8,14 @@ app = FastAPI()
 app.title = "Medic Admin App"
 app.version ="0.1.0"
 conn = UserConnection()
+
+app.add_middleware(
+          CORSMiddleware,
+          allow_origin=["*"],
+          allow_methods=["GET","POST","PUT","DELETE"],
+          allow_headers=["Authorization","Content-Type"],
+          allow_credentials=True
+)
 
 @app.get('/', status_code=HTTP_200_OK,tags=["Root"])
 async def root():
