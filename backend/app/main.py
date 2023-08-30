@@ -5,7 +5,7 @@ from starlette.status import HTTP_200_OK
 
 app = FastAPI()
 app.title = "Medic Admin App"
-app.version ="1.0.0"
+app.version ="1.0.1"
 
 # Configuración y middleware aquí
 app.add_middleware(
