@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
-from app.models.appointment_connection import AppointmentConnection
+from app.database.appointment_connection import AppointmentConnection
 from app.schemas.appointment_schema import AppointmentSchema
 
 router = APIRouter()
