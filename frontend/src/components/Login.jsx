@@ -1,6 +1,5 @@
 
 import {IoIosArrowForward} from "react-icons/Io"
-import Img7 from '../assets/images/image7.png'
 
 
 const Login = () => {
@@ -8,7 +7,7 @@ const Login = () => {
     <div className="flex items-center justify-center m-auto my-8">
       <div className="md:w-1/2 rounded-lg gap-4">
         <div className="flex flex-col items-center justify-center mb-8 w-2/5 m-auto">
-            <img src={Img7} alt="" className="animate-flotar" />
+            <img src="../../src/assets/images/image7.png" alt="" className="animate-flotar" />
             <div className="w-full text-center relative before:absolute before:top-[60%] before:left-0 before:w-full before:h-[1px] before:bg-slate-400 before:z-[-1]">
               <h2 className=" w-max m-auto bg-white text-2xl">Iniciar sesión</h2>
             </div>
