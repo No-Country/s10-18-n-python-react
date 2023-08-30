@@ -12,7 +12,6 @@ class UserSchema(BaseModel):
     city:Optional[str]
     country:Optional[str]
     phone:Optional[str]
-    password: Optional[str]
     date_of_birth: date
     gender: str
     specialty: str
