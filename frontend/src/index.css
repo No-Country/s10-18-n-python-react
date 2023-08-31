@@ -29,6 +29,15 @@
   }
 }
 
+/* MODAL rsuit  */
+.rs-modal-content {
+  border-radius:0 !important;
+  /* width: 600px; */
+  padding:0em;
+  }
+  /* **************** */
+
+
 :root {
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
