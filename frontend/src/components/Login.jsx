@@ -1,4 +1,7 @@
 import { IoIosArrowForward } from "react-icons/Io";
+import { AiFillEye } from "react-icons/Ai";
+import { AiFillEyeInvisible } from "react-icons/Ai";
+
 import Img7 from "../assets/images/image7.png";
 import { useDispatch } from "react-redux";
 import { login } from "../store/UserSlice";
@@ -10,6 +13,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [show, setShow] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,28 +39,36 @@ const Login = () => {
           className="w-4/5 m-auto  bg-[#A6DEF7] p-12 rounded-[4rem]"
         >
           <div className=" w-[90%] m-auto flex flex-col gap-12">
-            <label className="flex flex-col gap-0">
-              <span className="bg-white rounded-t-xl pl-4 border-white font-medium">
-                EMAIL
-              </span>
-              <input
+            <div className="flex flex-col gap-0">
+               <label htmlFor="email" className="bg-white rounded-t-xl pl-4 border-white font-medium">EMAIL</label>
+               <input
                 onChange={(e) => setEmail(e.target.value)}
                 type="text"
                 className="p-2 border-white rounded-b-xl outline-none"
                 placeholder="johndoe@email.com"
+                id="email"
+                required
               />
-            </label>
-            <label className="flex flex-col">
-              <span className="bg-white rounded-t-xl pl-4 border-white font-medium">
+            </div>
+            <div className="flex flex-col gap-0">
+              <label htmlFor="password" className="bg-white rounded-t-xl pl-4 border-white font-medium">
                 CONTRASEÑA
-              </span>
-              <input
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                className="p-2 border-white rounded-b-xl outline-none"
-                placeholder="***********"
-              />
-            </label>
+              </label>
+              <div className="w-full flex bg-white rounded-b-xl font-black">
+                <input
+                    onChange={(e) => setPassword(e.target.value)}
+                    type={show ? "text" : "password"}
+                    className="p-2 w-full border-white  rounded-b-xl outline-none"
+                    placeholder="***********"
+                    id="password"
+                    required
+                  />
+                <div className="flex justify-center cursor-pointer  items-center p-2 text-2xl" onClick={()=>setShow(!show)} >
+                  {show ? <AiFillEyeInvisible/> : <AiFillEye/> }
+                </div>
+              </div>
+            </div>
+
             <button
               type="submit"
               className="bg-[#DC4928] hover:bg-[#d15f45] md:w-48 p-4 rounded text-white font-medium m-auto flex  justify-around items-center group/edit"
