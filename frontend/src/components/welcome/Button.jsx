@@ -6,8 +6,7 @@ const Button = ({ text, link }) => {
     <div className="">
       <Link to={link}>
         <button
-          to={link}
-          className="rounded-full py-6 w-96 font-bold hover:scale-105 transition-all"
+          className="rounded-full py-6 w-96 font-latoBold hover:scale-105 transition-all"
           style={{
             background:
               "linear-gradient(120deg, rgba(166, 222, 247, 0.50) 8%, rgba(0,0,0, 0.09) 100%)",
