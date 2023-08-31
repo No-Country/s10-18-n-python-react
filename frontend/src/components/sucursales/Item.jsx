@@ -14,7 +14,7 @@ const Item = ({ data }) => {
         </div>
       </div>
       <div className="flex flex-col justify-between">
-        <p className="font-bold">{location}</p>
+        <p className="font-latoBold">{location}</p>
         <div className="flex gap-2">
           <img
             className="w-3 h-3 mt-[5px]"
