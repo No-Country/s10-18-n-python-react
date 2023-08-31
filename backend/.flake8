@@ -1,0 +1,3 @@
+[flake8]
+ignore = E203,E266,E501,W503,E501
+exclude = .git,__pycache__,.venv,.github  # Carpetas o archivos a excluir del análisis
