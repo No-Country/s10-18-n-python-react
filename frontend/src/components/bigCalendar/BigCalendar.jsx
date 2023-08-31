@@ -23,7 +23,7 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-const events = [
+const initialEvents = [
   {
     start: new Date("2023-08-18T10:00:00"),
     end: moment("2023-08-18T11:00:00"),
@@ -82,6 +82,7 @@ export default function Calendar(props) {
   
   const [open, setOpen] = useState(false);
   const [event, setEvent] = useState(null)
+  const [events, setEvents] = useState(initialEvents)
     const handleOpen = (e) => {
       setEvent(e)
       setOpen(true)
@@ -91,7 +92,12 @@ export default function Calendar(props) {
       setOpen(false)
       setEvent(null)
     };
-  
+  const handleSelectslot = (e) => {
+    alert(`${e.start}`)
+    console.log(moment(e).format())
+    setEvents([...events, e] )
+  }
+  console.log("events: ", events)
 
   return (
     <div style={{ height: "100vh", paddingTop:"1em", paddingBottom:"1em" , display:"flex", flexDirection:"row", justifyContent:"center", width:"100%" }}>
@@ -115,7 +121,7 @@ export default function Calendar(props) {
         }}
         selectable
         onSelectEvent={(e) => handleOpen(e)}
-        onSelectSlot={(e) => alert(`${e.start}`)}
+        onSelectSlot={ handleSelectslot }
         eventPropGetter={(/* props */) => {  
           return { style: { backgroundColor:' #A6DEF7', color: 'black', fontSize:'0.9em', height:'100%' } }
         }}
