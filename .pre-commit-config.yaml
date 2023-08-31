@@ -15,7 +15,7 @@ repos:
       - id: flake8
         # See https://flake8.pycqa.org/en/latest/user/configuration.html
         # for how to configure the options below:
-        args: [--max-line-length=130]
+        args: ["--config", ".flake8"]
 
   - repo: https://github.com/standard/standard
     rev: master
