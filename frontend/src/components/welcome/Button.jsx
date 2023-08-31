@@ -6,7 +6,6 @@ const Button = ({ text, link }) => {
     <div className="">
       <Link to={link}>
         <button
-          to={link}
           className="rounded-full py-6 w-96 font-latoBold hover:scale-105 transition-all"
           style={{
             background:

@@ -30,7 +30,7 @@ const Navbar = () => {
     if (currentPageBtn === "HOME") {
       navigate("/");
     } else {
-      navigate("/welcome");
+      navigate("/dashboard");
     }
   };
 

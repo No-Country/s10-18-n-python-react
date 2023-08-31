@@ -17,7 +17,7 @@ const Login = () => {
     dispatch(login(userCredentials));
     setEmail("");
     setPassword("");
-    navigate("/welcome");
+    navigate("/dashboard");
   };
 
   return (
