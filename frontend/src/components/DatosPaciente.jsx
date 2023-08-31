@@ -5,7 +5,7 @@ const DatosPaciente = () => {
     return (
         <>
         <div className="w-full h-full flex justify-center">
-            <div className="w-[800px] h-[786px] pl-24 pr-24 border-2 border-pink-700">
+            <div className="w-[800px] h-[786px] pl-24 pr-24 ">
                 <div className="flex flex-row items-center  ">
                     <div className="">
                         <img src={logo} alt="" />
