@@ -20,5 +20,5 @@ jobs:
         pip install flake8
     - name: Running and analysing the code with Flake8
       run: |
-        flake8 .
-        flake8 . --count --show-source --statistics
+        flake8 backend --config=backend/.flake8  # Specify the path to the .flake8 file
+        flake8 backend --config=backend/.flake8 --count --show-source --statistics  # Additional options
