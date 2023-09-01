@@ -1,6 +1,7 @@
 
 import { Calendar as BigCalendar, dateFnsLocalizer } from "react-big-calendar";
 import EventModal from "./EventModal";
+import AddEventModal from "./addEventModal";
 import CustomEvent from "./CustomEvent";
 import format from "date-fns/format";  
 import parse from "date-fns/parse";
@@ -23,7 +24,7 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-const events = [
+const initialEvents = [
   {
     start: new Date("2023-08-18T10:00:00"),
     end: moment("2023-08-18T11:00:00"),
@@ -81,17 +82,28 @@ export default function Calendar(props) {
   }), [])
   
   const [open, setOpen] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false)
   const [event, setEvent] = useState(null)
+  const [events, setEvents] = useState(initialEvents)
     const handleOpen = (e) => {
       setEvent(e)
       setOpen(true)
-
+    };
+    const handleOpenAdd = (e) => {
+      setEvent(e)
+      setOpenAdd(true)
     };
     const handleClose = () => {
       setOpen(false)
+      setOpenAdd(false)
       setEvent(null)
     };
-  
+  // const handleSelectslot = (e) => {
+  //   alert(`${e.start}`)
+  //   console.log(moment(e).format())
+  //   /* setEvents([...events, e] ) */
+  // }
+  console.log("events: ", events)
 
   return (
     <div style={{ height: "100vh", paddingTop:"1em", paddingBottom:"1em" , display:"flex", flexDirection:"row", justifyContent:"center", width:"100%" }}>
@@ -115,7 +127,7 @@ export default function Calendar(props) {
         }}
         selectable
         onSelectEvent={(e) => handleOpen(e)}
-        onSelectSlot={(e) => alert(`${e.start}`)}
+        onSelectSlot={ (e)=>handleOpenAdd(e) }
         eventPropGetter={(/* props */) => {  
           return { style: { backgroundColor:' #A6DEF7', color: 'black', fontSize:'0.9em', height:'100%' } }
         }}
@@ -129,6 +141,7 @@ export default function Calendar(props) {
         /* resourceTitleAccessor="paciente" */
         />
         { open && <EventModal event={event} open={open} handleOpen={handleOpen} handleClose={handleClose} />}
+        { openAdd && <AddEventModal event={event} openAdd={openAdd} handleOpen={handleOpenAdd} handleClose={handleClose} />}
     </div>
   )
 }

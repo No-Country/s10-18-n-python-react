@@ -37,34 +37,41 @@ const Hero = () => {
         <img src={Life} className='max-w-full h-auto' alt="imagen de vitalidad" />
         </div>
       </div>
-      <div className='relative px-10 md:px-20 xl:px-28 w-full'>
+      <div className='relative px-8 md:px-20 xl:px-28 w-full'>
         <div 
           className='
             absolute 
-            mx-16 md:mx-20 xl:mx-28 
-            z-10 -left-1 -right-1 -top-8  
+            mx-8 md:mx-20 lg:mx-24 xl:mx-28 
+            z-10 
+            -left-7 sm:-left-5 md:-left-4 lg:-left-3 xl:-left-2
+            -right-7 sm:-right-5  md:-right-4 lg:-right-3 xl:-right-2 
+            -top-6 sm:-top-6 md:-top-8
             rounded-elipse 
-            h-6 md:h-12 lg:h-14 xl:h-16
+            h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16
             bg-white'
+            
         > 
         </div>
-        <div className='grid grid-cols-2 grid-rows-2 md:grid-cols-4 md:grid-rows-1 gap-2 justify-items-center my-16 md:my-36  justify-center w-full z-0' > 
-          {/* <img className='me-2 w-1/4  hover:scale-125 duration-500' src={Img1} alt="amagen de galeria" />
-          <img className='mx-2 w-1/4' src={Img2} alt="amagen de galeria" />
-          <img className='mx-2 w-1/4' src={Img3} alt="amagen de galeria" />
-          <img className='ms-2 w-1/4 ' src={Img3} alt="amagen de galeria" /> */}
-          <img className=' ' src={Img1} alt="amagen de galeria" />
-          <img className='' src={Img2} alt="amagen de galeria" />
-          <img className=' ' src={Img3} alt="amagen de galeria" />
-          <img className='  ' src={Img4} alt="amagen de galeria" />
+        <div className='flex flex-row justify-items-center my-16 md:my-36  justify-center w-full z-0' > 
+          <img className='me-1 md:me-2 w-1/4 ' src={Img1} alt="amagen de galeria" />
+          <img className='me-1 md:mx-2 w-1/4' src={Img2} alt="amagen de galeria" />
+          <img className='me-1 md:mx-2 w-1/4' src={Img3} alt="amagen de galeria" />
+          <img className='ms-1 md:ms-2 w-1/4 ' src={Img4} alt="amagen de galeria" />
+          {/* <img className='mx-2 ' src={Img1} alt="amagen de galeria" />
+          <img className='mx-2' src={Img2} alt="amagen de galeria" />
+          <img className='mx-2 ' src={Img3} alt="amagen de galeria" />
+          <img className=' mx-2 ' src={Img4} alt="amagen de galeria" /> */}
         </div>
         <div 
           className='
             absolute 
-            mx-16 md:mx-20 xl:mx-28 
-            z-10 -left-1 -right-1 -bottom-8 
+            mx-8 md:mx-20 xl:mx-28 
+            z-10 
+            -left-7 sm:-left-5 md:-left-4 xl:-left-2
+            -right-7 sm:-right-5  md:-right-4 xl:-right-2 
+            -bottom-6 sm:-bottom-6 md:-bottom-8
             rounded-elipse 
-            h-6 md:h-12 lg:h-14 xl:h-16 
+            h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 
             bg-white'
         > 
         </div>
