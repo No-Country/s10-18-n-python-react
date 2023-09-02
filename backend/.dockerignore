@@ -1,0 +1,4 @@
+.flake8
+poetry.lock
+__pycache__
+.venv
