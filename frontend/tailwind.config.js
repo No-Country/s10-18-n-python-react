@@ -20,7 +20,8 @@ export default {
         'green':'#128983',
         'blue':'#0000FF',
         'marineBlue':'#3E36B0',
-        'lightBlue':'#A6DEF7'
+        'lightBlue':'#A6DEF7',
+        'lightGray':'#737373'
       },
       fontFamily: {
         baloo2: ["Baloo2", "sans-serif"],
