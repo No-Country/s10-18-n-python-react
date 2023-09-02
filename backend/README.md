@@ -40,3 +40,17 @@ pre-commit install
 ```
 
 Pre-commit nos sirve para validar que todos los archivos esten correctamente validados por el linter y el formatter de código.
+
+# Docker configuration
+
+Solo tener instalado Docker en nuestra máquina y que todo este funcionando perfecto, y arrancar los siguientes comandos:
+
+```sh
+cd backend/
+docker-compose build
+docker-compose up -d
+```
+
+Ya con eso debería arrancar los conteneros y tener funcionando, parecido acá:
+
+![Docker](/assets/docker-image-example.png)
