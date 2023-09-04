@@ -1,9 +1,12 @@
-from fastapi import HTTPException
+from fastapi import HTTPException, Depends
 from config.database import SessionLocal
-from models.user import User as UserModel
+from models.user import Users as UserModel
 from schemas.user import User
+from routers.auth import get_current_user
 
-from typing import List, Union
+from typing import List, Union, Annotated
+
+user_dependency = Annotated[dict, Depends(get_current_user)]
 
 
 class UserService:
@@ -35,3 +38,23 @@ class UserService:
         self.db.commit()
         self.db.refresh(db_user)
         return db_user
+
+
+class UserAuthService:
+    def __init__(self, db: SessionLocal) -> None:
+        self.db: SessionLocal = db
+
+    def authenticate_user(self, username: str, password: str) -> UserModel:
+        user = (
+            self.db.query(UserModel)
+            .filter(UserModel.username == username)
+            .first()
+        )
+        if not user:
+            raise HTTPException(
+                status_code=404,
+                detail="User with this username does not exist",
+            )
+        if not user.check_password(password):
+            raise HTTPException(status_code=404, detail="Incorrect password")
+        return user

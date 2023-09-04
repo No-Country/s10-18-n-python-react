@@ -20,7 +20,7 @@ class Token(BaseModel):
     token_type: str
 
 
-class UserInDB(User):
+class UserInDB(BaseModel):
     hashed_password: str = Field(
         ...,
         description="The hashed password of the user",

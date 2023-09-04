@@ -10,7 +10,7 @@ app.version = "0.0.1"
 app.description = "This is a medicine project for the No country API"
 app.docs_url = "/docs"
 
-origins = ["localhost:3000"]
+origins = ["*"]
 
 app.include_router(auth_router, prefix="/auth", tags=["auth"])
 app.include_router(user_router, prefix="/user", tags=["user"])
@@ -22,8 +22,3 @@ app.add_middleware(
 )
 
 Base.metadata.create_all(bind=engine)
-
-
-@app.get("/")
-async def welcome():
-    return {"hello": "world"}
