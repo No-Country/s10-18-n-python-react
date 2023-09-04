@@ -1,4 +1,4 @@
-from config.database import (
+from app.config.database import (
     Base,
 )  # Importamos la clase que hace la conexión a la BD
 from sqlalchemy import Column, Integer, String, DateTime, Boolean

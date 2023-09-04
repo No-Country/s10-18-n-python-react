@@ -3,12 +3,12 @@ from fastapi import APIRouter, Depends, HTTPException, status
 # from fastapi.responses import JSONResponse
 # from fastapi.encoders import jsonable_encoder
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from schemas.user import CreateuserRequest, Token
-from models.user import Users
+from app.schemas.user import CreateuserRequest, Token
+from app.models.user import Users
 from passlib.context import CryptContext
 
 from typing import Annotated
-from utils.get_db import db_dependency
+from app.utils.get_db import db_dependency
 
 
 auth_router = APIRouter()
