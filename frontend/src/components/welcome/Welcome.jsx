@@ -17,10 +17,14 @@ const Welcome = () => {
 
   return (
     <div className="flex flex-col text-center gap-10 justify-between mt-5 pb-20">
-      <h1 className="text-3xl font-bold text-[#DC4928]">
+      <h1 className="text-xl sm:text-3xl font-latoBold text-[#DC4928]">
         Bienvenido/a {user?.email}
       </h1>
-      <img src={imgWelcome} alt="Logo" className="m-auto w-96 animate-flotar" />
+      <img
+        src={imgWelcome}
+        alt="Logo"
+        className="m-auto w-72 sm:w-96 animate-flotar"
+      />
       <Button text="Agenda de Turnos" link="/appointment" />
       <Button text="Historias Clínicas" link="/patients" />
     </div>
