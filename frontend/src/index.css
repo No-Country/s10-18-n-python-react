@@ -27,6 +27,9 @@
   .dot {
     @apply before:content-[""] before:absolute before:bg-blue before:rounded-full before:p-1 before:w-[8px] before:h-[8px] before:-left-1 before:-top-1;
   }
+  .HeroBlur{
+    @apply  w-44 h-40 md:w-72 md:h-72 lg:w-80 lg:h-80 bg-sky-200/75 blur-3xl;
+  }
 }
 
 /* MODAL rsuit  */

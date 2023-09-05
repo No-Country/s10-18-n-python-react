@@ -1,12 +1,12 @@
-import React from "react";
-import Item from "./Item";
-import imgSucursales from "../../assets/imgSucursales.png";
-import imgCapital from "../../assets/capital.png";
-import imgCordoba from "../../assets/cordoba.png";
-import imgLaPlata from "../../assets/laplata.png";
-import imgMendoza from "../../assets/mendoza.png";
-import imgRioCuarto from "../../assets/riocuarto.png";
-import imgSantaFe from "../../assets/santafe.png";
+import React from "react"
+import Item from "./Item"
+import imgSucursales from "../../assets/imgSucursales.png"
+import imgCapital from "../../assets/capital.png"
+import imgCordoba from "../../assets/cordoba.png"
+import imgLaPlata from "../../assets/laplata.png"
+import imgMendoza from "../../assets/mendoza.png"
+import imgRioCuarto from "../../assets/riocuarto.png"
+import imgSantaFe from "../../assets/santafe.png"
 
 const Sucursal = () => {
   const data = [
@@ -58,7 +58,7 @@ const Sucursal = () => {
       street: "Santa Clara 560",
       img: imgSantaFe,
     },
-  ];
+  ]
 
   return (
     <div className="flex flex-col gap-20 mx-10">
@@ -71,7 +71,7 @@ const Sucursal = () => {
           Sanatorio Integral de Salud en diversos puntos del país.
         </p>
       </div>
-      <div className="flex flex-row flex-wrap gap-10 justify-evenly">
+      <div className="flex flex-row flex-wrap gap-10 justify-center items-center">
         {data.map(({ id }) => (
           <div key={id} className="hover:scale-105 transition-all">
             <Item data={data[id]} />
@@ -79,7 +79,7 @@ const Sucursal = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Sucursal;
+export default Sucursal
