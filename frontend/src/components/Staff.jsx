@@ -1,13 +1,13 @@
-import foto from "../assets/59e6de97da95c93020cb001ee8246d14.png";
-import foto1 from "../assets/image 15.png";
-import foto2 from "../assets/image 17.png";
-import foto3 from "../assets/image 12.png";
-import foto4 from "../assets/image 14.png";
-import foto5 from "../assets/image 13.png";
-import foto6 from "../assets/image 16.png";
-import foto7 from "../assets/image 19.png";
-import circulo from "../assets/Group_1000000929-removebg-preview2.png";
-import circulo2 from "../assets/Group_1000000929-removebg-preview.png";
+import foto from "../assets/59e6de97da95c93020cb001ee8246d14.png"
+import foto1 from "../assets/image 15.png"
+import foto2 from "../assets/image 17.png"
+import foto3 from "../assets/image 12.png"
+import foto4 from "../assets/image 14.png"
+import foto5 from "../assets/image 13.png"
+import foto6 from "../assets/image 16.png"
+import foto7 from "../assets/image 19.png"
+import circulo from "../assets/Group_1000000929-removebg-preview2.png"
+import circulo2 from "../assets/Group_1000000929-removebg-preview.png"
 
 const medics = [
   {
@@ -50,13 +50,13 @@ const medics = [
     rol: "Urología",
     img: foto7,
   },
-];
+]
 
 const Staff = () => {
   return (
     <>
       <section className="flex flex-col justify-center w-full bg-lightBlue rounded-tr-[120px] rounded-bl-[120px] relative">
-        <header className="flex flex-col mt-5 items-start justify-center p-16 text-start">
+        <header className="flex flex-col mt-5 items-start justify-center p-16 md:px-32 text-start">
           <h2 className=" font-baloo2 font-bold text-3xl text-orange">Staff</h2>
           <h3 className=" font-latoBold text-xl text-black whitespace-nowrap">
             Nuestros profesionales
@@ -86,7 +86,7 @@ const Staff = () => {
                   <p className=" font-latoRegular m-0">{rol}</p>
                 </div>
               </div>
-            );
+            )
           })}
         </section>
 
@@ -102,7 +102,7 @@ const Staff = () => {
         />
       </section>
     </>
-  );
-};
+  )
+}
 
-export default Staff;
+export default Staff
