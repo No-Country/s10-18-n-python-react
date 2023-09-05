@@ -28,6 +28,10 @@
     @apply before:content-[""] before:absolute before:bg-blue before:rounded-full before:p-1 before:w-[8px] before:h-[8px] before:-left-1 before:-top-1;
   }
 }
+/* CALENDAR  */
+.rbc-calendar {
+  width: 70%;
+}
 
 /* MODAL rsuit  */
 .rs-modal-content {
