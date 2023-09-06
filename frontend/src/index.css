@@ -31,6 +31,10 @@
     @apply  w-44 h-40 md:w-72 md:h-72 lg:w-80 lg:h-80 bg-sky-200/75 blur-3xl;
   }
 }
+/* CALENDAR  */
+.rbc-calendar {
+  width: 70%;
+}
 
 /* MODAL rsuit  */
 .rs-modal-content {

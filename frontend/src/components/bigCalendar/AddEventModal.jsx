@@ -7,7 +7,9 @@ const AddEventModal = ({event, openAdd, handleClose}) => {
   /* const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false); */
-  console.log('event en EventModal: ',event )
+
+  //console.log('event en EventModal: ',event )
+
   if (event) {
    const start =new Date(event.start)
    const startHours = start.getHours()
