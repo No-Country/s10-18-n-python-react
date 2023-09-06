@@ -80,6 +80,7 @@ const localizer = dateFnsLocalizer({
 ]; */
 
 export default function Calendar(props) {
+  console.info("***** RENDERIZA BIGCALENDAR *****")
   const components = useMemo(() => ({
     event: CustomEvent, // used by each view (Month, Day, Week)
   }), [])

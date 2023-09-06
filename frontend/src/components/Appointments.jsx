@@ -95,6 +95,7 @@ const Appointments = () => {
     last_name:item.last_name,
     specialty:item.specialty
   })) */
+  console.info("RENDERIZA APPOINTMENTS")
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [originalEvents, setOriginalEvents] = useState([])
@@ -116,6 +117,7 @@ const Appointments = () => {
     login:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000",
   }
   useEffect( ()=> {
+    console.info("EN USEEFFECT DE FETCH")
     fetch(URL.appointments, 
       {method: "GET",headers: {accept: "application/json"}}
     )
@@ -123,6 +125,7 @@ const Appointments = () => {
       .then(data => {
         const dataFormated = data.map(item=>(
           { 
+            diagnosis:item.diagnosis,
             doctor_first_name: item.doctor_first_name,
             doctor_last_name: item.doctor_last_name,
             end: moment(item.end_datetime).toDate(),
