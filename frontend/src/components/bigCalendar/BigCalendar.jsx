@@ -80,7 +80,7 @@ const localizer = dateFnsLocalizer({
 ]; */
 
 export default function Calendar(props) {
-  console.info("***** RENDERIZA BIGCALENDAR *****")
+  //console.info("***** RENDERIZA BIGCALENDAR *****")
   const components = useMemo(() => ({
     event: CustomEvent, // used by each view (Month, Day, Week)
   }), [])
@@ -103,7 +103,6 @@ export default function Calendar(props) {
       setEvent(null)
     };
   
-    console.log("props.events en BigCalendar: ", props.events)
   // const handleSelectslot = (e) => {
   //   alert(`${e.start}`)
   //   console.log(moment(e).format())

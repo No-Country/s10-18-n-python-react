@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 
 
-const professionalsList = [
-  // para tomar los nombres del filtro, reemplazar por un get de doctores
+/* const professionalsList = [
   {
     first_name:"Carlos",
     last_name:"Flores",
@@ -20,69 +19,10 @@ const professionalsList = [
     email:"dede2@dede.com",
     specialty:"traumatología"
   }
-]
+] */
 
-const rowEvents = [
-  {
-    id:"dede3344",
-    start_datetime: "2023-09-18T10:00:00",
-    end_datetime: "2023-09-18T11:00:00",
-    paciente: "Pablo Rodriguez",
-    first_name:"Carlos",
-    last_name:"Flores",
-    specialty:"Cardiología"
-  },
-  {
-    start_datetime: "2023-09-21T10:00:00",
-    end_datetime: "2023-09-21T11:00:00",
-    paciente: "Jaun Rodriguez",
-    first_name:"Carlos",
-    last_name:"Flores",
-    specialty:"Cardiología"
-  },
-  {
-    start_datetime: "2023-09-21T14:00:00",
-    end_datetime: "2023-09-21T14:30:00",
-    paciente:'Pablo Ortega',
-    first_name:"Carlos",
-    last_name:"Flores",
-    specialty:"Cardiología"
-  },
-  {
-    start_datetime: "2023-09-22T17:00:00",
-    end_datetime: "2023-09-22T17:30:00",
-    paciente:'Juan Zeta',
-    first_name:"Juan",
-    last_name:"Gonzalez Prieto",
-    specialty:"Traumatologia"
-  },
-  {
-    start_datetime: "2023-09-23T16:05:00",
-    end_datetime: "2023-09-23T16:30:00",
-    paciente:'Mateo Lopez',
-    first_name:"Juan",
-    last_name:"Gonzalez Prieto",
-    specialty:"Traumatologia"
-  },
-  {
-    start_datetime: "2023-09-23T17:00:00",
-    end_datetime: "2023-09-23T17:30:00",
-    paciente:'Mateo Figueroa',
-    first_name:"Juan",
-    last_name:"Gonzalez Prieto",
-    specialty:"Traumatologia"
-  },
-  {
-    start_datetime: "2023-09-29T09:00:00",
-    end_datetime: "2023-09-29T09:30:00",
-    paciente:'Mateo IV',
-    first_name:"Juan",
-    last_name:"Gonzalez Prieto",
-    specialty:"Traumatologia"
-  }
-];
 
-const especialidad = ["Obstetricia", "Pediatría", "Oftalmología", "Cardiología"].map(
+const initialSpecialties = ["Clinic", "Cardiologist", "Dentist"].map(
   (item) => ({ label: item, value: item })
 );
 
@@ -101,9 +41,13 @@ const Appointments = () => {
   const [originalEvents, setOriginalEvents] = useState([])
   const [events, setEvents] = useState([])
   const [professional, setProfessional] = useState("")
-  const [profSelect, setProfSelect] = useState([])
+  const [profSelectList, setProfSelectList] = useState([]) // registro del original para reset
+  const [displayedProfSelectList, setDisplayedProfSelectList] = useState([])// mostrada en el select
   const [specialty, setSpecialty] = useState("")
+  const [specialtyList, setSpecialtyList] = useState([])
 
+  const [allProfessionalList, setAllProfessionalList] = useState([]) 
+  
   /* const drNames = professionalsList.map(item =>({
     // Para  rellenar selectPicker profesionales
     label:item.last_name+', '+item.first_name,
@@ -117,7 +61,6 @@ const Appointments = () => {
     login:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000",
   }
   useEffect( ()=> {
-    console.info("EN USEEFFECT DE FETCH")
     fetch(URL.appointments, 
       {method: "GET",headers: {accept: "application/json"}}
     )
@@ -139,34 +82,46 @@ const Appointments = () => {
             state: item.state
           })) 
         setOriginalEvents(dataFormated)
-        setEvents(dataFormated)
+        setEvents(dataFormated)      
+        const drNames = data.map(item =>({
+          // Para  rellenar selectPicker profesionales
+          label:item.doctor_last_name+', '+item.doctor_first_name,
+          value:item.doctor_last_name+', '+item.doctor_first_name,
+        }))
+        let doctorsWithoutDuplicates = drNames.filter((obj, index) => drNames.findIndex(o => o.label === obj.label) === index);
+       // El otro algoritmo fallaba EN ESTE CASO
+        setProfSelectList(doctorsWithoutDuplicates)
+        setDisplayedProfSelectList(doctorsWithoutDuplicates)
       })
       .catch(err => console.log(err.message))
   },[])
- /*  diagnosis: "completar"
-  doctor_first_name: "Carla"
-  doctor_last_name: "Morales"
-  end_datetime: "2023-09-11T09:00:00"
-  id: "049ecdc6-cd23-4955-bf22-f012ec6be479"
-  id_doctor: "fce7aa9c-85d3-4d1d-9072-1da90b6e166a"
-  id_patient: "4efb817c-3566-43b8-8723-3bf4544982ba"
-  patient_first_name: "Carlos"
-  patient_last_name: "Sol"
-  prescription: "completar"
-  start_datetime: "2023-09-11T08:30:00"
-  state: "reserved" */
+      //console.log("prof mostrados por el Select:", profSelectList)
+    console.log("originalEvents: ", originalEvents)
 
 
 
 
-  // useEffect( ()=> {
-  //   fetch(URL.doctors, 
-  //     {method: "GET",headers: {accept: "application/json"}}
-  //   )
-  //     .then(res => res.json()
-  //     .then(data => console.log("data: ", data)))
-  //     .catch(err => console.log(err.message))
-  // },[])
+  useEffect( ()=> {
+    fetch(URL.doctors, 
+      {method: "GET",headers: {accept: "application/json"}}
+    )
+      .then(res => res.json())
+      .then(data => {
+        //console.log("DATA DOCTORS: ",data)
+        setAllProfessionalList(data)
+        const specialties = data.map(item => item.specialty)
+        const specialtiesWithoutDuplicates = specialties.filter((el, index)=>{
+          //console.log("index: ", index, "  specialties.indexOf(el): ", specialties.indexOf(el))
+          return specialties.indexOf(el) === index;
+        });
+        const specialtiesFormated = specialtiesWithoutDuplicates.map(item=> ({label:item, value:item}))
+        setSpecialtyList(specialtiesFormated)
+      })
+      .catch(err => console.log(err.message))
+  },[])
+  //console.log("PROFESIOLALSLIST: ", allProfessionalList)
+  //console.log("SPECIALTIESLIST: ", specialtyList)
+  
 /*  useEffect(() => {
     fetch(
       "http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/doctors/",
@@ -182,19 +137,20 @@ const Appointments = () => {
     username:'esteban@lugo.com',
     password:'123456'
   } */
-  useEffect(()=>{
-    const drNames = professionalsList.map(item =>({
-      // Para  rellenar selectPicker profesionales
-      label:item.last_name+', '+item.first_name,
-      value:item.last_name+', '+item.first_name,
-    }))
-    setProfSelect(drNames)
-  },[])
+  ////////////////////////COMENTADO PARA PRUEBA/ reemplazado /////////////////////////////////
+  // useEffect(()=>{
+  //   const drNames = professionalsList.map(item =>({
+  //     // Para  rellenar selectPicker profesionales
+  //     label:item.last_name+', '+item.first_name,
+  //     value:item.last_name+', '+item.first_name,
+  //   }))
+  //   setProfSelectList(drNames)
+  // },[])
+  ///////////////////////////////////////////////////////////////////
   //console.log("processedEvents: ", processedEvents)
   
   const handleProfessional = (n) =>{
     setProfessional(n)
-    //filtrar appointmente por prof
     let drFirstAndSecondNameArr; 
     n? drFirstAndSecondNameArr = n.split(', ') : null 
     let drLastName 
@@ -203,18 +159,30 @@ const Appointments = () => {
       drLastName = drFirstAndSecondNameArr[0]
       drfirstName = drFirstAndSecondNameArr[1]
     }
+    console.log()
     const filteredByProfessionalEvents = originalEvents.filter(
       (item) => item.first_name === drfirstName && item.last_name === drLastName
       )
     console.log("FBPEvnt: ",filteredByProfessionalEvents)
-    /* setevents(filteredByProfessionalEvents) */
+    setEvents(filteredByProfessionalEvents)
     
   } 
   const handleSpecialty = (s) => {
     setSpecialty(s)
-    const filteredEvents = originalEvents.filter(item =>item.specialty === s)
-    console.log("filtered: ", filteredEvents)
-    /* setevents(filteredEvents) */
+    // const filteredEvents = originalEvents.filter(item =>item.specialty === s)
+    // console.log("filtered: ", filteredEvents)
+    // /* setevents(filteredEvents) */
+    // Hay que filtrar los profesionales por specialty
+    const filteredallProfessionalList = allProfessionalList.filter(item =>item.specialty === s)
+    console.log("filteredallProfessionalList en handleSpecialty", filteredallProfessionalList)
+    /* const fplWithoutDuplicates */ 
+    const newSelectList = filteredallProfessionalList.map(item=> (
+      {
+        label:item.last_name+", "+item.first_name,
+        value:item.last_name+", "+item.first_name
+      }
+    ))
+    setDisplayedProfSelectList(newSelectList)
   }
 
   const handleOnCleanSpecialty = () => {
@@ -232,11 +200,13 @@ const Appointments = () => {
     }
   }, []);
 
+  console.log("allProfessionalList: ", allProfessionalList)
+
   return (
     <div className="w-full">
       <div className="w-full flex justify-center gap-8 mt-5">
         <SelectPicker
-          data={especialidad}
+          data={specialtyList}
           style={{ width: 224 }}
           placeholder="Especialidad"
           menuStyle={{ borderColor: "red", border: "1px" }}
@@ -246,7 +216,7 @@ const Appointments = () => {
           onClean={handleOnCleanSpecialty}
         />
         <SelectPicker
-          data={profSelect}
+          data={profSelectList}
           style={{ width: 224 }}
           placeholder="Profesional"
           value={professional} 
