@@ -1,6 +1,7 @@
 import React from "react";
 import imgWelcome from "../../assets/images/welcome/imgWelcome.png";
 import Button from "./Button.jsx";
+import MenuHamburger from "../MenuHamburger";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 const Welcome = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
+
+  
 
   useEffect(() => {
     if (!user) {
@@ -27,6 +30,7 @@ const Welcome = () => {
       />
       <Button text="Agenda de Turnos" link="/appointment" />
       <Button text="Historias Clínicas" link="/patients" />
+      <MenuHamburger/>
     </div>
   );
 };
