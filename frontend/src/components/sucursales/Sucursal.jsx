@@ -1,12 +1,12 @@
-import React from "react"
-import Item from "./Item"
-import imgSucursales from "../../assets/imgSucursales.png"
-import imgCapital from "../../assets/capital.png"
-import imgCordoba from "../../assets/cordoba.png"
-import imgLaPlata from "../../assets/laplata.png"
-import imgMendoza from "../../assets/mendoza.png"
-import imgRioCuarto from "../../assets/riocuarto.png"
-import imgSantaFe from "../../assets/santafe.png"
+import React from "react";
+import Item from "./Item";
+import imgSucursales from "../../assets/imgSucursales.png";
+import imgCapital from "../../assets/capital.png";
+import imgCordoba from "../../assets/cordoba.png";
+import imgLaPlata from "../../assets/laplata.png";
+import imgMendoza from "../../assets/mendoza.png";
+import imgRioCuarto from "../../assets/riocuarto.png";
+import imgSantaFe from "../../assets/santafe.png";
 
 const Sucursal = () => {
   const data = [
@@ -58,7 +58,7 @@ const Sucursal = () => {
       street: "Santa Clara 560",
       img: imgSantaFe,
     },
-  ]
+  ];
 
   return (
     <section className="flex flex-col gap-20 mx-10 mb-20">
@@ -73,11 +73,13 @@ const Sucursal = () => {
       </div>
       <div className="flex flex-row flex-wrap gap-10 px-10 justify-center items-center">
         {data.map(({ id }) => (
-          <Item data={data[id]} />
+          <div key={id}>
+            <Item data={data[id]} />
+          </div>
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Sucursal
+export default Sucursal;

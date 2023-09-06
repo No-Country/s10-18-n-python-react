@@ -18,7 +18,7 @@ const Welcome = () => {
   return (
     <div className="flex flex-col text-center gap-10 justify-between mt-5 pb-20">
       <h1 className="text-xl sm:text-3xl font-latoBold text-[#DC4928]">
-        Bienvenido/a {user?.email}
+        Bienvenido/a {user?.user?.first_name}
       </h1>
       <img
         src={imgWelcome}
