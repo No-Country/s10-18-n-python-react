@@ -61,24 +61,24 @@ const Sucursal = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-20 mx-10">
-      <div className="flex flex-col gap-5">
-        <div className="flex gap-4 font-bold text-2xl">
+    <section className="flex flex-col gap-20 mx-10 mb-20">
+      <div className="flex flex-col gap-4">
+        <header className="flex items-center gap-4 px-24 font-bold font-baloo2 text-2xl">
           Sucursales
           <img className="w-10" src={imgSucursales} alt="logo" />
-        </div>
-        <p className="text-start">
+        </header>
+        <p className=" px-24 font-latoSemibold text-base text-start">
           Sanatorio Integral de Salud en diversos puntos del país.
         </p>
       </div>
-      <div className="flex flex-row flex-wrap gap-10 justify-evenly">
+      <div className="flex flex-row flex-wrap gap-10 px-10 justify-center items-center">
         {data.map(({ id }) => (
-          <div key={id} className="hover:scale-105 transition-all">
+          <div key={id}>
             <Item data={data[id]} />
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

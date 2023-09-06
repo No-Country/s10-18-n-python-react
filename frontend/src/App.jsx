@@ -7,8 +7,26 @@ import NavBar from "./components/Navbar";
 import Appointments from "./components/Appointments";
 import Welcome from "./components/welcome/Welcome.jsx";
 import Patients from "./components/Patients";
+import ErrorPage from "./components/ErrorPage";
+import { useEffect } from "react";
+import { localUser } from "./store/UserSlice";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    function getUser() {
+      let user = localStorage.getItem("user");
+      if (user) {
+        user = JSON.parse(user);
+        dispatch(localUser(user));
+      } else {
+        user = null;
+      }
+    }
+    getUser();
+  }, []);
+
   return (
     <>
       <NavBar />
@@ -18,6 +36,7 @@ function App() {
         <Route path="/appointment" element={<Appointments />} />
         <Route path="/dashboard" element={<Welcome />} />
         <Route path="/patients" element={<Patients />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
     </>
