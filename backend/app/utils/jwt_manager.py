@@ -32,4 +32,4 @@ def expire_date(minutes: int) -> datetime:
 def create_access_token(username: str, user_id: int, secret: str) -> str:
     expires = expire_date(minutes=2)
     payload = {"sub": username, "id": user_id, "exp": expires}
-    return encode(claims=payload, key=secret, algorithm="HS256")
+    return encode(payload=payload, key=secret, algorithm="HS256")

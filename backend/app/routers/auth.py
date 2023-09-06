@@ -33,6 +33,7 @@ async def create_user(
     )
     db.add(create_user_model)
     db.commit()
+    db.refresh(create_user_model)
     return JSONResponse(
         content=jsonable_encoder(create_user_model),
         status_code=status.HTTP_201_CREATED,
