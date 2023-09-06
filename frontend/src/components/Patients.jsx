@@ -4,6 +4,7 @@ import studiesIcon from "../assets/images/showStudies.jpg";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import MenuHamburger from "./MenuHamburger";
 
 const PATIENTS = [
   {
@@ -64,7 +65,8 @@ const Patients = () => {
     }
   }, []);
   return (
-    <main className="w-full gap-7 justify-center items-center">
+    <main className="w-[90%] mx-auto gap-7 justify-center items-center">
+      <MenuHamburger/>
       <header className="w-fit font-baloo2 text-orange text-3xl font-black self-start ml-14 mt-6">
         Perfil
       </header>
