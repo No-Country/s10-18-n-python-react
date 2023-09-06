@@ -101,7 +101,8 @@ export default function Calendar(props) {
       setOpenAdd(false)
       setEvent(null)
     };
-   
+  
+    console.log("props.events en BigCalendar: ", props.events)
   // const handleSelectslot = (e) => {
   //   alert(`${e.start}`)
   //   console.log(moment(e).format())
@@ -109,7 +110,7 @@ export default function Calendar(props) {
   // }
   /* console.log("events: ", events) */
 
-  /* fetch('http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/login', {
+ /*  fetch('http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/login', {
     method: 'POST',
     headers: {
       'accept': 'application/json'
@@ -159,7 +160,7 @@ export default function Calendar(props) {
         }}
         /* slotPropGetter={(props) => console.log(" props de slotPropGetter: ", props)} */
         /* elementProps={(props) => console.log("elementProps: ", props)} */
-        resourceTitleAccessor={(resource)=> resource.paciente}
+        resourceTitleAccessor={(resource)=> resource.patient_last_name}
         /* resourceTitleAccessor="paciente" */
         />
         { open && <EventModal event={event} open={open} handleOpen={handleOpen} handleClose={handleClose} />}
