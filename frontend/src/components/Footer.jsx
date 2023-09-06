@@ -1,4 +1,4 @@
-import logo from "../assets/images/logo.png"
+import logo from "../assets/images/logo.png";
 
 const Footer = () => {
   return (
@@ -9,17 +9,17 @@ const Footer = () => {
           <img src={logo} alt="logo de aplicación" className="w-[6rem]" />
           <p>Al servicio de la salud</p>
         </div>
-        <div className='flex flex-wrap justify-around md:justify-between items-center gap-3 py-4 md:gap-5'>
+        <div className="flex flex-wrap justify-around md:justify-between items-center gap-3 py-4 md:gap-5">
           <section className="flex gap-4 md:gap-6 justify-between items-center">
             <ul className="flex flex-col gap-4 mb-auto items-start justify-start text-start">
               <li>
                 <p className=" font-latoBold font-bold text-black ">NOSOTROS</p>
               </li>
               <li>
-                <a className=' font-latoRegular'>Galería</a>
+                <a className=" font-latoRegular">Galería</a>
               </li>
               <li>
-                <a className=' font-latoRegular'>Sucursales</a>
+                <a className=" font-latoRegular">Sucursales</a>
               </li>
             </ul>
             <div className="flex flex-col gap-4 mb-auto items-start justify-start">
@@ -27,12 +27,14 @@ const Footer = () => {
                 <p className="font-latoBold font-bold text-black ">SERVICIOS</p>
               </span>
               <span>
-                <a className=' font-latoRegular'>Profesionales</a>
+                <a className=" font-latoRegular">Profesionales</a>
               </span>
             </div>
             <div className="flex flex-col gap-4 mb-auto items-start justify-start">
               <p className="font-latoBold font-bold text-black ">CONTACTO</p>
-              <a className=' text-start font-latoRegular'>Formulario de Contacto</a>
+              <a className=" text-start font-latoRegular">
+                Formulario de Contacto
+              </a>
             </div>
           </section>
           <ul className="flex justify-start items-center gap-2">
@@ -151,7 +153,7 @@ const Footer = () => {
         </div>
       </footer>
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
