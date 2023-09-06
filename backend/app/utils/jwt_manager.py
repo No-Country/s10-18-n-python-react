@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from fastapi.responses import JSONResponse
-from jose.jwt import encode, decode, exceptions
+from jose.jwt import decode
+from jwt import exceptions, encode
 
 
 def create_token(data: dict, secret: str) -> str:
@@ -28,8 +29,7 @@ def expire_date(minutes: int) -> datetime:
     return datetime.now() + timedelta(minutes=minutes)
 
 
-def create_acess_token(username: str, user_id: int, secret: str) -> str:
-    encode = {"sub": username, "id": user_id}
+def create_access_token(username: str, user_id: int, secret: str) -> str:
     expires = expire_date(minutes=2)
-    encode.update({"exp": expires})
-    return encode(encode, secret, algorithm="HS256")
+    payload = {"sub": username, "id": user_id, "exp": expires}
+    return encode(claims=payload, key=secret, algorithm="HS256")

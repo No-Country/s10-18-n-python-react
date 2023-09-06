@@ -9,7 +9,7 @@ from passlib.context import CryptContext
 
 from typing import Annotated
 from utils.get_db import db_dependency
-from utils.jwt_manager import create_acess_token, validate_token
+from utils.jwt_manager import create_access_token, validate_token
 
 from dotenv import load_dotenv
 import os
@@ -51,14 +51,16 @@ async def login_for_acess_token(
             detail="Invalid username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    token = create_acess_token(user.username, user.id, os.getenv("SECRET_KEY"))
+    token = create_access_token(
+        user.username, user.id, os.getenv("SECRET_KEY")
+    )
     result = {"access_token": token, "token_type": "bearer"}
     return JSONResponse(
         content=jsonable_encoder(result), status_code=status.HTTP_200_OK
     )
 
 
-def authenticate_user(username: str, password: str, db):
+def authenticate_user(username: str, password: str, db: db_dependency):
     user = db.query(Users).filter(Users.username == username).first()
     if not user:
         return False
