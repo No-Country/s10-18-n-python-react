@@ -4,27 +4,26 @@ import logo from "../../assets/logo1.png";
 import DatosPaciente from "../DatosPaciente";
 import { useEffect, useState } from "react";
 
-const AddEventModal = ({ event, openAdd, handleClose }) => {
+const AddEventModal = ({ event, openAdd, handleClose, professional }) => {
   /* const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false); */
 
-  //console.log('event en EventModal: ',event )
-  const [startDate, setStartDate] = useState(0);
+  console.log("event en EventModal: ", event);
+  console.log("profesional en modal Add: ", professional);
+  if (event) {
+    const start = new Date(event.start);
+    const startHours = start.getHours();
+    const startMinutes = start.getMinutes().toString().padStart(2, "0");
+    const end = new Date(event.end);
+    const endHours = end.getHours();
+    const endMinutes = end.getMinutes().toString().padStart(2, "0");
+  }
+  console.log(
+    "fecha formateada para POST: ",
+    event.end.toISOString().substring(0, 19)
+  );
 
-  useEffect(() => {
-    if (event) {
-      const start = new Date(event.start);
-      setStartDate(start);
-      const startHours = start.getHours();
-      const startMinutes = start.getMinutes().toString().padStart(2, "0");
-      const end = new Date(event.end);
-      const endHours = end.getHours();
-      const endMinutes = end.getMinutes().toString().padStart(2, "0");
-    }
-  }, []);
-
-  /* console.log("startMinutes: ", startMinutes) */
   return (
     <>
       {/* <ButtonToolbar>
