@@ -23,12 +23,12 @@ const Appointments = () => {
   const [specialtyList, setSpecialtyList] = useState([]) // Lista de especialidades tomadas de los turnos existentes
   const [allProfessionalList, setAllProfessionalList] = useState([]) // Con o sin turnos, viene de doctors endpoint
 
- /*  const URL = {
+  const URL = {
     doctors:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/doctors/",
     appointments:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments/",
     patients:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/patients/",
     login:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000",
-  } */
+  }
   useEffect( ()=> {
     fetch(URL.appointments, 
       {method: "GET",headers: {accept: "application/json"}}
