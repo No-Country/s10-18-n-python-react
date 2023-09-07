@@ -1,23 +1,21 @@
 import logo from "../assets/logo1.png";
 import calendar from "../assets/calendar.png";
-import { Input, InputGroup, SelectPicker } from "rsuite";
+import { Input, InputGroup } from "rsuite";
 import { useState } from "react";
 import axios from "axios";
 
-const DatosPaciente = ({ onClose, start }) => {
+const DatosPaciente = ({ onClose, start, professional }) => {
   const URL =
     "http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments/";
   const [name, setName] = useState("");
-  const [dni, setDni] = useState("");
-  const [birthDate, setBirthDate] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [socialWork, setSocialWork] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [drName, setDrName] = useState(professional.first_name);
+  const [drLastName, setDrLastName] = useState(professional.last_name);
+  const [pacientState, setPacientState] = useState("");
+  const [diagnosis, setDiagnosis] = useState("");
+  const [prescription, setPrescription] = useState("");
 
-  console.log(start);
-
-  const dataSocialWork = ["Obstetricia", "Pediatría", "Oftalmología"].map(
-    (item) => ({ label: item, value: item })
-  );
+  //   console.log("FECHA: ", start.toISOString().substring(0, 10));
 
   const postAppointment = async (appointmentNewData) => {
     const request = await axios.post(
@@ -52,58 +50,63 @@ const DatosPaciente = ({ onClose, start }) => {
 
           <div className="flex flex-col sm:flex-row text-left gap-5 sm:gap-10 mt-6">
             <div className="">
-              <p>Fecha de nacimiento</p>
-              <InputGroup>
-                <Input
-                  autoFocus
-                  className="bg-[#F0F0F0]"
-                  placeholder="03/10/2023"
-                  onChange={(e) => setBirthDate(e)}
-                  value={birthDate}
-                />
+              <p>Nombre del Profesional</p>
+              <Input disabled value={`${drName} ${drLastName}`} />
+            </div>
+
+            <div className="">
+              <p>Fecha</p>
+              <InputGroup disabled>
+                <Input value={start} />
                 <InputGroup.Addon>
                   <img src={calendar} alt="calendario" />
                 </InputGroup.Addon>
               </InputGroup>
             </div>
-
-            <div className="">
-              <p>DNI</p>
-              <Input
-                value={dni}
-                onChange={(e) => setDni(e)}
-                className="bg-[#F0F0F0]"
-                placeholder="3488654"
-              />
-            </div>
           </div>
 
           <div className="text-left">
             <div className="mt-5 ">
-              <p>Nombre y Apellido</p>
+              <p>Nombre del Paciente</p>
               <Input
                 value={name}
                 onChange={(e) => setName(e)}
-                className="bg-[#F0F0F0]"
-                placeholder="Nuñez Thiago"
+                placeholder="Thiago"
               />
             </div>
-            <div className="mt-5">
-              <p>Telefono/mail de contacto</p>
+            <div className="mt-5 ">
+              <p>Apellido del Paciente</p>
               <Input
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e)}
-                type="number"
-                className="bg-[#F0F0F0]"
-                placeholder="2244- 15789906"
+                value={lastName}
+                onChange={(e) => setLastName(e)}
+                placeholder="Nuñez"
               />
             </div>
             <div className="mt-5">
-              <p>Obra Social</p>
-              <SelectPicker
-                data={dataSocialWork}
-                className="bg-[#F0F0F0]"
-                style={{ width: 224 }}
+              <p>Diagnóstico</p>
+              <Input
+                value={diagnosis}
+                onChange={(e) => setDiagnosis(e)}
+                type="text"
+                placeholder=""
+              />
+            </div>
+            <div className="mt-5">
+              <p>Prescripción</p>
+              <Input
+                value={prescription}
+                onChange={(e) => setPrescription(e)}
+                type="text"
+                placeholder=""
+              />
+            </div>
+            <div className="mt-5">
+              <p>Estado</p>
+              <Input
+                value={pacientState}
+                onChange={(e) => setPacientState(e)}
+                type="text"
+                placeholder=""
               />
             </div>
           </div>

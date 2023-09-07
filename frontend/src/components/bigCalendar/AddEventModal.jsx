@@ -11,14 +11,20 @@ const AddEventModal = ({ event, openAdd, handleClose, professional }) => {
 
   console.log("event en EventModal: ", event);
   console.log("profesional en modal Add: ", professional);
-  if (event) {
-    const start = new Date(event.start);
-    const startHours = start.getHours();
-    const startMinutes = start.getMinutes().toString().padStart(2, "0");
-    const end = new Date(event.end);
-    const endHours = end.getHours();
-    const endMinutes = end.getMinutes().toString().padStart(2, "0");
-  }
+  const [startDate, setStartDate] = useState(0);
+
+  useEffect(() => {
+    if (event) {
+      const start = new Date(event.start);
+      setStartDate(start.toISOString().substring(0, 10));
+      const startHours = start.getHours();
+      const startMinutes = start.getMinutes().toString().padStart(2, "0");
+      const end = new Date(event.end);
+      const endHours = end.getHours();
+      const endMinutes = end.getMinutes().toString().padStart(2, "0");
+    }
+  }, []);
+
   console.log(
     "fecha formateada para POST: ",
     event.end.toISOString().substring(0, 19)
@@ -39,7 +45,11 @@ const AddEventModal = ({ event, openAdd, handleClose, professional }) => {
         /* className='p-8 bg-blue-700 rounded-none' */
       >
         <div className="p-12 border-[2em] border-[#3E36B0] font-baloo2  BANDERA ">
-          <DatosPaciente onClose={handleClose} start={startDate} />
+          <DatosPaciente
+            onClose={handleClose}
+            start={startDate}
+            professional={professional}
+          />
         </div>
       </Modal>
     </>
