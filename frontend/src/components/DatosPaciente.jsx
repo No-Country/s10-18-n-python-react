@@ -4,7 +4,7 @@ import { Input, InputGroup } from "rsuite";
 import { useState } from "react";
 import axios from "axios";
 
-const DatosPaciente = ({ onClose, start, professional }) => {
+const DatosPaciente = ({ onClose, start, professional, addAppointment }) => {
   const URL =
     "http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments/";
   const [name, setName] = useState("");
@@ -121,7 +121,10 @@ const DatosPaciente = ({ onClose, start, professional }) => {
                   Cancelar
                 </button>
                 {/* className="border-1 border-black bg-[#fff]" */}
-                <button className="border border-orange border-solid rounded-lg py-2 px-4 hover:scale-95 transition-all bg-orange font-latoRegular text-black">
+                <button 
+                  /* onClick={()=>addAppointment(name, lastName, diagnosis, pacientState, prescription)} */
+                  className="border border-orange border-solid rounded-lg py-2 px-4 hover:scale-95 transition-all bg-orange font-latoRegular text-black"
+                >
                   Agendar
                 </button>
               </div>
