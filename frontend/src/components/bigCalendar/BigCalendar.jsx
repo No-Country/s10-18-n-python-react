@@ -164,7 +164,7 @@ export default function Calendar(props) {
         /* resourceTitleAccessor="paciente" */
         />
         { open && <EventModal event={event} open={open} handleOpen={handleOpen} handleClose={handleClose} />}
-        { openAdd && <AddEventModal event={event} openAdd={openAdd} handleOpen={handleOpenAdd} handleClose={handleClose} />}
+        { openAdd && <AddEventModal event={event} openAdd={openAdd} handleOpen={handleOpenAdd} handleClose={handleClose} professional={props.professional} />}
     </div>
   )
 }

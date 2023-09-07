@@ -16,7 +16,7 @@ const Appointments = () => {
   const navigate = useNavigate();
   const [originalEvents, setOriginalEvents] = useState([]) // registro de originales
   const [events, setEvents] = useState([]) // Pasados a BigCalendar
-  const [professional, setProfessional] = useState("") // Para filtro final
+  const [professional, setProfessional] = useState("") // data del dr seleccionado
   const [profSelectList, setProfSelectList] = useState([]) // registro del original para reset
   const [specialty, setSpecialty] = useState("")
   const [specialtyList, setSpecialtyList] = useState([]) // Lista de especialidades tomadas de los turnos existentes
@@ -50,17 +50,6 @@ const Appointments = () => {
             state: item.state
           })) 
         setOriginalEvents(dataFormated)
-        //setEvents(dataFormated)      
-        //  Esta funcionalidad pasa a handleSpecialty
-      //   const drNames = data.map(item =>({
-      //     // Para  rellenar selectPicker profesionales
-      //     label:item.doctor_last_name+', '+item.doctor_first_name,
-      //     value:item.doctor_last_name+', '+item.doctor_first_name,
-      //   }))
-      //   let doctorsWithoutDuplicates = drNames.filter((obj, index) => drNames.findIndex(o => o.label === obj.label) === index);
-      //  // El otro algoritmo fallaba EN ESTE CASO
-      //   setProfSelectList(doctorsWithoutDuplicates)
-      //   setDisplayedProfSelectList(doctorsWithoutDuplicates)
       })
       .catch(err => console.log(err.message))
   },[])
@@ -74,7 +63,6 @@ const Appointments = () => {
         setAllProfessionalList(data)
         const specialties = data.map(item => item.specialty)
         const specialtiesWithoutDuplicates = specialties.filter((el, index)=>{
-          //console.log("index: ", index, "  specialties.indexOf(el): ", specialties.indexOf(el))
           return specialties.indexOf(el) === index;
         });
         const specialtiesFormated = specialtiesWithoutDuplicates.map(item=> ({label:item, value:item}))
@@ -82,12 +70,9 @@ const Appointments = () => {
       })
       .catch(err => console.log(err.message))
   },[])
-  //console.log("PROFESIOLALSLIST: ", allProfessionalList)
-  //console.log("EVENTS: ", events)
-  //console.log("SPECIALTIESLIST: ", specialtyList)
 
   const handleProfessional = (n) =>{
-    setProfessional(n)
+    
     let drFirstAndSecondNameArr; 
     n? drFirstAndSecondNameArr = n.split(', ') : null 
     let drLastName 
@@ -99,36 +84,29 @@ const Appointments = () => {
     const filteredByProfessionalEvents = originalEvents.filter(
       (item) => item.doctor_first_name === drfirstName && item.doctor_last_name === drLastName
       )
-    //console.log("FBPEvnt: ",filteredByProfessionalEvents)
     setEvents(filteredByProfessionalEvents)
-    
+    const professionalData = allProfessionalList.find(
+      item=> item.first_name===drfirstName && item.last_name===drLastName
+    )
+    console.log("dr selected data: ", professionalData)
+    setProfessional(professionalData)
   } 
   const handleSpecialty = (s) => {
     setSpecialty(s)
-    //console.log("***  S  ***:", s)
-    //console.log("** allProfessionalList ***: ",allProfessionalList)
     const filtered = allProfessionalList.filter(item =>item.specialty === s)
-    //console.log("filtered en handleSpecialty", filtered)
     const drNamesInSelect = getDrWithAppointment(filtered, originalEvents)
-    /* const newSelectList = filtered.map(item=> (
-      {
-        label:item.last_name+", "+item.first_name,
-        value:item.last_name+", "+item.first_name
-      }
-    )) */
-    //console.log("drNamesInSelect: ",drNamesInSelect )
     setProfSelectList(drNamesInSelect)
     
   }
 
   const handleOnCleanSpecialty = () => {
     //reset de professionals del select
-    setEvents(originalEvents)
+    setEvents([])
     console.log("originalEvents en handleOnClean: ", originalEvents)
     setProfSelectList(profSelectList)
   }
   const handleOnCleanProfessional = () => {
-    setEvents(originalEvents)
+    setEvents([])
     console.log("events en handleOnClean: ", originalEvents)
   }
 
@@ -139,8 +117,6 @@ const Appointments = () => {
   }, []);
 
   function getDrWithAppointment(drs, meets) {
-    //allProfessionalList, events
-    //con esta data setear displayedProfSelectList
     let drsWithApp = []
     for ( let i=0; i<drs.length; i++) {
       const el = meets.some( item => item.doctor_first_name===drs[i].first_name && item.doctor_last_name===drs[i].last_name)
@@ -153,7 +129,9 @@ const Appointments = () => {
     }))
   return drNames
   }
-
+  console.log("professional list: ", allProfessionalList)
+  console.log(events)
+  console.log("professional en Appointments: ", professional)
   return (
     <div className="w-full">
       <div className="w-full flex justify-center gap-8 mt-5">
@@ -171,7 +149,7 @@ const Appointments = () => {
           data={profSelectList}
           style={{ width: 224 }}
           placeholder="Profesional"
-          value={professional} 
+          value={profSelectList} 
           onChange={handleProfessional}
           cleanable={true}
           onClean={handleOnCleanProfessional}
