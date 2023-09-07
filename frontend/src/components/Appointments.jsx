@@ -4,6 +4,7 @@ import { SelectPicker } from "rsuite";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import moment from "moment";
+import MenuHamburger from "./MenuHamburger";
 
 
 const initialSpecialties = ["Clinic", "Cardiologist", "Dentist"].map(
@@ -134,7 +135,8 @@ const Appointments = () => {
   console.log("professional en Appointments: ", professional)
   return (
     <div className="w-full">
-      <div className="w-full flex justify-center gap-8 mt-5">
+      <MenuHamburger/>
+      <div className="w-full flex justify-center gap-8 mt-10">
         <SelectPicker
           data={specialtyList}
           style={{ width: 224 }}
