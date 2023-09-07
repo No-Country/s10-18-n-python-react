@@ -18,6 +18,7 @@ const Appointments = () => {
   const [originalEvents, setOriginalEvents] = useState([]) // registro de originales
   const [events, setEvents] = useState([]) // Pasados a BigCalendar
   const [professional, setProfessional] = useState("") // data del dr seleccionado
+  const [professionalSelected, setProfessionaSelected]=useState("") //nombre seleccionado <apellido, nombre>
   const [profSelectList, setProfSelectList] = useState([]) // registro del original para reset
   const [specialty, setSpecialty] = useState("")
   const [specialtyList, setSpecialtyList] = useState([]) // Lista de especialidades tomadas de los turnos existentes
@@ -89,7 +90,9 @@ const Appointments = () => {
     const professionalData = allProfessionalList.find(
       item=> item.first_name===drfirstName && item.last_name===drLastName
     )
+    console.log("N: ", n)
     console.log("dr selected data: ", professionalData)
+    setProfessionaSelected(n)
     setProfessional(professionalData)
   } 
   const handleSpecialty = (s) => {
@@ -151,7 +154,7 @@ const Appointments = () => {
           data={profSelectList}
           style={{ width: 224 }}
           placeholder="Profesional"
-          value={profSelectList} 
+          value={professionalSelected} 
           onChange={handleProfessional}
           cleanable={true}
           onClean={handleOnCleanProfessional}
