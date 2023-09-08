@@ -1,18 +1,18 @@
-import { useSelector } from "react-redux";
 import BigCalendar from "./bigCalendar/BigCalendar";
 import { SelectPicker } from "rsuite";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import MenuHamburger from "./MenuHamburger";
-
+import { getAppointmentsFromApi } from "../store/AppointmentSlice"
+import { useDispatch, useSelector } from "react-redux"
 
 const initialSpecialties = ["Clinic", "Cardiologist", "Dentist"].map(
   (item) => ({ label: item, value: item })
 );
 
 const Appointments = () => {
- 
+  // Hay un bug en el reset del professional
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [originalEvents, setOriginalEvents] = useState([]) // registro de originales
@@ -23,7 +23,22 @@ const Appointments = () => {
   const [specialty, setSpecialty] = useState("")
   const [specialtyList, setSpecialtyList] = useState([]) // Lista de especialidades tomadas de los turnos existentes
   const [allProfessionalList, setAllProfessionalList] = useState([]) // Con o sin turnos, viene de doctors endpoint
+  
 
+  const dispatch = useDispatch()
+  const allAppointments = useSelector( state => state.appointments)
+  useEffect(() => {
+    dispatch(getAppointmentsFromApi())
+    if (!user) {
+      navigate("/");
+    }
+  }, []);
+  useEffect(() => {
+    console.log("Ejecuta Efecto por cambiar allApointments")
+    allAppointments ? console.log("allAppointments", allAppointments) : console.log("NO FUNCA APPOINTMENTSSLICE")
+  },[allAppointments])
+
+  console.log("allAppointments: ", allAppointments)
   const URL = {
     doctors:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/doctors/",
     appointments:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments/",
@@ -31,8 +46,8 @@ const Appointments = () => {
     login:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000",
   }
   useEffect( ()=> {
-    fetch(URL.appointments, 
-      {method: "GET",headers: {accept: "application/json"}}
+    fetch(URL.appointments/* , 
+      {method: "GET",headers: {accept: "application/json"}} */
     )
       .then(res => res.json())
       .then(data => {
@@ -73,8 +88,18 @@ const Appointments = () => {
       .catch(err => console.log(err.message))
   },[])
 
+  const handleSpecialty = (s) => {
+    setSpecialty(s)
+    const filtered = allProfessionalList.filter(item =>item.specialty === s)
+    /* const drNamesInSelect = getDrWithAppointment(filtered, originalEvents) */// Cambiar esto
+    /* setProfSelectList(drNamesInSelect) */
+    const profSelListFormated = getDrNamesValuesSelect(filtered)
+    setProfSelectList(profSelListFormated)
+    //console.log("profSelListFormated: ", profSelListFormated)
+    // Ahora se puede seleccionar cualquier professional, tenga o no turnos creados
+  }
+
   const handleProfessional = (n) =>{
-    
     let drFirstAndSecondNameArr; 
     n? drFirstAndSecondNameArr = n.split(', ') : null 
     let drLastName 
@@ -90,37 +115,29 @@ const Appointments = () => {
     const professionalData = allProfessionalList.find(
       item=> item.first_name===drfirstName && item.last_name===drLastName
     )
-    console.log("N: ", n)
-    console.log("dr selected data: ", professionalData)
+    //console.log("N: ", n)
+    //console.log("dr selected data: ", professionalData)
     setProfessionaSelected(n)
     setProfessional(professionalData)
   } 
-  const handleSpecialty = (s) => {
-    setSpecialty(s)
-    const filtered = allProfessionalList.filter(item =>item.specialty === s)
-    const drNamesInSelect = getDrWithAppointment(filtered, originalEvents)
-    setProfSelectList(drNamesInSelect)
-    
-  }
+  
 
   const handleOnCleanSpecialty = () => {
     //reset de professionals del select
     setEvents([])
-    console.log("originalEvents en handleOnClean: ", originalEvents)
-    setProfSelectList(profSelectList)
+    //console.log("originalEvents en handleOnClean: ", originalEvents)
+    /* setProfSelectList(profSelectList) */
+    setProfSelectList([])
+    setProfessionaSelected('')// prueba reset
   }
   const handleOnCleanProfessional = () => {
     setEvents([])
-    console.log("events en handleOnClean: ", originalEvents)
+    //console.log("events en handleOnClean: ", originalEvents)
+    setProfessionaSelected('')
+    /* setProfSelectList([]) */
   }
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
-    }
-  }, []);
-
-  function getDrWithAppointment(drs, meets) {
+ /*  function getDrWithAppointment(drs, meets) {
     let drsWithApp = []
     for ( let i=0; i<drs.length; i++) {
       const el = meets.some( item => item.doctor_first_name===drs[i].first_name && item.doctor_last_name===drs[i].last_name)
@@ -132,10 +149,18 @@ const Appointments = () => {
       value:item.last_name+', '+item.first_name,
     }))
   return drNames
+  } */
+    function getDrNamesValuesSelect(drs) {
+    const drNames = drs.map(item =>({
+      // Para  rellenar selectPicker profesionales
+      label:item.last_name+', '+item.first_name,
+      value:item.last_name+', '+item.first_name,
+    }))
+  return drNames
   }
-  console.log("professional list: ", allProfessionalList)
-  console.log(events)
-  console.log("professional en Appointments: ", professional)
+  //console.log("professional list: ", allProfessionalList)
+  //console.log(events)
+  //console.log("professional en Appointments: ", professional)
   return (
     <div className="w-full">
       <MenuHamburger/>
