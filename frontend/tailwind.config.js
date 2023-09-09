@@ -13,11 +13,19 @@ export default {
         'elipse': '50%'
       },
       colors: {
-        'greenBrand': '#128983'
+        'greenBrand': '#128983',
+        'white':'#FFFFFF',
+        'black':'#111111',
+        'orange':'#DC4928',
+        'green':'#128983',
+        'blue':'#0000FF',
+        'marineBlue':'#3E36B0',
+        'lightBlue':'#A6DEF7',
+        'lightGray':'#737373'
       },
       fontFamily: {
         baloo2: ["Baloo2", "sans-serif"],
-        latoRegular: ["Lato-regular", "sans-serif"],
+        latoRegular: ["Lato-Regular", "sans-serif"],
         latoMedium: ["Lato-Medium", "sans-serif"],
         latoSemibold: ["Lato-Semibold", "sans-serif"],
         latoBold: ["Lato-Bold", "sans-serif"]

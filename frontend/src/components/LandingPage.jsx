@@ -1,21 +1,17 @@
-import Hero from "./Hero"
-/* import Profile from "./Profile" */
-import Footer from "./Footer"
-import NavBar from "./Navbar"
-import Sucursales from "./sucursales/Sucursal"
-import Staff from "./Staff"
+import Hero from "./Hero";
+import Sucursales from "./sucursales/Sucursal";
+import Staff from "./Staff";
 
 const LandingPage = () => {
   return (
     <>
-      <NavBar />
-      <Hero />
-      <Staff />
-      <Sucursales />
-      {/* <Profile /> */}
-      <Footer />
+      <div className="flex flex-col gap-20">
+        <Hero />
+        <Staff />
+        <Sucursales />
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;

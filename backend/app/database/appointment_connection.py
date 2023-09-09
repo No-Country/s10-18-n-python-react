@@ -1,5 +1,6 @@
 import psycopg2
-#Clase que maneja CRUD de la tabla de Appointments en la base de datos PostgreSQL en ElephantSQL
+#Clase que maneja CRUD de la tabla de Appointments 
+# en la base de datos PostgreSQL en ElephantSQL
 class AppointmentConnection():
     conn = None
 
