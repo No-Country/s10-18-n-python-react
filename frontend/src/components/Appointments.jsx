@@ -6,7 +6,7 @@ import moment from "moment";
 import MenuHamburger from "./MenuHamburger";
 import { getAppointmentsFromApi } from "../store/AppointmentSlice"
 import { useDispatch, useSelector } from "react-redux"
-
+import { createAppointment } from "../store/AppointmentSlice"
 const initialSpecialties = ["Clinic", "Cardiologist", "Dentist"].map(
   (item) => ({ label: item, value: item })
 );
@@ -24,30 +24,52 @@ const Appointments = () => {
   const [specialtyList, setSpecialtyList] = useState([]) // Lista de especialidades tomadas de los turnos existentes
   const [allProfessionalList, setAllProfessionalList] = useState([]) // Con o sin turnos, viene de doctors endpoint
   
-
-  const dispatch = useDispatch()
+  /* const dispatch = useDispatch()
   const allAppointments = useSelector( state => state.appointments)
+  console.log("allAppointments: ", allAppointments)
+  const allAppointmentsFormated = ()=> {
+    if (allAppointments.lenght) {
+      allAppointments.map(item=>(
+      { 
+        diagnosis:item.diagnosis,
+        doctor_first_name: item.doctor_first_name,
+        doctor_last_name: item.doctor_last_name,
+        end: moment(item.end_datetime).toDate(),
+        id: item.id,
+        id_doctor: item.id_doctor,
+        id_patient: item.id_patient,
+        patient_first_name: item.patient_first_name,
+        patient_last_name: item.patient_last_name,
+        prescription: item.prescription,
+        start: moment(item.start_datetime).toDate(),
+        state: item.state
+      })) 
+    } else return null
+  }
+  allAppointmentsFormated()  */
+
   useEffect(() => {
-    dispatch(getAppointmentsFromApi())
+    /* dispatch(getAppointmentsFromApi()) */
     if (!user) {
       navigate("/");
     }
   }, []);
-  useEffect(() => {
+  
+  /* useEffect(() => {
     console.log("Ejecuta Efecto por cambiar allApointments")
     allAppointments ? console.log("allAppointments", allAppointments) : console.log("NO FUNCA APPOINTMENTSSLICE")
-  },[allAppointments])
+  },[allAppointments]) */
 
-  console.log("allAppointments: ", allAppointments)
+  /* console.log("allAppointments: ", allAppointments) */
   const URL = {
-    doctors:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/doctors/",
-    appointments:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments/",
-    patients:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/patients/",
-    login:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000",
+    doctors:"http://ec2-3-16-154-186.us-east-2.compute.amazonaws.com:8000/doctors/",
+    appointments:"http://ec2-3-16-154-186.us-east-2.compute.amazonaws.com:8000/appointments/",
+    patients:"http://ec2-3-16-154-186.us-east-2.compute.amazonaws.com:8000/patients/",
+    login:"http://ec2-3-16-154-186.us-east-2.compute.amazonaws.com:8000",
   }
   useEffect( ()=> {
-    fetch(URL.appointments/* , 
-      {method: "GET",headers: {accept: "application/json"}} */
+    fetch(URL.appointments, 
+      {method: "GET",headers: {accept: "application/json"}}
     )
       .then(res => res.json())
       .then(data => {
@@ -68,7 +90,7 @@ const Appointments = () => {
           })) 
         setOriginalEvents(dataFormated)
       })
-      .catch(err => console.log(err.message))
+      .catch(err => console.log("ERROR MESSAGE: ", err.message))
   },[])
 
   useEffect( ()=> {
@@ -158,6 +180,24 @@ const Appointments = () => {
     }))
   return drNames
   }
+
+  /* const handleAddAppointment = () => {
+    const data = {
+      diagnosis:"",
+      doctor_first_name: "Lolo",
+      doctor_last_name: "Galo",
+      end: item.end_datetime,
+      id: Date.now(),
+      id_doctor: "987654321",
+      id_patient: "987654321",
+      patient_first_name: "Cacho",
+      patient_last_name: "Loco",
+      prescription: "vago",
+      start: "",
+      state: ""
+    }
+    dispatch(createAppointment(data))
+  } */
   //console.log("professional list: ", allProfessionalList)
   //console.log(events)
   //console.log("professional en Appointments: ", professional)

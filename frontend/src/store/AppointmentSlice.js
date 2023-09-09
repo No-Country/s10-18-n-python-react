@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-const URL = "http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments";
+const URL = "http://https://discord.com/channels/1141541352040050831/1141556250006523954/1149908951207522407";
 
 export const getAppointmentsFromApi = createAsyncThunk(
   "appointments/getAppointmentsFromApi",
@@ -22,9 +22,10 @@ const AppointmentsSlice = createSlice({
   name:"appointments",
   initialState,
   reducers:{
-    /* getAppointments: (state, action) => {
-      state.loading
-    } */
+    createAppointment: (state, action) => {
+      state.appointments.push(action.payload)
+      console.log("payload en createAppointment: ",action.payload)
+    }
   },
   extraReducers: (builder) => {
     builder 
@@ -47,5 +48,5 @@ const AppointmentsSlice = createSlice({
   }
 })
 
-/* export const { appointments } = AppointmentsSlice.actions */
+export const { createAppointment } = AppointmentsSlice.actions
 export default AppointmentsSlice.reducer
