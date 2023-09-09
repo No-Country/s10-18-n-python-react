@@ -9,6 +9,8 @@ Fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experien
 
 | <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50> |<img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>|
 |:-:|:-:|:-:|:-:|:-:|
+|  **Franco Saldaño**  | 
+| <a href="https://www.linkedin.com/in/franco-salda%C3%B1o/"></a> |
 
 
  #### 🛠️ Tech Stack:
