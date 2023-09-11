@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "sonner";
 
-const URL = "http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/login";
+const URL = "https://medicadminbackend-jeqz-dev.fl0.io/login";
 
 export const loginUser = createAsyncThunk(
   "user/loginUser",
