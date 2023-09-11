@@ -1,12 +1,12 @@
 import React from "react";
 import Item from "./Item";
-import imgSucursales from "../../assets/imgSucursales.png";
-import imgCapital from "../../assets/capital.png";
-import imgCordoba from "../../assets/cordoba.png";
-import imgLaPlata from "../../assets/laplata.png";
-import imgMendoza from "../../assets/mendoza.png";
-import imgRioCuarto from "../../assets/riocuarto.png";
-import imgSantaFe from "../../assets/santafe.png";
+import imgSucursales from "../../assets/images/sucursales/imgSucursales.png";
+import imgCapital from "../../assets/images/sucursales/capital.png";
+import imgCordoba from "../../assets/images/sucursales/cordoba.png";
+import imgLaPlata from "../../assets/images/sucursales/laplata.png";
+import imgMendoza from "../../assets/images/sucursales/mendoza.png";
+import imgRioCuarto from "../../assets/images/sucursales/riocuarto.png";
+import imgSantaFe from "../../assets/images/sucursales/santafe.png";
 
 const Sucursal = () => {
   const data = [
