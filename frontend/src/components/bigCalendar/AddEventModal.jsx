@@ -4,16 +4,24 @@ import logo from "../../assets/logo1.png";
 import DatosPaciente from "../DatosPaciente";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import uuid from 'react-uuid';
 
-const AddEventModal = ({ event, openAdd, handleClose, professional }) => {
+const AddEventModal = ({ 
+  event, 
+  openAdd, 
+  handleClose, 
+  professional,  
+  handleReloadAppointments,
+  handleSetNewAppointment
+}) => {
   /* const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false); */
 
   console.log("event en AddEventModal: ", event);
-  console.log("profesional en modal Add: ", professional);
+  //console.log("profesional en modal Add: ", professional);
   const [startDate, setStartDate] = useState(0);
-  console.log("startDate",startDate)
+  //console.log("startDate",startDate)
   
   const start = new Date(event.start);
   /* const startHours = start.getHours();
@@ -32,41 +40,48 @@ const AddEventModal = ({ event, openAdd, handleClose, professional }) => {
   
 
 
-  console.log(
+ /*  console.log(
     "fecha formateada para POST: ",
     event.end.toISOString().substring(0, 19)
-  );
+  );  */
 
-  const addAppointment = (pFirstName, pLastName, diagnosis, patientState, prescription) => {
-    const appAndPatinentId = Date.now().toString()
+  const addAppointment = (pFirstName, pLastName, diagnosis, patientState, prescription, dni) => {
+
     const appointmentData = {
-      id: appAndPatinentId,
+      /* id: appAndPatinentId, */
+      /* doctor_first_name: professional.first_name,
+      doctor_last_name:professional.last_name, */
       start_datetime: startToString,
       end_datetime: endToString,
       diagnosis: diagnosis,
-      doctor_first_name: professional.first_name,
-      doctor_last_name:professional.last_name,
       id_doctor: professional.id,
-      id_patient: appAndPatinentId,
+      id_patient: dni,
       patient_first_name: pFirstName,
       patient_last_name: pLastName,
       prescription: prescription,
       state: patientState
     }
-      console.log("appointmentData: ", appointmentData)
-    fetch(`http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments/`,
+    /* handleSetNewAppointment(appointmentData) */
+      //console.log("appointmentData: ", appointmentData)
+    fetch(`https://medicadminbackend-jeqz-dev.fl0.io/appointments/`,
       {
         method:"POST",
         headers: { 
-          'content-type': 'application/json',
+          "content-type": "application/json",
           "accept": "application/json" 
         },
         body:JSON.stringify(appointmentData)
       }
     )
-        .then(res => res.json())
-        .then(data => console.log("data response: ",data))
-        .catch(err => console.log(err))
+      .then(res => {
+        console.log("res: ", res)
+        console.log("res.status", res.status)
+        res.status
+      })
+      .then(data => console.log("data response: ",data))
+      .catch(err => console.log(err))
+
+      
   }
 
   /* const addAppointment = async (pFirstName, pLastName, diagnosis, patientState, prescription) => {
@@ -113,7 +128,7 @@ const AddEventModal = ({ event, openAdd, handleClose, professional }) => {
       >
         <div className="p-12 border-[2em] border-[#3E36B0] font-baloo2  BANDERA ">
           <DatosPaciente
-            onClose={handleClose}
+            handleClose={handleClose}
             start={startDate}
             professional={professional}
             addAppointment={addAppointment}
