@@ -18,7 +18,7 @@ const DatosPaciente = ({ handleClose, start, professional, addAppointment }) => 
 
   //   console.log("FECHA: ", start.toISOString().substring(0, 10));
 
-  const postAppointment = async (appointmentNewData) => {
+ /*  const postAppointment = async (appointmentNewData) => {
     const request = await axios.post(
       URL,
       new URLSearchParams(appointmentNewData),
@@ -30,11 +30,11 @@ const DatosPaciente = ({ handleClose, start, professional, addAppointment }) => 
     localStorage.setItem("user", JSON.stringify(response));
     toast.success("Has iniciado sesión correctamente");
     return response;
-  };
+  }; */
 
   const handleClikAdd = () => {
     handleClose()
-    setTimeout(()=>addAppointment(name, lastName, diagnosis, pacientState, prescription, dni), 2000)
+    setTimeout(()=>addAppointment(name, lastName, diagnosis, pacientState, prescription, dni), 1000)
   }
   return (
     <>

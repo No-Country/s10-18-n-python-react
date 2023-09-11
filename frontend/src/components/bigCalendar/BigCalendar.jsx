@@ -31,7 +31,7 @@ export default function Calendar(props) {
     }),
     []
   );
-  console.log("***  Renderiza BigCalendar  ***")
+  //console.log("***  Renderiza BigCalendar  ***")
   console.log("props.events en BigCalendar", props.events)
 
   const [open, setOpen] = useState(false);
@@ -117,7 +117,7 @@ export default function Calendar(props) {
         }
         /* slotPropGetter={(props) => console.log(" props de slotPropGetter: ", props)} */
         /* elementProps={(props) => console.log("elementProps: ", props)} */
-        resourceTitleAccessor={(resource) => resource.patient_last_name}
+        /* resourceTitleAccessor={(resource) => resource.patient_last_name} */
         defaultView={"week"}
         /* resourceTitleAccessor="paciente" */
       />

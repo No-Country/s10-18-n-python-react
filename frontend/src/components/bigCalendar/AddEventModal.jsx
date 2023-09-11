@@ -34,7 +34,7 @@ const AddEventModal = ({
   const endToString = event.end.toISOString().substring(0,19)
   useEffect(() => {
     if (event) {
-      setStartDate(start.toISOString().substring(0, 10));
+      setStartDate(start.toISOString()/* .substring(0, 10) */);
     }
   }, []); 
   
@@ -61,8 +61,11 @@ const AddEventModal = ({
       prescription: prescription,
       state: patientState
     }
-    /* handleSetNewAppointment(appointmentData) */
-      //console.log("appointmentData: ", appointmentData)
+    setTimeout( ()=>{handleSetNewAppointment(appointmentData)
+        console.log("setTimeout")
+    }, 100)
+    
+      
     fetch(`https://medicadminbackend-jeqz-dev.fl0.io/appointments/`,
       {
         method:"POST",
@@ -80,7 +83,8 @@ const AddEventModal = ({
       })
       .then(data => console.log("data response: ",data))
       .catch(err => console.log(err))
-
+      /* .finally(handleReloadAppointments()) */
+      .finally()
       
   }
 

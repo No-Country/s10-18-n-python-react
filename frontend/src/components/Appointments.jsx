@@ -22,7 +22,7 @@ const Appointments = () => {
   const [specialty, setSpecialty] = useState("")
   const [specialtyList, setSpecialtyList] = useState([]) // Lista de especialidades tomadas de los turnos existentes
   const [allProfessionalList, setAllProfessionalList] = useState([]) // Con o sin turnos, viene de doctors endpoint
-  const [reloadAppointments, setReloadAppointments] = useState(0)
+  const [reloadAppointments, setReloadAppointments] = useState(false)
   const [count, setCount] = useState(0)
   /* const dispatch = useDispatch()
   const allAppointments = useSelector( state => state.appointments)
@@ -68,7 +68,8 @@ const Appointments = () => {
     login:"https://medicadminbackend-jeqz-dev.fl0.io/login",
   }
   useEffect( ()=> {
-    console.log("efecuta EFFECTO appointments")
+    console.log("efecuta EFFECTO appointments, fetch")
+    // al agregar appointment en el modal, llega antes el get que el post con la data actualizada
     fetch(URL.appointments, 
       {method: "GET",headers: {accept: "application/json"}}
     )
@@ -90,28 +91,31 @@ const Appointments = () => {
             state: item.state
           })) 
         setOriginalEvents(dataFormated)
-        if (professionalSelected) {
+        console.log("Trae nueva data events del server")
+        /* if (professionalSelected) {
           setOriginalEvents(dataFormated)
-          setEvents(dataFormated)
-          console.log("Trae nueva data events del server")
-        } 
+          //setEvents(dataFormated)
+        }  */
       })
       .catch(err => console.log("ERROR MESSAGE: ", err.message))
-  },[])
+  },[reloadAppointments])
 
-  console.log("events en Appointments: ", events)
 
   const handleReloadAppointments = () => {
-    setReloadAppointments(prev => prev + 1)
+    setReloadAppointments(prev => !prev)
     console.log("refetch de appointments")
    //  no sirve porque llega data vieja
   }
   const handleSetNewAppointment = (dataEvent) => {
-    console.log("dataEvent en setNewAppointment: " ,dataEvent)
+    // setea el nuevo estado directo desde el modal, sin esperar la respuesta del post, pero no esta actualizando el calendar
+    console.log("dataEvent en handleSetNewAppointment: " ,dataEvent)
     setOriginalEvents([ ...originalEvents , dataEvent])
-    setEvents([...events, {...dataEvent}])
-    const newEvents = [...events, {...dataEvent}]
-    console.log("newEvents en Appointments: ",newEvents)
+    const newEvents = originalEvents.filter(
+      // Prueba para ver si cambia el calendar, setEvent([...events, dataEvent]) no lo hace
+      (item) => item.doctor_first_name === drfirstName && item.doctor_last_name === drLastName
+      )
+    setEvents(newEvents)
+    //console.log("newEvents en Appointments: ",newEvents)
   }
 
   const handleSetCount = () => {
@@ -231,7 +235,7 @@ const Appointments = () => {
     setEvents([...events, newEvent])
   } */
 
-  console.log("count: ", count)
+  
   return (
     <div className="w-full">
       <MenuHamburger/>
