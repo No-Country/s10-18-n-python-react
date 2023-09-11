@@ -4,9 +4,9 @@ import { Input, InputGroup } from "rsuite";
 import { useState } from "react";
 import axios from "axios";
 
-const DatosPaciente = ({ onClose, start, professional, addAppointment }) => {
+const DatosPaciente = ({ handleClose, start, professional, addAppointment }) => {
   const URL =
-    "http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments/";
+    "https://medicadminbackend-jeqz-dev.fl0.io/appointments/";
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [drName, setDrName] = useState(professional.first_name);
@@ -14,10 +14,11 @@ const DatosPaciente = ({ onClose, start, professional, addAppointment }) => {
   const [pacientState, setPacientState] = useState("");
   const [diagnosis, setDiagnosis] = useState("");
   const [prescription, setPrescription] = useState("");
+  const [dni, setDni] = useState("")
 
   //   console.log("FECHA: ", start.toISOString().substring(0, 10));
 
-  const postAppointment = async (appointmentNewData) => {
+ /*  const postAppointment = async (appointmentNewData) => {
     const request = await axios.post(
       URL,
       new URLSearchParams(appointmentNewData),
@@ -29,7 +30,12 @@ const DatosPaciente = ({ onClose, start, professional, addAppointment }) => {
     localStorage.setItem("user", JSON.stringify(response));
     toast.success("Has iniciado sesión correctamente");
     return response;
-  };
+  }; */
+
+  const handleClikAdd = () => {
+    handleClose()
+    setTimeout(()=>addAppointment(name, lastName, diagnosis, pacientState, prescription, dni), 1000)
+  }
   return (
     <>
       <div className="w-full h-full flex justify-center">
@@ -49,40 +55,49 @@ const DatosPaciente = ({ onClose, start, professional, addAppointment }) => {
           </div>
 
           <div className="flex flex-col sm:flex-row text-left gap-5 sm:gap-10 mt-6">
-            <div className="">
+            {/* <div className="">
               <p>Nombre del Profesional</p>
               <Input disabled value={`${drName} ${drLastName}`} />
-            </div>
-
-            <div className="">
-              <p>Fecha</p>
-              <InputGroup disabled>
-                <Input value={start} />
-                <InputGroup.Addon>
-                  <img src={calendar} alt="calendario" />
-                </InputGroup.Addon>
+              </div> */}
+              
+              <div className="">
+              <p>Fecha de Nacimiento</p>
+              <InputGroup>
+              <Input />
+              <InputGroup.Addon>
+              <img src={calendar} alt="calendario" />
+              </InputGroup.Addon>
               </InputGroup>
+            </div>
+            <div className="">
+              <p>DNI</p>
+              <Input value={dni} onChange={(e)=> setDni(e)} />
             </div>
           </div>
 
-          <div className="text-left">
+          <div className="flex flex-col sm:flex-row text-left sm:gap-10 mt-6">
+
             <div className="mt-5 ">
-              <p>Nombre del Paciente</p>
+              <p>Nombre</p>
               <Input
                 value={name}
                 onChange={(e) => setName(e)}
-                placeholder="Thiago"
+                placeholder=""
+                required
               />
             </div>
             <div className="mt-5 ">
-              <p>Apellido del Paciente</p>
+              <p>Apellido</p>
               <Input
                 value={lastName}
                 onChange={(e) => setLastName(e)}
-                placeholder="Nuñez"
+                placeholder=""
+                required
               />
             </div>
-            <div className="mt-5">
+          </div>
+          <div className="text-left">
+            {/* <div className="mt-5">
               <p>Diagnóstico</p>
               <Input
                 value={diagnosis}
@@ -90,9 +105,9 @@ const DatosPaciente = ({ onClose, start, professional, addAppointment }) => {
                 type="text"
                 placeholder=""
               />
-            </div>
+            </div> */}
             <div className="mt-5">
-              <p>Prescripción</p>
+              <p>Teléfono/ mail de contacto</p>
               <Input
                 value={prescription}
                 onChange={(e) => setPrescription(e)}
@@ -101,7 +116,7 @@ const DatosPaciente = ({ onClose, start, professional, addAppointment }) => {
               />
             </div>
             <div className="mt-5">
-              <p>Estado</p>
+              <p>Obra Social</p>
               <Input
                 value={pacientState}
                 onChange={(e) => setPacientState(e)}
@@ -115,14 +130,14 @@ const DatosPaciente = ({ onClose, start, professional, addAppointment }) => {
             <div className="w-full h-full">
               <div className="flex justify-end mt-20 gap-4">
                 <button
-                  onClick={onClose}
+                  onClick={handleClose}
                   className="border border-black border-solid rounded-lg py-2 px-4 bg-white hover:scale-95 transition-all text-black"
                 >
                   Cancelar
                 </button>
                 {/* className="border-1 border-black bg-[#fff]" */}
                 <button 
-                  /* onClick={()=>addAppointment(name, lastName, diagnosis, pacientState, prescription)} */
+                  onClick={handleClikAdd}
                   className="border border-orange border-solid rounded-lg py-2 px-4 hover:scale-95 transition-all bg-orange font-latoRegular text-black"
                 >
                   Agendar
