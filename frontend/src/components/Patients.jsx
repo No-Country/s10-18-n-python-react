@@ -1,10 +1,10 @@
-import child1 from "../assets/images/child1.jpg";
-import addIcon from "../assets/images/Add-user.svg";
-import studiesIcon from "../assets/images/showStudies.jpg";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import MenuHamburger from "./MenuHamburger";
+import child1 from "../assets/images/detail-child1.jpg"
+import addIcon from "../assets/images/Add-user.svg"
+import studiesIcon from "../assets/images/showStudies.jpg"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+import MenuHamburger from "./MenuHamburger"
 
 const PATIENTS = [
   {
@@ -25,7 +25,7 @@ const PATIENTS = [
     tel: "(603)555-0123",
     date: "21/12/2021",
   },
-];
+]
 const TableRow = ({ name, obraSocial, tel, date }) => {
   return (
     <>
@@ -52,21 +52,21 @@ const TableRow = ({ name, obraSocial, tel, date }) => {
         </td>
       </tr>
     </>
-  );
-};
+  )
+}
 
 const Patients = () => {
-  const user = useSelector((state) => state.user);
-  const navigate = useNavigate();
+  const user = useSelector((state) => state.user)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!user) {
-      navigate("/");
+      navigate("/")
     }
-  }, []);
+  }, [])
   return (
     <main className="w-[90%] mx-auto gap-7 justify-center items-center">
-      <MenuHamburger/>
+      <MenuHamburger />
       <header className="w-fit font-baloo2 text-orange text-3xl font-black self-start ml-14 mt-6">
         Perfil
       </header>
@@ -95,7 +95,7 @@ const Patients = () => {
                   tel={patient.tel}
                   date={patient.date}
                 />
-              );
+              )
             })}
           </tbody>
         </table>
@@ -105,7 +105,7 @@ const Patients = () => {
         Agregar paciente
       </button>
     </main>
-  );
-};
+  )
+}
 
-export default Patients;
+export default Patients

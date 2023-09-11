@@ -1,7 +1,6 @@
-import React from "react"
-import imgLocation from "../../assets/imgLocation.png"
-import imgMail from "../../assets/imgMail.png"
-import imgPhone from "../../assets/imgPhone.png"
+import imgLocation from "../../assets/images/imgLocation.png"
+import imgMail from "../../assets/images/imgMail.png"
+import imgPhone from "../../assets/images/imgPhone.png"
 
 const Item = ({ data }) => {
   const { location, mail, phone, street, img } = data

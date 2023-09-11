@@ -1,54 +1,53 @@
-import foto from "../assets/59e6de97da95c93020cb001ee8246d14.png"
-import foto1 from "../assets/image 15.png"
-import foto2 from "../assets/image 17.png"
-import foto3 from "../assets/image 12.png"
-import foto4 from "../assets/image 14.png"
-import foto5 from "../assets/image 13.png"
-import foto6 from "../assets/image 16.png"
-import foto7 from "../assets/image 19.png"
-import circulo from "../assets/Group_1000000929-removebg-preview2.png"
-import circulo2 from "../assets/Group_1000000929-removebg-preview.png"
+import doctorOldmen from "../assets/images/doctorOldmen.png"
+import doctorMen from "../assets/images/doctorMen.png"
+import doctorFemale from "../assets/images/doctorFemale.png"
+import doctorMen2 from "../assets/images/doctorMen2.png"
+import doctorFemaleYoung from "../assets/images/doctorFemaleYoung.png"
+import doctorFemaleYoung2 from "../assets/images/doctorFemaleYoung2.png"
+import doctorFemaleYoung3 from "../assets/images/doctorFemaleYoung3.png"
+import doctorMenYoung from "../assets/images/doctorMenYoung.png"
+import blueCircleDetail from "../assets/images/blueCircleDetail.avif"
 
 const medics = [
   {
     nombre: "Juan Pérez",
     rol: "Hematólogo",
-    img: foto,
+    img: doctorOldmen,
   },
   {
     nombre: "María González",
     rol: "Cardióloga",
-    img: foto1,
+    img: doctorMen,
   },
   {
     nombre: "Carlos Rodríguez",
     rol: "Pediatra",
-    img: foto2,
+    img: doctorFemale,
   },
   {
     nombre: "Laura López",
     rol: "Cirujana General",
-    img: foto3,
+    img: doctorMen2,
   },
   {
     nombre: "Ana Martínez",
     rol: "Ginecóloga",
-    img: foto4,
+    img: doctorFemaleYoung,
   },
   {
     nombre: "Luis Sánchez",
     rol: "Neurólogo",
-    img: foto5,
+    img: doctorFemaleYoung2,
   },
   {
     nombre: "Elena Torres",
     rol: "Oftalmóloga",
-    img: foto6,
+    img: doctorFemaleYoung3,
   },
   {
     nombre: "Javier Fernández",
     rol: "Urología",
-    img: foto7,
+    img: doctorMenYoung,
   },
 ]
 
@@ -91,12 +90,12 @@ const Staff = () => {
         </section>
 
         <img
-          src={circulo}
+          src={blueCircleDetail}
           alt="detalle circular de la página"
           className="absolute w-[3rem] md:w-[4rem] left-0 -top-6"
         />
         <img
-          src={circulo2}
+          src={blueCircleDetail}
           alt="detalle circular de la página"
           className="absolute w-[4rem] md:w-[6rem] right-0 -bottom-6"
         />

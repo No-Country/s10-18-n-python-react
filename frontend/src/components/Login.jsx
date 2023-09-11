@@ -4,7 +4,7 @@ import { AiFillEyeInvisible } from "react-icons/Ai"
 
 import { Toaster, toast } from "sonner"
 
-import Img7 from "../assets/images/image7.png"
+import doctorIllustration from "../assets/images/doctorImgIllustration.png"
 import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../store/UserSlice"
 import { useState } from "react"
@@ -41,7 +41,7 @@ const Login = () => {
     <main className="flex flex-col items-center justify-center mt-6 mb-10 gap-10">
       <Toaster position="top-center" richColors closeButton />
       <div className="flex flex-col items-center justify-center gap-3 mx-auto">
-        <img src={Img7} alt="" className="animate-flotar w-1/2" />
+        <img src={doctorIllustration} alt="doctor Image Illustration Cartoon" className="animate-flotar w-1/2" />
         <div className="w-full text-center relative before:absolute before:top-[60%] before:left-0 before:w-full before:h-[1px] before:bg-lightGray before:z-[-1]">
           <h2 className=" w-max m-auto bg-white font-baloo2 font-bold text-2xl">Iniciar sesión</h2>
         </div>

@@ -1,19 +1,19 @@
-import logo from "../assets/logo1.png";
-import calendar from "../assets/calendar.png";
-import { Input, InputGroup } from "rsuite";
-import { useState } from "react";
-import axios from "axios";
+import logo from "../assets/images/logo.png"
+import calendar from "../assets/images/calendarIcon.png"
+import { Input, InputGroup } from "rsuite"
+import { useState } from "react"
+import axios from "axios"
 
 const DatosPaciente = ({ onClose, start, professional, addAppointment }) => {
   const URL =
-    "http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments/";
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [drName, setDrName] = useState(professional.first_name);
-  const [drLastName, setDrLastName] = useState(professional.last_name);
-  const [pacientState, setPacientState] = useState("");
-  const [diagnosis, setDiagnosis] = useState("");
-  const [prescription, setPrescription] = useState("");
+    "http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments/"
+  const [name, setName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [drName, setDrName] = useState(professional.first_name)
+  const [drLastName, setDrLastName] = useState(professional.last_name)
+  const [pacientState, setPacientState] = useState("")
+  const [diagnosis, setDiagnosis] = useState("")
+  const [prescription, setPrescription] = useState("")
 
   //   console.log("FECHA: ", start.toISOString().substring(0, 10));
 
@@ -24,12 +24,12 @@ const DatosPaciente = ({ onClose, start, professional, addAppointment }) => {
       {
         headers: { accept: "application/json" },
       }
-    );
-    const response = await request.data.user;
-    localStorage.setItem("user", JSON.stringify(response));
-    toast.success("Has iniciado sesión correctamente");
-    return response;
-  };
+    )
+    const response = await request.data.user
+    localStorage.setItem("user", JSON.stringify(response))
+    toast.success("Has iniciado sesión correctamente")
+    return response
+  }
   return (
     <>
       <div className="w-full h-full flex justify-center">
@@ -121,7 +121,7 @@ const DatosPaciente = ({ onClose, start, professional, addAppointment }) => {
                   Cancelar
                 </button>
                 {/* className="border-1 border-black bg-[#fff]" */}
-                <button 
+                <button
                   /* onClick={()=>addAppointment(name, lastName, diagnosis, pacientState, prescription)} */
                   className="border border-orange border-solid rounded-lg py-2 px-4 hover:scale-95 transition-all bg-orange font-latoRegular text-black"
                 >
@@ -133,7 +133,7 @@ const DatosPaciente = ({ onClose, start, professional, addAppointment }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default DatosPaciente;
+export default DatosPaciente

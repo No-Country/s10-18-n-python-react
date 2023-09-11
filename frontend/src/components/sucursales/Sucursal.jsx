@@ -1,12 +1,12 @@
-import React from "react";
-import Item from "./Item";
-import imgSucursales from "../../assets/imgSucursales.png";
-import imgCapital from "../../assets/capital.png";
-import imgCordoba from "../../assets/cordoba.png";
-import imgLaPlata from "../../assets/laplata.png";
-import imgMendoza from "../../assets/mendoza.png";
-import imgRioCuarto from "../../assets/riocuarto.png";
-import imgSantaFe from "../../assets/santafe.png";
+import React from "react"
+import Item from "./Item"
+import imgSucursales from "../../assets/images/imgSucursales.png"
+import imgCapital from "../../assets/images/hospitalCapital.avif"
+import imgCordoba from "../../assets/images/hospitalCordoba.png"
+import imgLaPlata from "../../assets/images/hospitalLaplata.png"
+import imgMendoza from "../../assets/images/hospitalMendoza.png"
+import imgRioCuarto from "../../assets/images/hospitalRiocuarto.png"
+import imgSantaFe from "../../assets/images/hospitalSantafe.png"
 
 const Sucursal = () => {
   const data = [
@@ -58,7 +58,7 @@ const Sucursal = () => {
       street: "Santa Clara 560",
       img: imgSantaFe,
     },
-  ];
+  ]
 
   return (
     <section className="flex flex-col gap-20 mx-10 mb-20">
@@ -79,7 +79,7 @@ const Sucursal = () => {
         ))}
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Sucursal;
+export default Sucursal
