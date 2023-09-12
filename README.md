@@ -13,7 +13,7 @@ Fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experien
 
  #### 🛠️ Tech Stack:
   
-![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=HTML5&logoColor=white) ![CSS][https://img.shields.io/badge/CSS-E34F26?style=for-the-badge&logo=CSS&logoColor=white] ![JavaScript][https://img.shields.io/badge/JS-E34F26?style=for-the-badge&logo=javascripts&logoColor=white] ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-22A7F2?style=for-the-badge&logo=Visual%20studio&logoColor=white) 
+![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=HTML5&logoColor=white) ![CSS](https://img.shields.io/badge/CSS-E34F26?style=for-the-badge&logo=CSS&logoColor=white) ![JavaScript](https://img.shields.io/badge/JS-E34F26?style=for-the-badge&logo=javascripts&logoColor=white) ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-22A7F2?style=for-the-badge&logo=Visual%20studio&logoColor=white) 
 
 ### ☕ Back End:
 
