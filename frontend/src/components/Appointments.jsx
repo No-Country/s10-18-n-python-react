@@ -7,9 +7,13 @@ import MenuHamburger from "./MenuHamburger";
 import { getAppointmentsFromApi } from "../store/AppointmentSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { createAppointment } from "../store/AppointmentSlice"
-const initialSpecialties = ["Clinic", "Cardiologist", "Dentist"].map(
+import _ from "lodash"
+
+
+
+/* const initialSpecialties = ["Clinic", "Cardiologist", "Dentist"].map(
   (item) => ({ label: item, value: item })
-);
+); */
 
 const Appointments = () => {
   const user = useSelector((state) => state.user);
@@ -55,22 +59,13 @@ const Appointments = () => {
     }
   }, []);
   
-  /* useEffect(() => {
-    console.log("Ejecuta Efecto por cambiar allApointments")
-    allAppointments ? console.log("allAppointments", allAppointments) : console.log("NO FUNCA APPOINTMENTSSLICE")
-  },[allAppointments]) */
 
-  /* console.log("allAppointments: ", allAppointments) */
   const toArgHour = (a) =>{
     let str1 = a.substring(0,11)
-    console.log(str1)
-    let str2 = a.substring(12,13)
-    console.log(str2)
+    let str2 = a.substring(11,13)
     let str3 = a.substring(13,19)
-    console.log(str3)
     let num = Number(str2)
     let argH = (num-3).toString().padStart(2, "0")
-    console.log("resta",argH.padStart(2, "0"))
     return `${str1}${argH}${str3}`
   }
 
@@ -95,6 +90,8 @@ const Appointments = () => {
             doctor_last_name: item.doctor_last_name,
             start: moment(toArgHour(item.start_datetime)).toDate(),
             end: moment(toArgHour(item.end_datetime)).toDate(),
+            /* start: moment(item.start_datetime).toDate(),
+            end: moment(item.end_datetime).toDate(), */
             id: item.id,
             id_doctor: item.id_doctor,
             id_patient: item.id_patient,
@@ -106,13 +103,9 @@ const Appointments = () => {
         setOriginalEvents(dataFormated)
         /* setEvents(dataFormated) */
         console.log("Trae nueva data events del server")
-        /* if (professionalSelected) {
-          setOriginalEvents(dataFormated)
-          //setEvents(dataFormated)
-        }  */
       })
       .catch(err => console.log("ERROR MESSAGE: ", err.message))
-  },[reloadAppointments])
+  },[events])
 
 
   const handleReloadAppointments = () => {
@@ -124,10 +117,7 @@ const Appointments = () => {
     // setea el nuevo estado directo desde el modal, sin esperar la respuesta del post, pero no esta actualizando el calendar
     console.log("dataEvent en handleSetNewAppointment: " ,dataEvent)
     setOriginalEvents([ ...originalEvents , dataEvent])
-    /* const newEvents = originalEvents.filter(
-      (item) => item.doctor_first_name === drfirstName && item.doctor_last_name === drLastName
-      ) */
-    setEvents([...events, dataEvent])
+    setEvents([ ...events , dataEvent])
   }
 
   const handleSetCount = () => {

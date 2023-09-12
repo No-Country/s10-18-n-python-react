@@ -69,21 +69,7 @@ const initialState = [
   prescription: "4569-7812",
   start: "2023-10-13T14:00:00.000Z",
   state: "reserved"
-  }/* ,
-  {
-    diagnosis: "",
-    doctor_first_name: "Carlos",
-    doctor_last_name: "Broggi",
-    end: "2023-09-15T17:30:00.000Z",
-    id: "bceaa7a2-6a17-4d51-96e3-f480639fbf3b",
-    id_doctor: "36533e34-7c51-42b9-a208-22fdbaaea51e",
-    id_patient: "26541259",
-    patient_first_name: "Mario ",
-    patient_last_name: "Merlo",
-    prescription: "4569-1254",
-    start: "2023-09-15T17:00:00.000Z",
-    state: "reserved"
-  } */
+  }
 ]
 
 
@@ -175,7 +161,8 @@ export default function Calendar(props) {
         }}
         selectable
         onSelectEvent={(e) => handleOpen(e)}
-        onSelectSlot={(e) => handleOpenAdd(e)}
+        onSelectSlot={(e) =>{ 
+          e.start.getHours() >= 8 ? handleOpenAdd(e) : null}}
         /* onSelectSlot={(e)=> addFakeEvent(e)} */
         eventPropGetter={
           (/* props */) => {
