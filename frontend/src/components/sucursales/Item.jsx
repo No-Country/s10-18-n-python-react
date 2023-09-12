@@ -6,8 +6,8 @@ const Item = ({ data }) => {
   const { location, mail, phone, street, img } = data
 
   return (
-    <article className="w-fit h-auto flex p-5 px-7 gap-10 justify-center items-center text-start shadow-xl rounded-2xl bg-white hover:scale-105 transition-all">
-      <img src={img} className='w-[150px] h-[80px] rounded-2xl object-cover'></img>
+    <article className="w-fit h-auto flex py-5 px-6 gap-5 lg:gap-10 items-center text-start shadow-xl rounded-2xl bg-white hover:scale-105 transition-all">
+      <img src={img} className='w-[115px] h-[74px] lg:w-[150px] lg:h-[90px] rounded-3xl object-cover'></img>
       <section className="flex flex-col justify-between gap-1">
         <p className="font-latoBold text-base">{location}</p>
         <div className="flex gap-3">
