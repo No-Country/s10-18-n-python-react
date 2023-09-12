@@ -1,22 +1,20 @@
-import { useState } from "react"
-import {GiHamburgerMenu} from "react-icons/gi";
-import {GrClose} from "react-icons/gr"
-import {AiOutlineUser} from "react-icons/Ai"
-import {VscCalendar} from "react-icons/vsc"
-import {FaUsers} from "react-icons/fa"
-import imgSucursales from "../assets/imgSucursales.png";
-import {useLocation, useNavigate} from "react-router-dom"
+import { useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { GrClose } from "react-icons/gr";
+import { AiOutlineUser } from "react-icons/Ai";
+import { VscCalendar } from "react-icons/vsc";
+import { FaUsers } from "react-icons/fa";
+import imgSucursales from "../assets/images/sucursales/imgSucursales.png";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const MenuHamburger = () => {
-
-    const location = useLocation();
-    const navigate = useNavigate();
-    const [open, setOpen] = useState(false);
-
-    
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="absolute w-16 md:w-20 h-1/2 left-0">
+
         <div onClick={()=>setOpen(!open)} className=" w-full flex justify-center items-center text-xl md:text-5xl py-2">
             {open ? <GrClose/> : <GiHamburgerMenu/> }
         </div>
@@ -26,8 +24,8 @@ const MenuHamburger = () => {
            <button className={`p-2 md:p-4 text-2xl rounded-2xl ${location.pathname ==="/appointment" ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]" : "bg-transparent"}`} onClick={()=>navigate("/appointment")}><VscCalendar/></button>
            <button className={`p-2 md:p-4 text-2xl rounded-2xl ${location.pathname ==="/patients" ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]" : "bg-transparent"}`} onClick={()=>navigate("/patients")}><FaUsers/></button>
         </div>
-    </div>
-  )
-}
+      </div>
+  );
+};
 
-export default MenuHamburger
+export default MenuHamburger;

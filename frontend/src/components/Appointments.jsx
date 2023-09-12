@@ -1,67 +1,75 @@
-import { useSelector } from "react-redux";
 import BigCalendar from "./bigCalendar/BigCalendar";
 import { SelectPicker } from "rsuite";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import MenuHamburger from "./MenuHamburger";
-
-
-/* const professionalsList = [
-  {
-    first_name:"Carlos",
-    last_name:"Flores",
-    email:"dede@dede.com",
-    specialty:"cardiología"
-  },
-  {
-    first_name:"Juan",
-    last_name:"Gonzalez Prieto",
-    email:"dede2@dede.com",
-    specialty:"traumatología"
-  }
-] */
-
-
+import { getAppointmentsFromApi } from "../store/AppointmentSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { createAppointment } from "../store/AppointmentSlice"
 const initialSpecialties = ["Clinic", "Cardiologist", "Dentist"].map(
   (item) => ({ label: item, value: item })
 );
 
 const Appointments = () => {
-  /* const processedEvents = rowEvents.map(item =>({
-    start:moment(item.start_datetime).toDate(),
-    end:moment(item.end_datetime).toDate(),
-    paciente:item.paciente,
-    first_name:item.first_name,
-    last_name:item.last_name,
-    specialty:item.specialty
-  })) */
-  console.info("RENDERIZA APPOINTMENTS")
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const [originalEvents, setOriginalEvents] = useState([])
-  const [events, setEvents] = useState([])
-  const [professional, setProfessional] = useState("")
+  const [originalEvents, setOriginalEvents] = useState([]) // registro de originales
+  const [events, setEvents] = useState([]) // Pasados a BigCalendar
+  const [professional, setProfessional] = useState("") // data del dr seleccionado
+  const [professionalSelected, setProfessionaSelected]=useState("") //nombre seleccionado <apellido, nombre>
   const [profSelectList, setProfSelectList] = useState([]) // registro del original para reset
-  const [displayedProfSelectList, setDisplayedProfSelectList] = useState([])// mostrada en el select
   const [specialty, setSpecialty] = useState("")
-  const [specialtyList, setSpecialtyList] = useState([])
+  const [specialtyList, setSpecialtyList] = useState([]) // Lista de especialidades tomadas de los turnos existentes
+  const [allProfessionalList, setAllProfessionalList] = useState([]) // Con o sin turnos, viene de doctors endpoint
+  const [reloadAppointments, setReloadAppointments] = useState(false)
+  const [count, setCount] = useState(0)
+  /* const dispatch = useDispatch()
+  const allAppointments = useSelector( state => state.appointments)
+  console.log("allAppointments: ", allAppointments)
+  const allAppointmentsFormated = ()=> {
+    if (allAppointments.lenght) {
+      allAppointments.map(item=>(
+      { 
+        diagnosis:item.diagnosis,
+        doctor_first_name: item.doctor_first_name,
+        doctor_last_name: item.doctor_last_name,
+        end: moment(item.end_datetime).toDate(),
+        id: item.id,
+        id_doctor: item.id_doctor,
+        id_patient: item.id_patient,
+        patient_first_name: item.patient_first_name,
+        patient_last_name: item.patient_last_name,
+        prescription: item.prescription,
+        start: moment(item.start_datetime).toDate(),
+        state: item.state
+      })) 
+    } else return null
+  }
+  allAppointmentsFormated()  */
 
-  const [allProfessionalList, setAllProfessionalList] = useState([]) 
+  useEffect(() => {
+    /* dispatch(getAppointmentsFromApi()) */
+    if (!user) {
+      navigate("/");
+    }
+  }, []);
   
-  /* const drNames = professionalsList.map(item =>({
-    // Para  rellenar selectPicker profesionales
-    label:item.last_name+', '+item.first_name,
-    value:item.last_name+', '+item.first_name,
-  })) */
+  /* useEffect(() => {
+    console.log("Ejecuta Efecto por cambiar allApointments")
+    allAppointments ? console.log("allAppointments", allAppointments) : console.log("NO FUNCA APPOINTMENTSSLICE")
+  },[allAppointments]) */
 
+  /* console.log("allAppointments: ", allAppointments) */
   const URL = {
-    doctors:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/doctors/",
-    appointments:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments/",
-    patients:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/patients/",
-    login:"http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000",
+    doctors:"https://medicadminbackend-jeqz-dev.fl0.io/doctors/",
+    appointments:"https://medicadminbackend-jeqz-dev.fl0.io/appointments/",
+    patients:"https://medicadminbackend-jeqz-dev.fl0.io/patients/",
+    login:"https://medicadminbackend-jeqz-dev.fl0.io/login",
   }
   useEffect( ()=> {
+    console.log("efecuta EFFECTO appointments, fetch")
+    // al agregar appointment en el modal, llega antes el get que el post con la data actualizada
     fetch(URL.appointments, 
       {method: "GET",headers: {accept: "application/json"}}
     )
@@ -83,24 +91,36 @@ const Appointments = () => {
             state: item.state
           })) 
         setOriginalEvents(dataFormated)
-        setEvents(dataFormated)      
-        const drNames = data.map(item =>({
-          // Para  rellenar selectPicker profesionales
-          label:item.doctor_last_name+', '+item.doctor_first_name,
-          value:item.doctor_last_name+', '+item.doctor_first_name,
-        }))
-        let doctorsWithoutDuplicates = drNames.filter((obj, index) => drNames.findIndex(o => o.label === obj.label) === index);
-       // El otro algoritmo fallaba EN ESTE CASO
-        setProfSelectList(doctorsWithoutDuplicates)
-        setDisplayedProfSelectList(doctorsWithoutDuplicates)
+        console.log("Trae nueva data events del server")
+        /* if (professionalSelected) {
+          setOriginalEvents(dataFormated)
+          //setEvents(dataFormated)
+        }  */
       })
-      .catch(err => console.log(err.message))
-  },[])
-      //console.log("prof mostrados por el Select:", profSelectList)
-    console.log("originalEvents: ", originalEvents)
+      .catch(err => console.log("ERROR MESSAGE: ", err.message))
+  },[reloadAppointments])
 
 
+  const handleReloadAppointments = () => {
+    setReloadAppointments(prev => !prev)
+    console.log("refetch de appointments")
+   //  no sirve porque llega data vieja
+  }
+  const handleSetNewAppointment = (dataEvent) => {
+    // setea el nuevo estado directo desde el modal, sin esperar la respuesta del post, pero no esta actualizando el calendar
+    console.log("dataEvent en handleSetNewAppointment: " ,dataEvent)
+    setOriginalEvents([ ...originalEvents , dataEvent])
+    const newEvents = originalEvents.filter(
+      // Prueba para ver si cambia el calendar, setEvent([...events, dataEvent]) no lo hace
+      (item) => item.doctor_first_name === drfirstName && item.doctor_last_name === drLastName
+      )
+    setEvents(newEvents)
+    //console.log("newEvents en Appointments: ",newEvents)
+  }
 
+  const handleSetCount = () => {
+    setCount(prev => prev +1)
+  }
 
   useEffect( ()=> {
     fetch(URL.doctors, 
@@ -108,11 +128,9 @@ const Appointments = () => {
     )
       .then(res => res.json())
       .then(data => {
-        //console.log("DATA DOCTORS: ",data)
         setAllProfessionalList(data)
         const specialties = data.map(item => item.specialty)
         const specialtiesWithoutDuplicates = specialties.filter((el, index)=>{
-          //console.log("index: ", index, "  specialties.indexOf(el): ", specialties.indexOf(el))
           return specialties.indexOf(el) === index;
         });
         const specialtiesFormated = specialtiesWithoutDuplicates.map(item=> ({label:item, value:item}))
@@ -120,38 +138,17 @@ const Appointments = () => {
       })
       .catch(err => console.log(err.message))
   },[])
-  //console.log("PROFESIOLALSLIST: ", allProfessionalList)
-  //console.log("SPECIALTIESLIST: ", specialtyList)
-  
-/*  useEffect(() => {
-    fetch(
-      "http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/doctors/",
-      { method: "GET", headers: { accept: "application/json" } }
-    )
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-      });
-  }, []); */
 
-  /* let credentials = {
-    username:'esteban@lugo.com',
-    password:'123456'
-  } */
-  ////////////////////////COMENTADO PARA PRUEBA/ reemplazado /////////////////////////////////
-  // useEffect(()=>{
-  //   const drNames = professionalsList.map(item =>({
-  //     // Para  rellenar selectPicker profesionales
-  //     label:item.last_name+', '+item.first_name,
-  //     value:item.last_name+', '+item.first_name,
-  //   }))
-  //   setProfSelectList(drNames)
-  // },[])
-  ///////////////////////////////////////////////////////////////////
-  //console.log("processedEvents: ", processedEvents)
-  
+  const handleSpecialty = (s) => {
+    setSpecialty(s)
+    const filtered = allProfessionalList.filter(item =>item.specialty === s)
+    const profSelListFormated = getDrNamesValuesSelect(filtered)
+    setProfSelectList(profSelListFormated)
+    //console.log("profSelListFormated: ", profSelListFormated)
+    // Ahora se puede seleccionar cualquier professional, tenga o no turnos creados
+  }
+
   const handleProfessional = (n) =>{
-    setProfessional(n)
     let drFirstAndSecondNameArr; 
     n? drFirstAndSecondNameArr = n.split(', ') : null 
     let drLastName 
@@ -160,49 +157,85 @@ const Appointments = () => {
       drLastName = drFirstAndSecondNameArr[0]
       drfirstName = drFirstAndSecondNameArr[1]
     }
-    console.log()
     const filteredByProfessionalEvents = originalEvents.filter(
-      (item) => item.first_name === drfirstName && item.last_name === drLastName
+      (item) => item.doctor_first_name === drfirstName && item.doctor_last_name === drLastName
       )
-    console.log("FBPEvnt: ",filteredByProfessionalEvents)
     setEvents(filteredByProfessionalEvents)
-    
+    const professionalData = allProfessionalList.find(
+      item=> item.first_name===drfirstName && item.last_name===drLastName
+    )
+    //console.log("N: ", n)
+    //console.log("dr selected data: ", professionalData)
+    setProfessionaSelected(n)
+    setProfessional(professionalData)
   } 
-  const handleSpecialty = (s) => {
-    setSpecialty(s)
-    // const filteredEvents = originalEvents.filter(item =>item.specialty === s)
-    // console.log("filtered: ", filteredEvents)
-    // /* setevents(filteredEvents) */
-    // Hay que filtrar los profesionales por specialty
-    const filteredallProfessionalList = allProfessionalList.filter(item =>item.specialty === s)
-    console.log("filteredallProfessionalList en handleSpecialty", filteredallProfessionalList)
-    /* const fplWithoutDuplicates */ 
-    const newSelectList = filteredallProfessionalList.map(item=> (
-      {
-        label:item.last_name+", "+item.first_name,
-        value:item.last_name+", "+item.first_name
-      }
-    ))
-    setDisplayedProfSelectList(newSelectList)
-  }
+  
 
   const handleOnCleanSpecialty = () => {
-    setEvents(originalEvents)
-    console.log("originalEvents en handleOnClean: ", originalEvents)
+    //reset de professionals del select
+    setEvents([])
+    //console.log("originalEvents en handleOnClean: ", originalEvents)
+    /* setProfSelectList(profSelectList) */
+    setProfSelectList([])
+    setProfessionaSelected('')// prueba reset
   }
   const handleOnCleanProfessional = () => {
-    setEvents(originalEvents)
-    console.log("events en handleOnClean: ", originalEvents)
+    setEvents([])
+    //console.log("events en handleOnClean: ", originalEvents)
+    setProfessionaSelected('')
+    /* setProfSelectList([]) */
   }
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
+    function getDrNamesValuesSelect(drs) {
+    const drNames = drs.map(item =>({
+      // Para  rellenar selectPicker profesionales
+      label:item.last_name+', '+item.first_name,
+      value:item.last_name+', '+item.first_name,
+    }))
+  return drNames
+  }
+
+  /* const handleAddAppointment = () => {
+    const data = {
+      diagnosis:"",
+      doctor_first_name: "Lolo",
+      doctor_last_name: "Galo",
+      end: item.end_datetime,
+      id: Date.now(),
+      id_doctor: "987654321",
+      id_patient: "987654321",
+      patient_first_name: "Cacho",
+      patient_last_name: "Loco",
+      prescription: "vago",
+      start: "",
+      state: ""
     }
-  }, []);
+    dispatch(createAppointment(data))
+  } */
+  //console.log("professional list: ", allProfessionalList)
+  //console.log(events)
+  //console.log("professional en Appointments: ", professional)
+  console.log("events en Appointmest: ", events)
+  console.log("originalEvents en Appointments: ", originalEvents)
+  /* const addEventFake = () => {
+    const newEvent = {
+      diagnosis: "string",
+      doctor_first_name: "Esteban",
+      doctor_last_name: "Lugo",
+      end: "2023-09-09T09:30:00",
+      id: "a5f078b9-4965-45e5-b4cc-68085b6b44ab",
+      id_doctor: "88f907ff-7b24-4276-8326-ea7959d2838a",
+      id_patient: "45212365",
+      patient_first_name: "Jan",
+      patient_last_name: "Miranda",
+      prescription: "string",
+      start: "2023-09-09T09:00:00",
+      state: "reserved"
+    }
+    setEvents([...events, newEvent])
+  } */
 
-  console.log("allProfessionalList: ", allProfessionalList)
-
+  
   return (
     <div className="w-full">
       <MenuHamburger/>
@@ -221,15 +254,53 @@ const Appointments = () => {
           data={profSelectList}
           style={{ width: 224 }}
           placeholder="Profesional"
-          value={professional} 
+          value={professionalSelected} 
           onChange={handleProfessional}
           cleanable={true}
           onClean={handleOnCleanProfessional}
         />
       </div>
-      <BigCalendar professional={professional} events={events}  />
+      <BigCalendar 
+        professional={professional} 
+        events={events}
+        handleReloadAppointments = {handleReloadAppointments}
+        handleSetNewAppointment = {handleSetNewAppointment}
+        handleSetCount = {handleSetCount}
+      />
+      <h3>{count}</h3>
     </div>
   );
 };
 
 export default Appointments;
+
+// Post
+/* {
+  "diagnosis": "string",    opcional
+  "end": "2023-09-09T15:30:00.000Z",  *
+  "id": "dfd88414-a3e2-4fd2-8970-2500c3e7dc7e",
+  "id_doctor": "88f907ff-7b24-4276-8326-ea7959d2838a",
+  "id_patient": "1d243d1f-cbc6-4009-9cba-1bae8854b9f6",   dni
+  "patient_first_name": "Maria",
+  "patient_last_name": "Salas",
+  "prescription": "string",
+  "start": "2023-09-09T15:00:00.000Z",  *
+  "state": "reserved"    *
+} */
+
+
+//Necesito
+/* {
+  "diagnosis": "string",
+  "doctor_first_name": "Esteban",
+  "doctor_last_name": "Lugo",
+  "end": "2023-09-09T15:30:00",
+  "id": "dfd88414-a3e2-4fd2-8970-2500c3e7dc7e",
+  "id_doctor": "88f907ff-7b24-4276-8326-ea7959d2838a",
+  "id_patient": "25623120",
+  "patient_first_name": "Maria",
+  "patient_last_name": "Salas",
+  "prescription": "string",
+  "start": "2023-09-09T15:00:00",
+  "state": "reserved"
+} */
