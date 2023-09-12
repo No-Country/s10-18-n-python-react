@@ -23,7 +23,7 @@ const Appointments = () => {
   const [specialtyList, setSpecialtyList] = useState([]) // Lista de especialidades tomadas de los turnos existentes
   const [allProfessionalList, setAllProfessionalList] = useState([]) // Con o sin turnos, viene de doctors endpoint
   const [reloadAppointments, setReloadAppointments] = useState(false)
-  const [count, setCount] = useState(0)
+
   /* const dispatch = useDispatch()
   const allAppointments = useSelector( state => state.appointments)
   console.log("allAppointments: ", allAppointments)
@@ -61,6 +61,19 @@ const Appointments = () => {
   },[allAppointments]) */
 
   /* console.log("allAppointments: ", allAppointments) */
+  const toArgHour = (a) =>{
+    let str1 = a.substring(0,11)
+    console.log(str1)
+    let str2 = a.substring(12,13)
+    console.log(str2)
+    let str3 = a.substring(13,19)
+    console.log(str3)
+    let num = Number(str2)
+    let argH = (num-3).toString().padStart(2, "0")
+    console.log("resta",argH.padStart(2, "0"))
+    return `${str1}${argH}${str3}`
+  }
+
   const URL = {
     doctors:"https://medicadminbackend-jeqz-dev.fl0.io/doctors/",
     appointments:"https://medicadminbackend-jeqz-dev.fl0.io/appointments/",
@@ -80,17 +93,18 @@ const Appointments = () => {
             diagnosis:item.diagnosis,
             doctor_first_name: item.doctor_first_name,
             doctor_last_name: item.doctor_last_name,
-            end: moment(item.end_datetime).toDate(),
+            start: moment(toArgHour(item.start_datetime)).toDate(),
+            end: moment(toArgHour(item.end_datetime)).toDate(),
             id: item.id,
             id_doctor: item.id_doctor,
             id_patient: item.id_patient,
             patient_first_name: item.patient_first_name,
             patient_last_name: item.patient_last_name,
             prescription: item.prescription,
-            start: moment(item.start_datetime).toDate(),
             state: item.state
           })) 
         setOriginalEvents(dataFormated)
+        /* setEvents(dataFormated) */
         console.log("Trae nueva data events del server")
         /* if (professionalSelected) {
           setOriginalEvents(dataFormated)
@@ -110,12 +124,10 @@ const Appointments = () => {
     // setea el nuevo estado directo desde el modal, sin esperar la respuesta del post, pero no esta actualizando el calendar
     console.log("dataEvent en handleSetNewAppointment: " ,dataEvent)
     setOriginalEvents([ ...originalEvents , dataEvent])
-    const newEvents = originalEvents.filter(
-      // Prueba para ver si cambia el calendar, setEvent([...events, dataEvent]) no lo hace
+    /* const newEvents = originalEvents.filter(
       (item) => item.doctor_first_name === drfirstName && item.doctor_last_name === drLastName
-      )
-    setEvents(newEvents)
-    //console.log("newEvents en Appointments: ",newEvents)
+      ) */
+    setEvents([...events, dataEvent])
   }
 
   const handleSetCount = () => {
@@ -214,9 +226,11 @@ const Appointments = () => {
   } */
   //console.log("professional list: ", allProfessionalList)
   //console.log(events)
+
   //console.log("professional en Appointments: ", professional)
   console.log("events en Appointmest: ", events)
   console.log("originalEvents en Appointments: ", originalEvents)
+
   /* const addEventFake = () => {
     const newEvent = {
       diagnosis: "string",
@@ -234,7 +248,24 @@ const Appointments = () => {
     }
     setEvents([...events, newEvent])
   } */
-
+  // const addFakeEvent = ()=> {
+  //   const appointmentData = {
+  //     /* id: appAndPatinentId, */
+  //     doctor_first_name: "Carlos",
+  //     doctor_last_name:"Broggi",
+  //     start_datetime: "2023-09-15T09:00:00",
+  //     end_datetime: "2023-09-15T09:30:00",
+  //     diagnosis: "-",
+  //     id_doctor: "36533e34-7c51-42b9-a208-22fdbaaea51e",
+  //     id_patient: "25854789",
+  //     patient_first_name: "Juan",
+  //     patient_last_name: "Juanes",
+  //     prescription: "-",
+  //     state: "-"
+  //   }
+  //   const newArr = [...events, appointmentData]
+  //   setEvents(newArr)
+  // }
   
   return (
     <div className="w-full">
@@ -267,7 +298,7 @@ const Appointments = () => {
         handleSetNewAppointment = {handleSetNewAppointment}
         handleSetCount = {handleSetCount}
       />
-      <h3>{count}</h3>
+      {/* <button onClick={addFakeEvent} >Add Evt</button> */}
     </div>
   );
 };

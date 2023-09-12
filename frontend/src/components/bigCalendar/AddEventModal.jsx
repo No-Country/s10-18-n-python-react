@@ -30,8 +30,11 @@ const AddEventModal = ({
 /*   const endHours = end.getHours();
   const endMinutes = end.getMinutes().toString().padStart(2, "0"); */
 
-  const startToString = event.start.toISOString().substring(0,19) 
-  const endToString = event.end.toISOString().substring(0,19)
+  /* const startToString = event.start.toISOString().substring(0,19) 
+  const endToString = event.end.toISOString().substring(0,19) */
+  const startToString = event.start.toISOString()
+  const endToString = event.end.toISOString()
+
   useEffect(() => {
     if (event) {
       setStartDate(start.toISOString()/* .substring(0, 10) */);
