@@ -22,9 +22,9 @@ const MenuHamburger = () => {
         </div>
         <div className={`w-full h-full text-white absolute transition-all duration-500 ease-in ${open ? "left-1" : "left-[-5rem]"} bg-[#3E36B0] rounded-3xl flex flex-col items-center gap-4`}>
            <div><img className="p-4" src={imgSucursales} alt="logo" /></div>
-           <button className={`p-2 md:p-4 text-2xl rounded-2xl ${location.pathname ==="/dashboard" ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]" : ""}`} onClick={()=>navigate("/dashboard")}><AiOutlineUser/></button>
-           <button className={`p-2 md:p-4 text-2xl rounded-2xl ${location.pathname ==="/appointment" ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]" : ""}`} onClick={()=>navigate("/appointment")}><VscCalendar/></button>
-           <button className={`p-2 md:p-4 text-2xl rounded-2xl ${location.pathname ==="/patients" ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]" : ""}`} onClick={()=>navigate("/patients")}><FaUsers/></button>
+           <button className={`p-2 md:p-4 text-2xl rounded-2xl ${location.pathname ==="/dashboard" ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]" : "bg-transparent"}`} onClick={()=>navigate("/dashboard")}><AiOutlineUser/></button>
+           <button className={`p-2 md:p-4 text-2xl rounded-2xl ${location.pathname ==="/appointment" ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]" : "bg-transparent"}`} onClick={()=>navigate("/appointment")}><VscCalendar/></button>
+           <button className={`p-2 md:p-4 text-2xl rounded-2xl ${location.pathname ==="/patients" ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]" : "bg-transparent"}`} onClick={()=>navigate("/patients")}><FaUsers/></button>
         </div>
     </div>
   )
