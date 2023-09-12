@@ -14,60 +14,17 @@ const MenuHamburger = () => {
 
   return (
     <div className="absolute w-16 md:w-20 h-1/2 left-0">
-      <div
-        onClick={() => setOpen(!open)}
-        className=" w-full flex justify-center items-center text-xl md:text-5xl py-2"
-      >
-        {open ? (
-          <div className="hover:cursor-pointer">
-            <GrClose />
-          </div>
-        ) : (
-          <div className="hover:cursor-pointer">
-            <GiHamburgerMenu />
-          </div>
-        )}
-      </div>
-      <div
-        className={`w-full h-full text-white absolute transition-all duration-500 ease-in ${
-          open ? "left-1" : "left-[-5rem]"
-        } bg-[#3E36B0] rounded-3xl flex flex-col items-center gap-4`}
-      >
-        <div>
-          <img className="p-4" src={imgSucursales} alt="logo" />
+
+        <div onClick={()=>setOpen(!open)} className=" w-full flex justify-center items-center text-xl md:text-5xl py-2">
+            {open ? <GrClose/> : <GiHamburgerMenu/> }
         </div>
-        <button
-          className={`hover:bg-[#587281] p-2 md:p-4 text-2xl rounded-2xl ${
-            location.pathname === "/dashboard"
-              ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]"
-              : ""
-          }`}
-          onClick={() => navigate("/dashboard")}
-        >
-          <AiOutlineUser />
-        </button>
-        <button
-          className={`hover:bg-[#587281] p-2 md:p-4 text-2xl rounded-2xl ${
-            location.pathname === "/appointment"
-              ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]"
-              : ""
-          }`}
-          onClick={() => navigate("/appointment")}
-        >
-          <VscCalendar />
-        </button>
-        <button
-          className={`hover:bg-[#587281] p-2 md:p-4 text-2xl rounded-2xl ${
-            location.pathname === "/patients"
-              ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]"
-              : ""
-          }`}
-          onClick={() => navigate("/patients")}
-        >
-          <FaUsers />
-        </button>
+        <div className={`w-full h-full text-white absolute transition-all duration-500 ease-in ${open ? "left-1" : "left-[-5rem]"} bg-[#3E36B0] rounded-3xl flex flex-col items-center gap-4`}>
+           <div><img className="p-4" src={imgSucursales} alt="logo" /></div>
+           <button className={`p-2 md:p-4 text-2xl rounded-2xl ${location.pathname ==="/dashboard" ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]" : "bg-transparent"}`} onClick={()=>navigate("/dashboard")}><AiOutlineUser/></button>
+           <button className={`p-2 md:p-4 text-2xl rounded-2xl ${location.pathname ==="/appointment" ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]" : "bg-transparent"}`} onClick={()=>navigate("/appointment")}><VscCalendar/></button>
+           <button className={`p-2 md:p-4 text-2xl rounded-2xl ${location.pathname ==="/patients" ? "bg-gradient-to-r from-[#85cdf9] via-[#587281] to-[#434747]" : "bg-transparent"}`} onClick={()=>navigate("/patients")}><FaUsers/></button>
+        </div>
       </div>
-    </div>
   );
 };
 
