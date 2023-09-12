@@ -15,7 +15,7 @@ const MenuHamburger = () => {
   return (
     <div className="absolute w-16 md:w-20 h-1/2 left-0">
 
-        <div onClick={()=>setOpen(!open)} className=" w-full flex justify-center items-center text-xl md:text-5xl py-2">
+        <div onClick={()=>setOpen(!open)} className=" w-full flex justify-center items-center text-xl md:text-5xl py-2 hover:cursor-pointer">
             {open ? <GrClose/> : <GiHamburgerMenu/> }
         </div>
         <div className={`w-full h-full text-white absolute transition-all duration-500 ease-in ${open ? "left-1" : "left-[-5rem]"} bg-[#3E36B0] rounded-3xl flex flex-col items-center gap-4`}>
