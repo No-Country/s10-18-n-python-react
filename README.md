@@ -42,7 +42,7 @@ Fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experien
 #### 🛠️ Tech Stack:
 
 ![SELENIUM](https://img.shields.io/badge/-SELENIUM-blue?style=for-the-badge&logo=selenium&logoColor=white)
-
+![X-RAY](https://img.shields.io/badge/-XRAY-blue?style=for-the-badge&logo=xray&logoColor=white)
 ![VS CODE](https://img.shields.io/badge/-VS%20CODE-blueviolet?style=for-the-badge&logo=Visual%20studio&logoColor=white)
 
 #### 🧑💻 PM:
