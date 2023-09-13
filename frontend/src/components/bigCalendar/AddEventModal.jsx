@@ -1,6 +1,6 @@
 import { Modal, Button } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
-import logo from "../../assets/logo1.png";
+//import logo from "../../assets/logo1.png";
 import DatosPaciente from "../DatosPaciente";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";

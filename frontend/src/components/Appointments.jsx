@@ -7,7 +7,6 @@ import MenuHamburger from "./MenuHamburger";
 import { getAppointmentsFromApi } from "../store/AppointmentSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { createAppointment } from "../store/AppointmentSlice"
-import _ from "lodash"
 
 
 
@@ -216,41 +215,6 @@ const Appointments = () => {
   console.log("events en Appointmest: ", events)
   console.log("originalEvents en Appointments: ", originalEvents)
 
-  /* const addEventFake = () => {
-    const newEvent = {
-      diagnosis: "string",
-      doctor_first_name: "Esteban",
-      doctor_last_name: "Lugo",
-      end: "2023-09-09T09:30:00",
-      id: "a5f078b9-4965-45e5-b4cc-68085b6b44ab",
-      id_doctor: "88f907ff-7b24-4276-8326-ea7959d2838a",
-      id_patient: "45212365",
-      patient_first_name: "Jan",
-      patient_last_name: "Miranda",
-      prescription: "string",
-      start: "2023-09-09T09:00:00",
-      state: "reserved"
-    }
-    setEvents([...events, newEvent])
-  } */
-  // const addFakeEvent = ()=> {
-  //   const appointmentData = {
-  //     /* id: appAndPatinentId, */
-  //     doctor_first_name: "Carlos",
-  //     doctor_last_name:"Broggi",
-  //     start_datetime: "2023-09-15T09:00:00",
-  //     end_datetime: "2023-09-15T09:30:00",
-  //     diagnosis: "-",
-  //     id_doctor: "36533e34-7c51-42b9-a208-22fdbaaea51e",
-  //     id_patient: "25854789",
-  //     patient_first_name: "Juan",
-  //     patient_last_name: "Juanes",
-  //     prescription: "-",
-  //     state: "-"
-  //   }
-  //   const newArr = [...events, appointmentData]
-  //   setEvents(newArr)
-  // }
   
   return (
     <div className="w-full">
@@ -282,40 +246,8 @@ const Appointments = () => {
         handleReloadAppointments = {handleReloadAppointments}
         handleSetNewAppointment = {handleSetNewAppointment}
       />
-      {/* <button onClick={addFakeEvent} >Add Evt</button> */}
     </div>
   );
 };
 
 export default Appointments;
-
-// Post
-/* {
-  "diagnosis": "string",    opcional
-  "end": "2023-09-09T15:30:00.000Z",  *
-  "id": "dfd88414-a3e2-4fd2-8970-2500c3e7dc7e",
-  "id_doctor": "88f907ff-7b24-4276-8326-ea7959d2838a",
-  "id_patient": "1d243d1f-cbc6-4009-9cba-1bae8854b9f6",   dni
-  "patient_first_name": "Maria",
-  "patient_last_name": "Salas",
-  "prescription": "string",
-  "start": "2023-09-09T15:00:00.000Z",  *
-  "state": "reserved"    *
-} */
-
-
-//Necesito
-/* {
-  "diagnosis": "string",
-  "doctor_first_name": "Esteban",
-  "doctor_last_name": "Lugo",
-  "end": "2023-09-09T15:30:00",
-  "id": "dfd88414-a3e2-4fd2-8970-2500c3e7dc7e",
-  "id_doctor": "88f907ff-7b24-4276-8326-ea7959d2838a",
-  "id_patient": "25623120",
-  "patient_first_name": "Maria",
-  "patient_last_name": "Salas",
-  "prescription": "string",
-  "start": "2023-09-09T15:00:00",
-  "state": "reserved"
-} */

@@ -1,11 +1,12 @@
-import logo from "../assets/logo1.png";
-import calendar from "../assets/calendar.png";
-import { Input, InputGroup } from "rsuite";
-import { useState } from "react";
-import axios from "axios";
+import logo from "../assets/images/logo.png"
+import calendar from "../assets/images/calendarIcon.png"
+import { Input, InputGroup } from "rsuite"
+import { useState } from "react"
+import axios from "axios"
 
 const DatosPaciente = ({ handleClose, start, professional, addAppointment }) => {
   const URL =
+
     "https://medicadminbackend-jeqz-dev.fl0.io/appointments/";
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -15,7 +16,6 @@ const DatosPaciente = ({ handleClose, start, professional, addAppointment }) => 
   const [diagnosis, setDiagnosis] = useState("");
   const [prescription, setPrescription] = useState("");
   const [dni, setDni] = useState("")
-
   //   console.log("FECHA: ", start.toISOString().substring(0, 10));
 
  /*  const postAppointment = async (appointmentNewData) => {
@@ -36,6 +36,7 @@ const DatosPaciente = ({ handleClose, start, professional, addAppointment }) => 
     handleClose()
     setTimeout(()=>addAppointment(name, lastName, diagnosis, pacientState, prescription, dni), 1000)
   }
+  
   return (
     <>
       <div className="w-full h-full flex justify-center">
@@ -148,7 +149,7 @@ const DatosPaciente = ({ handleClose, start, professional, addAppointment }) => 
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default DatosPaciente;
+export default DatosPaciente
