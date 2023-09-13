@@ -1,10 +1,10 @@
+
 import { Modal, Button } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
-import logo from "../../assets/logo1.png";
+import logo from "../../assets/images/logo.png"
 import DatosPaciente from "../DatosPaciente";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import uuid from 'react-uuid';
 
 const AddEventModal = ({ 
   event, 
@@ -18,39 +18,35 @@ const AddEventModal = ({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false); */
 
+
   console.log("event en AddEventModal: ", event);
   //console.log("profesional en modal Add: ", professional);
   const [startDate, setStartDate] = useState(0);
   //console.log("startDate",startDate)
   
   const start = new Date(event.start);
+
   /* const startHours = start.getHours();
   const startMinutes = start.getMinutes().toString().padStart(2, "0"); */
-  const end = new Date(event.end);
-/*   const endHours = end.getHours();
-  const endMinutes = end.getMinutes().toString().padStart(2, "0"); */
+  const end = new Date(event.end)
+  /*   const endHours = end.getHours();
+    const endMinutes = end.getMinutes().toString().padStart(2, "0"); */
 
-  const startToString = event.start.toISOString().substring(0,19) 
-  const endToString = event.end.toISOString().substring(0,19)
+  const startToString = event.start.toISOString().substring(0, 19)
+  const endToString = event.end.toISOString().substring(0, 19)
   useEffect(() => {
     if (event) {
       setStartDate(start.toISOString()/* .substring(0, 10) */);
     }
-  }, []); 
-  
+  }, [])
 
 
- /*  console.log(
-    "fecha formateada para POST: ",
-    event.end.toISOString().substring(0, 19)
+
   );  */
 
   const addAppointment = (pFirstName, pLastName, diagnosis, patientState, prescription, dni) => {
 
     const appointmentData = {
-      /* id: appAndPatinentId, */
-      /* doctor_first_name: professional.first_name,
-      doctor_last_name:professional.last_name, */
       start_datetime: startToString,
       end_datetime: endToString,
       diagnosis: diagnosis,
@@ -61,10 +57,10 @@ const AddEventModal = ({
       prescription: prescription,
       state: patientState
     }
+
     setTimeout( ()=>{handleSetNewAppointment(appointmentData)
         console.log("setTimeout")
     }, 100)
-    
       
     fetch(`https://medicadminbackend-jeqz-dev.fl0.io/appointments/`,
       {
@@ -73,7 +69,7 @@ const AddEventModal = ({
           "content-type": "application/json",
           "accept": "application/json" 
         },
-        body:JSON.stringify(appointmentData)
+        body: JSON.stringify(appointmentData)
       }
     )
       .then(res => {
@@ -84,8 +80,7 @@ const AddEventModal = ({
       .then(data => console.log("data response: ",data))
       .catch(err => console.log(err))
       /* .finally(handleReloadAppointments()) */
-      .finally()
-      
+      .finally()   
   }
 
   /* const addAppointment = async (pFirstName, pLastName, diagnosis, patientState, prescription) => {
@@ -128,7 +123,7 @@ const AddEventModal = ({
         overflow={true}
         size={"md"}
         dialogClassName="p-0 rounded-none "
-        /* className='p-8 bg-blue-700 rounded-none' */
+      /* className='p-8 bg-blue-700 rounded-none' */
       >
         <div className="p-12 border-[2em] border-[#3E36B0] font-baloo2  BANDERA ">
           <DatosPaciente
@@ -140,6 +135,6 @@ const AddEventModal = ({
         </div>
       </Modal>
     </>
-  );
-};
-export default AddEventModal;
+  )
+}
+export default AddEventModal

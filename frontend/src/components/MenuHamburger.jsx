@@ -4,7 +4,7 @@ import { GrClose } from "react-icons/gr";
 import { AiOutlineUser } from "react-icons/Ai";
 import { VscCalendar } from "react-icons/vsc";
 import { FaUsers } from "react-icons/fa";
-import imgSucursales from "../assets/images/sucursales/imgSucursales.png";
+import imgSucursales from "../assets/images/imgSucursales.png"
 import { useLocation, useNavigate } from "react-router-dom";
 
 const MenuHamburger = () => {

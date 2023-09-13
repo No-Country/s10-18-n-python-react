@@ -1,6 +1,6 @@
-import child1 from "../assets/images/child1.jpg";
-import addIcon from "../assets/images/Add-user.svg";
-import studiesIcon from "../assets/images/showStudies.jpg";
+import child1 from "../assets/images/detail-child1.jpg"
+import addIcon from "../assets/images/Add-user.svg"
+import studiesIcon from "../assets/images/showStudies.jpg"
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -33,17 +33,18 @@ const TableRow = ({ name, obraSocial, tel, date }) => {
         </td>
       </tr>
     </>
-  );
-};
+  )
+}
 
 const Patients = () => {
+  
   const [patients, setPatients] = useState([]);
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) {
-      navigate("/");
+      navigate("/")
     }
   }, []);
 
@@ -53,6 +54,7 @@ const Patients = () => {
       .then((data) => setPatients(data))
       .catch((err) => console.error(err));
   }, []);
+
 
   return (
     <main className="w-[90%] mx-auto gap-7 justify-center items-center">
@@ -105,7 +107,7 @@ const Patients = () => {
         </button>
       )}
     </main>
-  );
-};
+  )
+}
 
-export default Patients;
+export default Patients
