@@ -67,26 +67,47 @@ const AddEventModal = ({
         console.log("setTimeout")
     }, 100) */
     handleSetNewAppointment(appointmentData)
-    fetch(`https://medicadminbackend-jeqz-dev.fl0.io/appointments/`,
-      {
-        method:"POST",
-        headers: { 
-          "content-type": "application/json",
-          "accept": "application/json" 
-        },
-        body:JSON.stringify(appointmentData)
-      }
-    )
-      .then(res => {
-        console.log("res.status", res.status)
-        if (res.status === 201) {
-          toast.success("Turno agendado")
-        } else toast.error("Error, intente nuevamente")
+    // fetch(`https://medicadminbackend-jeqz-dev.fl0.io/appointments/`,
+    //   {
+    //     method:"POST",
+    //     headers: { 
+    //       "content-type": "application/json",
+    //       "accept": "application/json" 
+    //     },
+    //     body:JSON.stringify(appointmentData)
+    //   }
+    // )
+    //   .then(res => {
+    //     console.log("res.status", res.status)
+    //     if (res.status === 201) {
+    //       toast.success("Turno agendado")
+    //     } else toast.error("Error, intente nuevamente")
 
-      })
-      .catch(err => console.log(err))
-      /* .finally(window.location.reload()) */
+    //   })
+    //   .catch(err => console.log(err))
+    //   /* .finally(window.location.reload()) */
+    //   window.location.reload()
+    const fetchPostData = async () => {
+      try{
+        const res = await fetch(`https://medicadminbackend-jeqz-dev.fl0.io/appointments/`,
+          {
+            method:"POST",
+            headers: { 
+              "content-type": "application/json",
+              "accept": "application/json" 
+            },
+            body:JSON.stringify(appointmentData)
+          }
+        )
+        if (res.status === 201) {
+              toast.success("Turno agendado")
+              } else toast.error("Error, intente nuevamente")
+      } catch(err) {
+        console.log(err)
+      }
       window.location.reload()
+    }
+    fetchPostData()
   }
 
   /* const addAppointment = async (pFirstName, pLastName, diagnosis, patientState, prescription) => {
