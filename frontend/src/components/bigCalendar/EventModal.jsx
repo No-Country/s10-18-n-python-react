@@ -133,7 +133,6 @@ const EventModal = ({event, open, handleClose, handleSetCount}) => {
             <Button className="bg-[#DC4928] text-white text-lg">Aceptar</Button>
           </Modal.Footer>
         </div>
-        <Button onClick={handleSetCount}>Count +1</Button>
       </Modal>
     </>
   )
