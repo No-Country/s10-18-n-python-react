@@ -1,6 +1,6 @@
-import child1 from "../assets/images/detail-child1.jpg"
-import addIcon from "../assets/images/Add-user.svg"
-import studiesIcon from "../assets/images/showStudies.jpg"
+import child1 from "../assets/images/detail-child1.jpg";
+import addIcon from "../assets/images/Add-user.svg";
+import studiesIcon from "../assets/images/showStudies.jpg";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -33,18 +33,17 @@ const TableRow = ({ name, obraSocial, tel, date }) => {
         </td>
       </tr>
     </>
-  )
-}
+  );
+};
 
 const Patients = () => {
-  
   const [patients, setPatients] = useState([]);
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) {
-      navigate("/")
+      navigate("/");
     }
   }, []);
 
@@ -55,6 +54,37 @@ const Patients = () => {
       .catch((err) => console.error(err));
   }, []);
 
+  /*
+{
+  "id": "35124789",
+  "first_name": "Juan",
+  "last_name": "Primero",
+  "email": "j@mail.com",
+  "address": "Calle False 123",
+  "city": "Córdoba",
+  "country": "Argentina",
+  "phone": "123456789",
+  "date_of_birth": "2023-09-12",
+  "gender": "M",
+  "dni": "35124789",
+  "health_insurance": "OSDE"
+}
+
+const postPatient = () => {
+    console.log("Cargando...");
+    fetch("https://medicadminbackend-jeqz-dev.fl0.io/patients/", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+      },
+      body: JSON.stringify(newPatient),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log("Nuevo paciente: ", data))
+      .catch((err) => console.error(err));
+  };
+  */
 
   return (
     <main className="w-[90%] mx-auto gap-7 justify-center items-center">
@@ -107,7 +137,7 @@ const Patients = () => {
         </button>
       )}
     </main>
-  )
-}
+  );
+};
 
-export default Patients
+export default Patients;
