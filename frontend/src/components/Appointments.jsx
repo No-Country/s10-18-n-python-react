@@ -105,8 +105,23 @@ const Appointments = () => {
         console.log("Trae nueva data events del server")
       })
       .catch(err => console.log("ERROR MESSAGE: ", err.message))
-  },[events])
+  },[])
 
+  /* useEffect( () => {  // Intento de conservar filtros en reload
+    const isSpecilty = localStorage.getItem('medical-specialty')
+    const dr = JSON.parse(localStorage.getItem("doctor-professional"))
+    console.log("dr: ", dr)
+    if (isSpecilty && dr) {
+      const filteredEvents = originalEvents.filter( 
+        item => item.specialty===isSpecilty && item.doctor_first_name===dr.drfirstName && item.doctor_last_name===drLastName
+      ) 
+      setEvents(filteredEvents)
+      setSpecialty(isSpecilty)
+      setProfessionaSelected(`${dr.drLastName}, ${dr.drfirstName}`)
+    }
+  },[originalEvents]) */
+
+    console.log("prof Sel: ",professionalSelected)
 
   const handleReloadAppointments = () => {
     setReloadAppointments(prev => !prev)
@@ -120,9 +135,7 @@ const Appointments = () => {
     setEvents([ ...events , dataEvent])
   }
 
-  const handleSetCount = () => {
-    setCount(prev => prev +1)
-  }
+
 
   useEffect( ()=> {
     fetch(URL.doctors, 
@@ -146,8 +159,7 @@ const Appointments = () => {
     const filtered = allProfessionalList.filter(item =>item.specialty === s)
     const profSelListFormated = getDrNamesValuesSelect(filtered)
     setProfSelectList(profSelListFormated)
-    //console.log("profSelListFormated: ", profSelListFormated)
-    // Ahora se puede seleccionar cualquier professional, tenga o no turnos creados
+    localStorage.setItem('medical-specialty',s)
   }
 
   const handleProfessional = (n) =>{
@@ -166,13 +178,12 @@ const Appointments = () => {
     const professionalData = allProfessionalList.find(
       item=> item.first_name===drfirstName && item.last_name===drLastName
     )
-    //console.log("N: ", n)
-    //console.log("dr selected data: ", professionalData)
+    const dataToLS = {drfirstName, drLastName}
+    localStorage.setItem("doctor-professional",   JSON.stringify(dataToLS))
     setProfessionaSelected(n)
     setProfessional(professionalData)
   } 
   
-
   const handleOnCleanSpecialty = () => {
     //reset de professionals del select
     setEvents([])
@@ -197,23 +208,7 @@ const Appointments = () => {
   return drNames
   }
 
-  /* const handleAddAppointment = () => {
-    const data = {
-      diagnosis:"",
-      doctor_first_name: "Lolo",
-      doctor_last_name: "Galo",
-      end: item.end_datetime,
-      id: Date.now(),
-      id_doctor: "987654321",
-      id_patient: "987654321",
-      patient_first_name: "Cacho",
-      patient_last_name: "Loco",
-      prescription: "vago",
-      start: "",
-      state: ""
-    }
-    dispatch(createAppointment(data))
-  } */
+  
   //console.log("professional list: ", allProfessionalList)
   //console.log(events)
 
@@ -286,7 +281,6 @@ const Appointments = () => {
         events={events}
         handleReloadAppointments = {handleReloadAppointments}
         handleSetNewAppointment = {handleSetNewAppointment}
-        handleSetCount = {handleSetCount}
       />
       {/* <button onClick={addFakeEvent} >Add Evt</button> */}
     </div>

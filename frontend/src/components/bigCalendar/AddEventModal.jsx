@@ -3,8 +3,7 @@ import "rsuite/dist/rsuite.min.css";
 import logo from "../../assets/logo1.png";
 import DatosPaciente from "../DatosPaciente";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import uuid from 'react-uuid';
+import { toast } from "sonner";
 
 const AddEventModal = ({ 
   event, 
@@ -64,11 +63,10 @@ const AddEventModal = ({
       prescription: prescription,
       state: patientState
     }
-    setTimeout( ()=>{handleSetNewAppointment(appointmentData)
+    /* setTimeout( ()=>{handleSetNewAppointment(appointmentData)
         console.log("setTimeout")
-    }, 100)
-    
-      
+    }, 100) */
+    handleSetNewAppointment(appointmentData)
     fetch(`https://medicadminbackend-jeqz-dev.fl0.io/appointments/`,
       {
         method:"POST",
@@ -80,15 +78,15 @@ const AddEventModal = ({
       }
     )
       .then(res => {
-        console.log("res: ", res)
         console.log("res.status", res.status)
-        res.status
+        if (res.status === 201) {
+          toast.success("Turno agendado")
+        } else toast.error("Error, intente nuevamente")
+
       })
-      .then(data => console.log("data response: ",data))
       .catch(err => console.log(err))
-      /* .finally(handleReloadAppointments()) */
-      .finally()
-      
+      /* .finally(window.location.reload()) */
+      window.location.reload()
   }
 
   /* const addAppointment = async (pFirstName, pLastName, diagnosis, patientState, prescription) => {
@@ -121,9 +119,6 @@ const AddEventModal = ({
 
   return (
     <>
-      {/* <ButtonToolbar>
-        <Button onClick={handleOpen}> Open</Button>
-      </ButtonToolbar> */}
       <Modal
         backdrop={true}
         open={openAdd}
@@ -131,7 +126,6 @@ const AddEventModal = ({
         overflow={true}
         size={"md"}
         dialogClassName="p-0 rounded-none "
-        /* className='p-8 bg-blue-700 rounded-none' */
       >
         <div className="p-12 border-[2em] border-[#3E36B0] font-baloo2  BANDERA ">
           <DatosPaciente

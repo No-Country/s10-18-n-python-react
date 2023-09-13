@@ -74,8 +74,7 @@ const initialState = [
 
 
 export default function Calendar(props) {
-  //console.log("***  Renderiza BigCalendar  ***")
-  /* const events = props.events */
+
   const [profEvents, setProfEvents] = useState(initialState)
   const [open, setOpen] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
@@ -104,14 +103,8 @@ export default function Calendar(props) {
     setEvent(null);
   };
 
-  // const handleSelectslot = (e) => {
-  //   alert(`${e.start}`)
-  //   console.log(moment(e).format())
-  //   /* setEvents([...events, e] ) */
-  // }
-  /* console.log("events: ", events) */
   
-  const addFakeEvent = (e)=> {
+ /*  const addFakeEvent = (e)=> {
     const appointmentData = {
       start: e.start,
       end: e.end,
@@ -125,8 +118,8 @@ export default function Calendar(props) {
     }
     
     setProfEvents([...profEvents, {...appointmentData}])
-  }
-  console.log("profEvents", profEvents)
+  } */
+
   //console.log("props.events en BigCalendar", props.events)
   return (
     <div
