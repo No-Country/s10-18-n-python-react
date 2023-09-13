@@ -7,9 +7,12 @@ import MenuHamburger from "./MenuHamburger";
 import { getAppointmentsFromApi } from "../store/AppointmentSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { createAppointment } from "../store/AppointmentSlice"
-const initialSpecialties = ["Clinic", "Cardiologist", "Dentist"].map(
+
+
+
+/* const initialSpecialties = ["Clinic", "Cardiologist", "Dentist"].map(
   (item) => ({ label: item, value: item })
-);
+); */
 
 const Appointments = () => {
   const user = useSelector((state) => state.user);
@@ -23,7 +26,7 @@ const Appointments = () => {
   const [specialtyList, setSpecialtyList] = useState([]) // Lista de especialidades tomadas de los turnos existentes
   const [allProfessionalList, setAllProfessionalList] = useState([]) // Con o sin turnos, viene de doctors endpoint
   const [reloadAppointments, setReloadAppointments] = useState(false)
-  const [count, setCount] = useState(0)
+
   /* const dispatch = useDispatch()
   const allAppointments = useSelector( state => state.appointments)
   console.log("allAppointments: ", allAppointments)
@@ -55,12 +58,16 @@ const Appointments = () => {
     }
   }, []);
   
-  /* useEffect(() => {
-    console.log("Ejecuta Efecto por cambiar allApointments")
-    allAppointments ? console.log("allAppointments", allAppointments) : console.log("NO FUNCA APPOINTMENTSSLICE")
-  },[allAppointments]) */
 
-  /* console.log("allAppointments: ", allAppointments) */
+  const toArgHour = (a) =>{
+    let str1 = a.substring(0,11)
+    let str2 = a.substring(11,13)
+    let str3 = a.substring(13,19)
+    let num = Number(str2)
+    let argH = (num-3).toString().padStart(2, "0")
+    return `${str1}${argH}${str3}`
+  }
+
   const URL = {
     doctors:"https://medicadminbackend-jeqz-dev.fl0.io/doctors/",
     appointments:"https://medicadminbackend-jeqz-dev.fl0.io/appointments/",
@@ -80,26 +87,40 @@ const Appointments = () => {
             diagnosis:item.diagnosis,
             doctor_first_name: item.doctor_first_name,
             doctor_last_name: item.doctor_last_name,
-            end: moment(item.end_datetime).toDate(),
+            start: moment(toArgHour(item.start_datetime)).toDate(),
+            end: moment(toArgHour(item.end_datetime)).toDate(),
+            /* start: moment(item.start_datetime).toDate(),
+            end: moment(item.end_datetime).toDate(), */
             id: item.id,
             id_doctor: item.id_doctor,
             id_patient: item.id_patient,
             patient_first_name: item.patient_first_name,
             patient_last_name: item.patient_last_name,
             prescription: item.prescription,
-            start: moment(item.start_datetime).toDate(),
             state: item.state
           })) 
         setOriginalEvents(dataFormated)
+        /* setEvents(dataFormated) */
         console.log("Trae nueva data events del server")
-        /* if (professionalSelected) {
-          setOriginalEvents(dataFormated)
-          //setEvents(dataFormated)
-        }  */
       })
       .catch(err => console.log("ERROR MESSAGE: ", err.message))
-  },[reloadAppointments])
+  },[])
 
+  /* useEffect( () => {  // Intento de conservar filtros en reload
+    const isSpecilty = localStorage.getItem('medical-specialty')
+    const dr = JSON.parse(localStorage.getItem("doctor-professional"))
+    console.log("dr: ", dr)
+    if (isSpecilty && dr) {
+      const filteredEvents = originalEvents.filter( 
+        item => item.specialty===isSpecilty && item.doctor_first_name===dr.drfirstName && item.doctor_last_name===drLastName
+      ) 
+      setEvents(filteredEvents)
+      setSpecialty(isSpecilty)
+      setProfessionaSelected(`${dr.drLastName}, ${dr.drfirstName}`)
+    }
+  },[originalEvents]) */
+
+    console.log("prof Sel: ",professionalSelected)
 
   const handleReloadAppointments = () => {
     setReloadAppointments(prev => !prev)
@@ -110,17 +131,10 @@ const Appointments = () => {
     // setea el nuevo estado directo desde el modal, sin esperar la respuesta del post, pero no esta actualizando el calendar
     console.log("dataEvent en handleSetNewAppointment: " ,dataEvent)
     setOriginalEvents([ ...originalEvents , dataEvent])
-    const newEvents = originalEvents.filter(
-      // Prueba para ver si cambia el calendar, setEvent([...events, dataEvent]) no lo hace
-      (item) => item.doctor_first_name === drfirstName && item.doctor_last_name === drLastName
-      )
-    setEvents(newEvents)
-    //console.log("newEvents en Appointments: ",newEvents)
+    setEvents([ ...events , dataEvent])
   }
 
-  const handleSetCount = () => {
-    setCount(prev => prev +1)
-  }
+
 
   useEffect( ()=> {
     fetch(URL.doctors, 
@@ -144,8 +158,7 @@ const Appointments = () => {
     const filtered = allProfessionalList.filter(item =>item.specialty === s)
     const profSelListFormated = getDrNamesValuesSelect(filtered)
     setProfSelectList(profSelListFormated)
-    //console.log("profSelListFormated: ", profSelListFormated)
-    // Ahora se puede seleccionar cualquier professional, tenga o no turnos creados
+    localStorage.setItem('medical-specialty',s)
   }
 
   const handleProfessional = (n) =>{
@@ -164,13 +177,12 @@ const Appointments = () => {
     const professionalData = allProfessionalList.find(
       item=> item.first_name===drfirstName && item.last_name===drLastName
     )
-    //console.log("N: ", n)
-    //console.log("dr selected data: ", professionalData)
+    const dataToLS = {drfirstName, drLastName}
+    localStorage.setItem("doctor-professional",   JSON.stringify(dataToLS))
     setProfessionaSelected(n)
     setProfessional(professionalData)
   } 
   
-
   const handleOnCleanSpecialty = () => {
     //reset de professionals del select
     setEvents([])
@@ -195,45 +207,13 @@ const Appointments = () => {
   return drNames
   }
 
-  /* const handleAddAppointment = () => {
-    const data = {
-      diagnosis:"",
-      doctor_first_name: "Lolo",
-      doctor_last_name: "Galo",
-      end: item.end_datetime,
-      id: Date.now(),
-      id_doctor: "987654321",
-      id_patient: "987654321",
-      patient_first_name: "Cacho",
-      patient_last_name: "Loco",
-      prescription: "vago",
-      start: "",
-      state: ""
-    }
-    dispatch(createAppointment(data))
-  } */
+  
   //console.log("professional list: ", allProfessionalList)
   //console.log(events)
+
   //console.log("professional en Appointments: ", professional)
   console.log("events en Appointmest: ", events)
   console.log("originalEvents en Appointments: ", originalEvents)
-  /* const addEventFake = () => {
-    const newEvent = {
-      diagnosis: "string",
-      doctor_first_name: "Esteban",
-      doctor_last_name: "Lugo",
-      end: "2023-09-09T09:30:00",
-      id: "a5f078b9-4965-45e5-b4cc-68085b6b44ab",
-      id_doctor: "88f907ff-7b24-4276-8326-ea7959d2838a",
-      id_patient: "45212365",
-      patient_first_name: "Jan",
-      patient_last_name: "Miranda",
-      prescription: "string",
-      start: "2023-09-09T09:00:00",
-      state: "reserved"
-    }
-    setEvents([...events, newEvent])
-  } */
 
   
   return (
@@ -265,42 +245,9 @@ const Appointments = () => {
         events={events}
         handleReloadAppointments = {handleReloadAppointments}
         handleSetNewAppointment = {handleSetNewAppointment}
-        handleSetCount = {handleSetCount}
       />
-      <h3>{count}</h3>
     </div>
   );
 };
 
 export default Appointments;
-
-// Post
-/* {
-  "diagnosis": "string",    opcional
-  "end": "2023-09-09T15:30:00.000Z",  *
-  "id": "dfd88414-a3e2-4fd2-8970-2500c3e7dc7e",
-  "id_doctor": "88f907ff-7b24-4276-8326-ea7959d2838a",
-  "id_patient": "1d243d1f-cbc6-4009-9cba-1bae8854b9f6",   dni
-  "patient_first_name": "Maria",
-  "patient_last_name": "Salas",
-  "prescription": "string",
-  "start": "2023-09-09T15:00:00.000Z",  *
-  "state": "reserved"    *
-} */
-
-
-//Necesito
-/* {
-  "diagnosis": "string",
-  "doctor_first_name": "Esteban",
-  "doctor_last_name": "Lugo",
-  "end": "2023-09-09T15:30:00",
-  "id": "dfd88414-a3e2-4fd2-8970-2500c3e7dc7e",
-  "id_doctor": "88f907ff-7b24-4276-8326-ea7959d2838a",
-  "id_patient": "25623120",
-  "patient_first_name": "Maria",
-  "patient_last_name": "Salas",
-  "prescription": "string",
-  "start": "2023-09-09T15:00:00",
-  "state": "reserved"
-} */

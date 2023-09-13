@@ -35,6 +35,9 @@
 .rbc-calendar {
   width: 70%;
 }
+.rbc-day-slot .rbc-event-label {
+  display:none
+  }
 
 /* MODAL rsuit  */
 .rs-modal-content {
