@@ -101,26 +101,37 @@ const Appointments = () => {
           })) 
         setOriginalEvents(dataFormated)
         /* setEvents(dataFormated) */
-        console.log("Trae nueva data events del server")
       })
       .catch(err => console.log("ERROR MESSAGE: ", err.message))
   },[])
 
-  /* useEffect( () => {  // Intento de conservar filtros en reload
+  useEffect( () => {  // Intento de conservar filtros en reload
     const isSpecilty = localStorage.getItem('medical-specialty')
     const dr = JSON.parse(localStorage.getItem("doctor-professional"))
-    console.log("dr: ", dr)
+    const {drfirstName, drLastName, id} = dr
+    console.log("drId: ", id)
     if (isSpecilty && dr) {
-      const filteredEvents = originalEvents.filter( 
-        item => item.specialty===isSpecilty && item.doctor_first_name===dr.drfirstName && item.doctor_last_name===drLastName
-      ) 
+      const filteredEvents = originalEvents.filter( item => item.id_doctor===id) 
+      console.log("filteredEvents: ", filteredEvents)
       setEvents(filteredEvents)
       setSpecialty(isSpecilty)
-      setProfessionaSelected(`${dr.drLastName}, ${dr.drfirstName}`)
+      const filtered = allProfessionalList.filter(item =>item.specialty === isSpecilty)///***** */
+      const profSelListFormated = getDrNamesValuesSelect(filtered)// ****
+      setProfSelectList(profSelListFormated) // ***
+      setProfessionaSelected(`${drLastName}, ${drfirstName}`)
+      /* const filteredByProfessionalEvents = originalEvents.filter(
+        (item) => item.doctor_first_name === dr.drfirstName && item.doctor_last_name === dr.drLastName
+        )
+      setEvents(filteredByProfessionalEvents) */
+      const professionalData = allProfessionalList.find(
+        item=> item.id===id
+      )
+      setProfessional(professionalData)
     }
-  },[originalEvents]) */
-
-    console.log("prof Sel: ",professionalSelected)
+  },[originalEvents])
+  console.log("events", events)
+    //console.log("prof Sel: ",professionalSelected)
+    
 
   const handleReloadAppointments = () => {
     setReloadAppointments(prev => !prev)
@@ -132,6 +143,11 @@ const Appointments = () => {
     console.log("dataEvent en handleSetNewAppointment: " ,dataEvent)
     setOriginalEvents([ ...originalEvents , dataEvent])
     setEvents([ ...events , dataEvent])
+  }
+
+  const handleSetEvents = (appointments) => {
+    //reemplazar con global state y que haga filter en AddEventModal
+    setEvents(appointments)
   }
 
 
@@ -177,7 +193,7 @@ const Appointments = () => {
     const professionalData = allProfessionalList.find(
       item=> item.first_name===drfirstName && item.last_name===drLastName
     )
-    const dataToLS = {drfirstName, drLastName}
+    const dataToLS = {drfirstName, drLastName, id:professionalData.id}
     localStorage.setItem("doctor-professional",   JSON.stringify(dataToLS))
     setProfessionaSelected(n)
     setProfessional(professionalData)
@@ -245,6 +261,7 @@ const Appointments = () => {
         events={events}
         handleReloadAppointments = {handleReloadAppointments}
         handleSetNewAppointment = {handleSetNewAppointment}
+        handleSetEvents = {handleSetEvents}
       />
     </div>
   );
