@@ -1,4 +1,3 @@
-import React from "react"
 import Item from "./Item"
 import imgSucursales from "../../assets/images/imgSucursales.png"
 import imgCapital from "../../assets/images/hospitalCapital.avif"
@@ -7,6 +6,7 @@ import imgLaPlata from "../../assets/images/hospitalLaplata.png"
 import imgMendoza from "../../assets/images/hospitalMendoza.png"
 import imgRioCuarto from "../../assets/images/hospitalRiocuarto.png"
 import imgSantaFe from "../../assets/images/hospitalSantafe.png"
+
 
 const Sucursal = () => {
   const data = [

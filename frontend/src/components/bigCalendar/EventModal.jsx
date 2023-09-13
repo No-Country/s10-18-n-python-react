@@ -1,20 +1,22 @@
-import { Modal, Button } from 'rsuite'
-import 'rsuite/dist/rsuite.min.css'
+import { Modal, Button } from 'rsuite';
+import 'rsuite/dist/rsuite.min.css';
 import logo from "../../assets/images/logo.png"
-import { useEffect } from 'react'
-const EventModal = ({ event, open, handleClose }) => {
+import { useEffect } from 'react';
+const EventModal = ({event, open, handleClose, handleSetCount}) => {
   /* const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false); */
-  console.log('event en EventModal: ', event)
-  const start = new Date(event.start)
+  //console.log('event en EventModal: ',event )
+  const start =new Date(event.start)
   const startHours = start.getHours()
   const startMinutes = start.getMinutes().toString().padStart(2, "0")
   const end = new Date(event.end)
   const endHours = end.getHours()
   const endMinutes = end.getMinutes().toString().padStart(2, "0")
   /* console.log("startMinutes: ", startMinutes) */
-  console.log("event.end: ", event.end.toISOString().substring(0, 19))
+  
+  //console.log("event.end: ", event.end.toISOString().substring(0,19))
+
 
 
   const handlePutAppointment = () => {
@@ -72,17 +74,17 @@ const EventModal = ({ event, open, handleClose }) => {
         .catch(err => console.log(err))
   },[]) */
 
-  /*  useEffect(() => {
-     fetch(
-       "http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/doctors/",
-       { method: "GET", headers: { accept: "application/json" } }
-     )
-       .then((response) => response.json())
-       .then((json) => {
-         console.log(json);
-       });
-   }, []); */
-
+ /*  useEffect(() => {
+    fetch(
+      "http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/doctors/",
+      { method: "GET", headers: { accept: "application/json" } }
+    )
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+      });
+  }, []); */
+  
   return (
     <>
       {/* <ButtonToolbar>
@@ -131,6 +133,7 @@ const EventModal = ({ event, open, handleClose }) => {
             <Button className="bg-[#DC4928] text-white text-lg">Aceptar</Button>
           </Modal.Footer>
         </div>
+        <Button onClick={handleSetCount}>Count +1</Button>
       </Modal>
     </>
   )
