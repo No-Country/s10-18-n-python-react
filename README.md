@@ -3,12 +3,26 @@
 
 Fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experiencia de usuario excepcional:
 
+#### 🎨 UX/UI:
+
+| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>|
+|:-:|
+| **Carolina Maiquez**|
+| <a href="https://www.linkedin.com/in/carolina-maiquez-870666255/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+
+
 #### 🧑💻 Developers:
 
 ### ⚛️ Front End:
 
 | <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50> |
-|:-:|:-:|:-:|| <a href="https://www.linkedin.com/in/yeiner-parra-bernal/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/kevin-borge-9b1372163/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/gonzalo-garcia-calvo/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| **Kevin Borge**| **Gonzalo Garcia Calvo**| **Franco Saldaño**| **Nicolás Ludueño**| **Hector Dario Sol**| **Carlos Benitez**|
+| <a href="https://www.linkedin.com/in/kevin-borge-9b1372163/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/gonzalo-garcia-calvo/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/franco-salda%C3%B1o"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| <a href="https://www.linkedin.com/in/nicol%C3%A1s-ludue%C3%B1o-937bb8208/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| <a href="https://www.linkedin.com/in/hectordariosol/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| <a href="https://www.linkedin.com/in/carlos-aaron-benites-acevedo/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+
 
 
  #### 🛠️ Tech Stack:
@@ -56,9 +70,6 @@ Fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experien
 | <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>|
 |:-:|
 | **Viarleth Aurora**|
-
-
-
 
 
 ## Plan de pruebas.
