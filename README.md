@@ -25,7 +25,7 @@
 
  #### 🛠️ Tech Stack:
   
-![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=HTML5&logoColor=white) ![CSS](https://img.shields.io/badge/CSS-E34F26?style=for-the-badge&logo=CSS&logoColor=white) ![JavaScript](https://img.shields.io/badge/JS-E34F26?style=for-the-badge&logo=javascripts&logoColor=white) ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-22A7F2?style=for-the-badge&logo=Visual%20studio&logoColor=white) 
+![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=HTML5&logoColor=white) ![CSS](https://img.shields.io/badge/CSS-E34F26?style=for-the-badge&logo=CSS&logoColor=white) ![JavaScript](https://img.shields.io/badge/JS-E34F26?style=for-the-badge&logo=javascripts&logoColor=white) ![React](https://img.shields.io/badge/JS-E34F26?style=for-the-badge&logo=react&logoColor=white) ![Tailwind](https://img.shields.io/badge/JS-E34F26?style=for-the-badge&logo=tailwind&logoColor=white) ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-22A7F2?style=for-the-badge&logo=Visual%20studio&logoColor=white) 
 
 ### ☕ Back End:
 
@@ -37,6 +37,7 @@
 
   #### 🛠️ Tech Stack:
  ![Python](https://img.shields.io/badge/Python-green?style=for-the-badge&logo=python) 
+ ![Fastapi](https://img.shields.io/badge/Python-green?style=for-the-badge&logo=fastapi)
  
 
   #### 🧑💻 QA Testers:
