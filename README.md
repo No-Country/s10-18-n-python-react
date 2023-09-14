@@ -1,7 +1,8 @@
 # s10-18-n-python-react
+
 ## Tecnologías utilizadas 💻
 
-Fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experiencia de usuario excepcional:
+#### **MedPro** fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experiencia de usuario excepcional:
 
 #### 🎨 UX/UI:
 
