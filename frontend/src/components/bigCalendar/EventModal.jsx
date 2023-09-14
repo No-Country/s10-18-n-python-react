@@ -1,23 +1,14 @@
 import { Modal, Button } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
 import logo from "../../assets/images/logo.png"
-import { useEffect } from 'react';
-const EventModal = ({event, open, handleClose, handleSetCount}) => {
-  /* const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false); */
-  //console.log('event en EventModal: ',event )
+
+const EventModal = ({event, open, handleClose}) => {
   const start =new Date(event.start)
   const startHours = start.getHours()
   const startMinutes = start.getMinutes().toString().padStart(2, "0")
   const end = new Date(event.end)
   const endHours = end.getHours()
   const endMinutes = end.getMinutes().toString().padStart(2, "0")
-  /* console.log("startMinutes: ", startMinutes) */
-  
-  //console.log("event.end: ", event.end.toISOString().substring(0,19))
-
-
 
   const handlePutAppointment = () => {
     fetch(`http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments/${event.id}`,
@@ -46,50 +37,10 @@ const EventModal = ({event, open, handleClose, handleSetCount}) => {
       .then(data => console.log("data response: ", data))
       .catch(err => console.log(err))
   }
-  /* useEffect(()=>{
-    fetch(`http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/appointments/${event.id}`,
-      {
-        method:"PUT",
-        headers: { 
-          'content-type': 'application/json',
-          "Accept": "application/json" 
-        },
-        body:JSON.stringify({
-          id: "dfd88414-a3e2-4fd2-8970-2500c3e7dc7e",
-          start_datetime: "2023-09-09T12:00:00",
-          end_datetime: "2023-09-09T12:30:00",
-          diagnosis: "string",
-          doctor_first_name: "Esteban",
-          doctor_last_name: "Lugo",
-          id_doctor: "88f907ff-7b24-4276-8326-ea7959d2838a",
-          id_patient: "1d243d1f-cbc6-4009-9cba-1bae8854b9f6",
-          patient_first_name: "Maria",
-          patient_last_name: "Salas",
-          prescription: "string",
-          state: "reserved"
-        })
-      })
-        .then(res => res.json())
-        .then(data => console.log("data response: ",data))
-        .catch(err => console.log(err))
-  },[]) */
-
- /*  useEffect(() => {
-    fetch(
-      "http://ec2-3-17-60-17.us-east-2.compute.amazonaws.com:8000/doctors/",
-      { method: "GET", headers: { accept: "application/json" } }
-    )
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-      });
-  }, []); */
+  
   
   return (
     <>
-      {/* <ButtonToolbar>
-        <Button onClick={handleOpen}> Open</Button>
-      </ButtonToolbar> */}
       <Modal
         backdrop={true}
         open={open}
@@ -97,7 +48,6 @@ const EventModal = ({event, open, handleClose, handleSetCount}) => {
         overflow={true}
         size={'md'}
         dialogClassName='p-0 rounded-none '
-      /* className='p-8 bg-blue-700 rounded-none' */
       >
         <div className='p-12 border-[2em] border-[#3E36B0] font-baloo2  BANDERA '>
           <Modal.Header>
@@ -116,12 +66,10 @@ const EventModal = ({event, open, handleClose, handleSetCount}) => {
           </Modal.Header>
           <Modal.Body className='mt-10'>
             <Modal.Title>{event.title}</Modal.Title>
-            {/* <Placeholder.Paragraph /> */}
             <p>Dr: {event.doctor_last_name}, {event.doctor_first_name}</p>
             <p>Hora Inicio: {startHours}:{startMinutes} hs</p>
             <p>Hora Fin: {endHours}:{endMinutes} hs</p>
             <p>Paciente:{event.patient_last_name}, {event.patient_first_name}</p>
-            {/* <p>{event.end}</p> */}
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={handlePutAppointment} appearance="subtle">
