@@ -8,7 +8,7 @@ Fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experien
 ### ⚛️ Front End:
 
 | <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50> |
-|:-:|:-:|:-:|:-:|| <a href="https://www.linkedin.com/in/yeiner-parra-bernal/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/kevin-borge-9b1372163/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/gonzalo-garcia-calvo/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+|:-:|:-:|:-:|| <a href="https://www.linkedin.com/in/yeiner-parra-bernal/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/kevin-borge-9b1372163/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/gonzalo-garcia-calvo/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 
  #### 🛠️ Tech Stack:
@@ -20,14 +20,13 @@ Fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experien
 
 | <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>|<img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50> |
 |:-:|:-:|
-| **Emerson Arenas**|
+| **Emerson Arenas**| **Yeiner Parra**|
 | <a href="https://www.linkedin.com/in/emer-are/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
-
+| <a href="https://www.linkedin.com/in/yeiner-parra-bernal/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
   #### 🛠️ Tech Stack:
  ![Python](https://img.shields.io/badge/Python-green?style=for-the-badge&logo=python) 
  
-
 
   #### 🧑💻 QA Testers:
 
@@ -56,6 +55,7 @@ Fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experien
 
 | <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>|
 |:-:|
+| **Viarleth Aurora**|
 
 
 
