@@ -108,9 +108,9 @@ const Appointments = () => {
   useEffect( () => {  // Intento de conservar filtros en reload
     const isSpecilty = localStorage.getItem('medical-specialty')
     const dr = JSON.parse(localStorage.getItem("doctor-professional"))
-    const {drfirstName, drLastName, id} = dr
-    console.log("drId: ", id)
+
     if (isSpecilty && dr) {
+      const {drfirstName, drLastName, id} = dr
       const filteredEvents = originalEvents.filter( item => item.id_doctor===id) 
       console.log("filteredEvents: ", filteredEvents)
       setEvents(filteredEvents)
