@@ -2,7 +2,7 @@
 
 ## Tecnologías utilizadas 💻
 
-#### **MedPro** fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experiencia de usuario excepcional:
+#### **MediPro** fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experiencia de usuario excepcional:
 
 #### 🎨 UX/UI:
 
