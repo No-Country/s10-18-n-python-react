@@ -27,32 +27,8 @@ const Appointments = () => {
   const [allProfessionalList, setAllProfessionalList] = useState([]) // Con o sin turnos, viene de doctors endpoint
   const [reloadAppointments, setReloadAppointments] = useState(false)
 
-  /* const dispatch = useDispatch()
-  const allAppointments = useSelector( state => state.appointments)
-  console.log("allAppointments: ", allAppointments)
-  const allAppointmentsFormated = ()=> {
-    if (allAppointments.lenght) {
-      allAppointments.map(item=>(
-      { 
-        diagnosis:item.diagnosis,
-        doctor_first_name: item.doctor_first_name,
-        doctor_last_name: item.doctor_last_name,
-        end: moment(item.end_datetime).toDate(),
-        id: item.id,
-        id_doctor: item.id_doctor,
-        id_patient: item.id_patient,
-        patient_first_name: item.patient_first_name,
-        patient_last_name: item.patient_last_name,
-        prescription: item.prescription,
-        start: moment(item.start_datetime).toDate(),
-        state: item.state
-      })) 
-    } else return null
-  }
-  allAppointmentsFormated()  */
 
   useEffect(() => {
-    /* dispatch(getAppointmentsFromApi()) */
     if (!user) {
       navigate("/");
     }
@@ -75,8 +51,6 @@ const Appointments = () => {
     login:"https://medicadminbackend-jeqz-dev.fl0.io/login",
   }
   useEffect( ()=> {
-    console.log("efecuta EFFECTO appointments, fetch")
-    // al agregar appointment en el modal, llega antes el get que el post con la data actualizada
     fetch(URL.appointments, 
       {method: "GET",headers: {accept: "application/json"}}
     )
@@ -89,8 +63,6 @@ const Appointments = () => {
             doctor_last_name: item.doctor_last_name,
             start: moment(toArgHour(item.start_datetime)).toDate(),
             end: moment(toArgHour(item.end_datetime)).toDate(),
-            /* start: moment(item.start_datetime).toDate(),
-            end: moment(item.end_datetime).toDate(), */
             id: item.id,
             id_doctor: item.id_doctor,
             id_patient: item.id_patient,
@@ -100,7 +72,6 @@ const Appointments = () => {
             state: item.state
           })) 
         setOriginalEvents(dataFormated)
-        /* setEvents(dataFormated) */
       })
       .catch(err => console.log("ERROR MESSAGE: ", err.message))
   },[])
@@ -129,24 +100,18 @@ const Appointments = () => {
       setProfessional(professionalData)
     }
   },[originalEvents])
-  console.log("events", events)
-    //console.log("prof Sel: ",professionalSelected)
     
 
   const handleReloadAppointments = () => {
     setReloadAppointments(prev => !prev)
-    console.log("refetch de appointments")
-   //  no sirve porque llega data vieja
+
   }
   const handleSetNewAppointment = (dataEvent) => {
-    // setea el nuevo estado directo desde el modal, sin esperar la respuesta del post, pero no esta actualizando el calendar
-    console.log("dataEvent en handleSetNewAppointment: " ,dataEvent)
     setOriginalEvents([ ...originalEvents , dataEvent])
     setEvents([ ...events , dataEvent])
   }
 
   const handleSetEvents = (appointments) => {
-    //reemplazar con global state y que haga filter en AddEventModal
     setEvents(appointments)
   }
 
@@ -200,36 +165,22 @@ const Appointments = () => {
   } 
   
   const handleOnCleanSpecialty = () => {
-    //reset de professionals del select
     setEvents([])
-    //console.log("originalEvents en handleOnClean: ", originalEvents)
-    /* setProfSelectList(profSelectList) */
     setProfSelectList([])
-    setProfessionaSelected('')// prueba reset
+    setProfessionaSelected('')
   }
   const handleOnCleanProfessional = () => {
     setEvents([])
-    //console.log("events en handleOnClean: ", originalEvents)
     setProfessionaSelected('')
-    /* setProfSelectList([]) */
   }
 
     function getDrNamesValuesSelect(drs) {
     const drNames = drs.map(item =>({
-      // Para  rellenar selectPicker profesionales
       label:item.last_name+', '+item.first_name,
       value:item.last_name+', '+item.first_name,
     }))
   return drNames
   }
-
-  
-  //console.log("professional list: ", allProfessionalList)
-  //console.log(events)
-
-  //console.log("professional en Appointments: ", professional)
-  console.log("events en Appointmest: ", events)
-  console.log("originalEvents en Appointments: ", originalEvents)
 
   
   return (
