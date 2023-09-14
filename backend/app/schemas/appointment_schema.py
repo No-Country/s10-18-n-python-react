@@ -7,8 +7,10 @@ class AppointmentSchema(BaseModel):
     id: Optional[uuid.UUID]
     start_datetime: datetime
     end_datetime: datetime
-    diagnosis: str
-    prescription: str
-    id_patient: uuid.UUID
-    id_doctor: uuid.UUID
+    diagnosis: Optional[str]
+    prescription: Optional[str]
+    id_patient: str
+    patient_first_name: Optional[str]
+    patient_last_name: Optional[str]
+    id_doctor: str
     state: str
