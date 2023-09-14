@@ -19,7 +19,7 @@
 | <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50> |
 |:-:|:-:|:-:|:-:|:-:|:-:|
 | **Kevin Borge**| **Gonzalo Garcia Calvo**| **Franco Saldaño**| **Nicolás Ludueño**| **Hector Dario Sol**| **Carlos Benitez**|
-| <a href="https://www.linkedin.com/in/kevin-borge-9b1372163/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/gonzalo-garcia-calvo/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/franco-salda%C3%B1o"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/nicol%C3%A1s-ludue%C3%B1o-937bb8208/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/hectordariosol/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/carlos-aaron-benites-acevedo/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| <a href="https://www.linkedin.com/in/kevin-borge-9b1372163/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/gonzalo-garcia-calvo/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/franco-salda%C3%B1o"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/nicol%C3%A1s-ludue%C3%B1o-937bb8208/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/carlos-aaron-benites-acevedo/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 
 
@@ -31,10 +31,10 @@
 ### ☕ Back End:
 
 
-| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>|<img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50> |
-|:-:|:-:|
-| **Emerson Arenas**| **Yeiner Parra**|
-| <a href="https://www.linkedin.com/in/emer-are/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/yeiner-parra-bernal/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| <img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50>|<img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50> |<img src="https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" width=50> |
+|:-:|:-:|:-:|
+| **Emerson Arenas**| **Yeiner Parra**| **Hector Sol**|
+| <a href="https://www.linkedin.com/in/emer-are/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/yeiner-parra-bernal/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/hectordariosol/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> 
 
   #### 🛠️ Tech Stack:
  ![Python](https://img.shields.io/badge/Python-green?style=for-the-badge&logo=python) 
