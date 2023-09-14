@@ -38,7 +38,7 @@
 
   #### 🛠️ Tech Stack:
  ![Python](https://img.shields.io/badge/Python-green?style=for-the-badge&logo=python) 
- ![Fastapi](https://img.shields.io/badge/Python-green?style=for-the-badge&logo=fastapi)
+ ![Fastapi](https://img.shields.io/badge/Fastapi-green?style=for-the-badge&logo=fastapi)
  
 
   #### 🧑💻 QA Testers:
