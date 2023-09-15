@@ -79,8 +79,6 @@ Fue pensado desde la perspectiva del Doctor o Administrativos de distintos hospi
 
 Les dejamos el plan de pruebas que hicimos: [Plan de pruebas](https://drive.google.com/file/d/19RC2hWhgYBs1E_aTS-wkyJf6VIszmXBc/view?usp=sharing)
 
-## Historias de Usuario.
-
 ## Reporte de Testing
 
 Si les interesa sabes los resultados de los test, aca estan todos manualmente conseguidos: [Resporte de testing](https://drive.google.com/file/d/1o_j1ULVJgFDUfFvMr4HpG7EvU3uRfq_c/view?usp=sharing)
