@@ -1,5 +1,9 @@
 # s10-18-n-python-react
 
+#### **MediPro**
+
+Fue pensado desde la perspectiva del Doctor o Administrativos de distintos hospitales, clinicas y otros centro de agenda de turnos.
+
 ## Tecnologías utilizadas 💻
 
 #### **MediPro** fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experiencia de usuario excepcional:
@@ -73,20 +77,11 @@
 
 ## Plan de pruebas.
 
-
+Les dejamos el plan de pruebas que hicimos: [Plan de pruebas](https://drive.google.com/file/d/19RC2hWhgYBs1E_aTS-wkyJf6VIszmXBc/view?usp=sharing)
 
 ## Historias de Usuario.
 
-
-
-
-## Test Suite Login
-
-
-
-## Test Suite Home
-
-
-
 ## Reporte de Testing
 
+Si les interesa sabes los resultados de los test, aca estan todos manualmente conseguidos: [Resporte de testing](https://drive.google.com/file/d/1o_j1ULVJgFDUfFvMr4HpG7EvU3uRfq_c/view?usp=sharing)
+Si le interesa lo automatizado, aca podes verlos: [Automatización](https://youtu.be/VZxNJyEl2yM) 
