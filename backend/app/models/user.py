@@ -13,6 +13,7 @@ class Users(Base):
     hashed_password = Column(String)
     full_name = Column(String)
     email = Column(String)
+    email_verified = Column(Boolean, default=False)
     disabled = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.datetime.utcnow)

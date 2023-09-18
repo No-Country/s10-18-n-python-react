@@ -71,7 +71,7 @@ def authenticate_user(username: str, password: str, db: db_dependency):
 
 
 async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
-    payload = validate_token(token, os.getenv("SECRET_KEY"))
+    payload: dict = validate_token(token, os.getenv("SECRET_KEY"))
     username: str = payload.get("sub")
     user_id: int = payload.get("id")
     if username is None or user_id is None:

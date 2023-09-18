@@ -1,8 +1,6 @@
 services:
   medicine-project:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: jkrox/medicine-project:latest
     volumes:
       - ./app:/app
     ports:
@@ -41,6 +39,17 @@ services:
       - app-network
     volumes:
       - pgadmin-data:/var/lib/pgadmin
+  # nginx:
+  #   image: nginx:latest
+  #   container_name: nginx_container
+  #   volumes:
+  #     - ./nginx-config:/etc/nginx/conf.d
+  #   ports:
+  #     - "8080:5000"
+  #   depends_on:
+  #     - medicine-project
+  #   networks:
+  #     - app-network
 
 networks:
   app-network:
