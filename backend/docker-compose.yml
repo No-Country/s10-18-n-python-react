@@ -1,6 +1,8 @@
 services:
   medicine-project:
-    image: jkrox/medicine-project:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - ./app:/app
     ports:
