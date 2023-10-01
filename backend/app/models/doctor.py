@@ -18,9 +18,6 @@ class Doctors(Base):
     speciality = Column(String)
     name = Column(String)
     last_name = Column(String)
-    email = Column(String)
-    phone = Column(String)
-    address = Column(String)
 
     clinical_documents: Mapped[List["ClinicalDocuments"]] = relationship(
         "ClinicalDocuements", back_populates="doctor"

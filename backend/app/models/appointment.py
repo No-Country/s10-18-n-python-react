@@ -10,7 +10,9 @@ import datetime
 class Appointments(Base):
     __tablename__ = "appointments"
 
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    id: Mapped[int] = mapped_column(
+        Integer, primary_key=True, index=True, unique=True, nullable=False
+    )
     date_appointment = Column(String)
 
     doctor_id: Mapped[int] = mapped_column(Integer, ForeignKey("doctors.id"))

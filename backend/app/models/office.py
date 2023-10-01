@@ -1,7 +1,7 @@
 from config.database import (
     Base,
 )  # Importamos la clase que hace la conexión a la BD
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, CHAR
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
@@ -17,7 +17,7 @@ class Offices(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     name = Column(String)
     address = Column(String)
-    phone = Column(String)
+    phone = Column(CHAR(10))
 
     clinical_documents: Mapped[List["ClinicalDocuments"]] = relationship(
         "ClinicalDocuements", back_populates="doctor"
