@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+/* import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const URL = "http://https://discord.com/channels/1141541352040050831/1141556250006523954/1149908951207522407";
 
@@ -49,4 +49,4 @@ const AppointmentsSlice = createSlice({
 })
 
 export const { createAppointment } = AppointmentsSlice.actions
-export default AppointmentsSlice.reducer
+export default AppointmentsSlice.reducer */

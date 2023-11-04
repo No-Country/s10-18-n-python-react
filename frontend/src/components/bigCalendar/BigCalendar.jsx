@@ -6,12 +6,12 @@ import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
 import es from "date-fns/locale/es";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import moment from "moment";
 import 'moment-timezone' 
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import AddEventModal from "./AddEventModal";
 import { toast } from "sonner";
+import AddEventModal from "./AddEventModal";
 
 
 const locales = {
@@ -26,14 +26,10 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-
 export default function Calendar(props) {
-
-  const [profEvents, setProfEvents] = useState()
   const [open, setOpen] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
   const [event, setEvent] = useState(null);
-  
   const components = useMemo(
     () => ({
       event: CustomEvent, 
@@ -128,8 +124,7 @@ export default function Calendar(props) {
           handleOpen={handleOpenAdd}
           handleClose={handleClose}
           professional={props.professional}
-          handleReloadAppointments={props.handleReloadAppointments}
-          handleSetNewAppointment = {props.handleSetNewAppointment}
+          getAppointmentes={props.getAppointmentes}
         />
       )}
     </div>

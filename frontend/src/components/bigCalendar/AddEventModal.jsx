@@ -1,4 +1,4 @@
-import { Modal} from "rsuite";
+import { Button, Modal} from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import DatosPaciente from "../DatosPaciente";
 import { useEffect, useState } from "react";
@@ -9,8 +9,8 @@ const AddEventModal = ({
   openAdd, 
   handleClose, 
   professional,  
-  handleReloadAppointments,
-  handleSetNewAppointment
+  getAppointmentes
+
 }) => {
 
   const [startDate, setStartDate] = useState(0);
@@ -29,6 +29,8 @@ const AddEventModal = ({
   const addAppointment = (pFirstName, pLastName, diagnosis, patientState, prescription, dni) => {
 
     const appointmentData = {
+      doctor_first_name: professional.first_name,
+      doctor_last_name: professional.last_name,
       start_datetime: startToString,
       end_datetime: endToString,
       diagnosis: diagnosis,
@@ -40,11 +42,9 @@ const AddEventModal = ({
       state: patientState
     }
 
-    handleSetNewAppointment(appointmentData)
-    
     const fetchPostData = async () => {
       try{
-        const res = await fetch(`https://medicadminbackend-jeqz-dev.fl0.io/appointments/`,
+        const res = await fetch(`${import.meta.env.VITE_APPOINTMENTS}`,
           {
             method:"POST",
             headers: { 
@@ -56,13 +56,14 @@ const AddEventModal = ({
         )
         if (res.status === 201) {
               toast.success("Turno agendado")
+              await getAppointmentes()
               } else toast.error("Error, intente nuevamente")
       } catch(err) {
         console.log(err)
       }
-      window.location.reload()
     }
     fetchPostData()
+    /* getAppointmentes() */
   }
 
   return (
@@ -81,6 +82,7 @@ const AddEventModal = ({
             start={startDate}
             professional={professional}
             addAppointment={addAppointment}
+            /* handleCount={handleCount} */
           />
         </div>
       </Modal>
