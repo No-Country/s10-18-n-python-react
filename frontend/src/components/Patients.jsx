@@ -48,7 +48,7 @@ const Patients = () => {
   }, []);
 
   useEffect(() => {
-    fetch("https://medicadminbackend-jeqz-dev.fl0.io/patients/")
+    fetch(`${import.meta.env.VITE_PATIENTS}`)
       .then((res) => res.json())
       .then((data) => setPatients(data))
       .catch((err) => console.error(err));

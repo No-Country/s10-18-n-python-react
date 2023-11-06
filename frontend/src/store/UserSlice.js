@@ -8,7 +8,7 @@ export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (userCredentials) => {
     const request = await axios.post(
-      URL,
+      `${import.meta.env.VITE_LOGIN}`,
       new URLSearchParams(userCredentials),
       {
         headers: { accept: "application/json" },
