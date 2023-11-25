@@ -50,6 +50,22 @@ cd backend/
 docker-compose build
 docker-compose up -d
 ```
+> Ojo, tienes que tener configurado tu archivo `.env` con todas las variables de entornos, para la base de datos y el JWT.
+> Debes crear el siguiente fichero y usar esto como referencia: 
+```sh
+# JWT configuration
+SECRET_KEY = 'my_secret_key'
+
+# Database configuration
+POSTGRES_USER = 'UserPower'
+POSTGRES_PASSWORD = 'my_super_secret_key'
+POSTGRES_DB = 'medicine-project'
+
+# Pgadmin4 configuration
+PGADMIN_DEFAULT_EMAIL = 'userpower@mail.com
+PGADMIN_DEFAULT_PASSWORD = 'secret_password'
+```
+
 
 Ya con eso debería arrancar los conteneros y tener funcionando, parecido acá:
 
